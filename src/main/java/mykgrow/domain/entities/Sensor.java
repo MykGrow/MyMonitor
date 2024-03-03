@@ -5,8 +5,8 @@ public class Sensor {
     private final UUID id;
     private final SensorType type;
 
-    public Sensor(UUID id, SensorType type) {
-        this.id = id;
+    public Sensor(SensorType type) {
+        this.id = UUID.randomUUID();
         this.type = type;
     }
 

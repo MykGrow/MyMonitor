@@ -6,8 +6,8 @@ public class GrowBox {
     private final String name;
     private final Status status;
 
-    public GrowBox(UUID id, String name, Status status) {
-        this.id = id;
+    public GrowBox(String name, Status status) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.status = status;
     }

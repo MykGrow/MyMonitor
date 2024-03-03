@@ -9,8 +9,8 @@ public class Actuator {
     private final ActuatorType type;
     private final ActuatorStatus state; // e.g., ON, OFF
 
-    public Actuator(UUID id, String name, ActuatorType type, ActuatorStatus state) {
-        this.id = id;
+    public Actuator(String name, ActuatorType type, ActuatorStatus state) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.type = type;
         this.state = state;
