@@ -1,9 +1,8 @@
 package mykgrow.domain.entities;
 
 import java.util.UUID;
+import mykgrow.domain.enums.ActuatorStatus;
 import mykgrow.domain.enums.ActuatorType;
-import mykgrow.domain.valueobject.ActuatorStatus;
-
 public class Actuator {
     private final UUID id;
     private final String name;
