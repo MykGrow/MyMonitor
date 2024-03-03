@@ -1,4 +1,4 @@
-package mykgrow.domain.entities;
+package mykgrow.domain.valueobject;
 
 import java.time.LocalDateTime;
 

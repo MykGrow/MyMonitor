@@ -1,4 +1,4 @@
-package mykgrow.domain.entities;
+package mykgrow.domain.valueobject;
 public class Setting {
 
     private final String parameter;
