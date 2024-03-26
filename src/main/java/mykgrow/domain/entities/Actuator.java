@@ -3,7 +3,7 @@ package mykgrow.domain.entities;
 import java.util.UUID;
 import mykgrow.domain.enums.ActuatorStatus;
 import mykgrow.domain.enums.ActuatorType;
-public class Actuator {
+public abstract class Actuator {
     private final UUID id;
     private final String name;
     private final ActuatorType type;
@@ -43,5 +43,8 @@ public class Actuator {
             state = ActuatorStatus.ON;
         }
     }
+
+    public abstract void turnOn();
+    public abstract void turnOff();
 
 }

@@ -1,6 +1,8 @@
 package mykgrow.ui;
 
 import mykgrow.domain.entities.Actuator;
+import mykgrow.domain.entities.Fan;
+import mykgrow.domain.entities.Light;
 import mykgrow.domain.enums.ActuatorStatus;
 import mykgrow.domain.enums.ActuatorType;
 
@@ -19,7 +21,7 @@ public class GrowBoxDashboard extends JFrame {
     private final JLabel lightStatusLabel;
     private final JLabel fanStatusLabel;
 
-    public GrowBoxDashboard(Actuator lightActuator, Actuator fanActuator) {
+    public GrowBoxDashboard(Light lightActuator, Fan fanActuator) {
         this.lightActuator = lightActuator;
         this.fanActuator = fanActuator;
 
@@ -86,8 +88,8 @@ public class GrowBoxDashboard extends JFrame {
     }
 
     public static void main(String[] args) {
-        Actuator lightActuator = new Actuator("Light", ActuatorType.LIGHT, ActuatorStatus.OFF);
-        Actuator fanActuator = new Actuator("Fan", ActuatorType.VENTILATION, ActuatorStatus.OFF);
+        Light lightActuator = new Light("Light", ActuatorStatus.OFF);
+        Fan fanActuator = new Fan("Fan", ActuatorStatus.OFF);
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
