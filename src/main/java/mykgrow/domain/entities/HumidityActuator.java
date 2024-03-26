@@ -3,19 +3,19 @@ package mykgrow.domain.entities;
 import mykgrow.domain.enums.ActuatorStatus;
 import mykgrow.domain.enums.ActuatorType;
 
-public class Humidifier extends Actuator{
+public class HumidityActuator extends Actuator{
 
-    public Humidifier(String name, ActuatorStatus state) {
+    public HumidityActuator(String name, ActuatorStatus state) {
         super(name, ActuatorType.HUMIDIFIER, ActuatorStatus.OFF);
     }
 
     @Override
     public void turnOn() {
-
+        setState(ActuatorStatus.ON);
     }
 
     @Override
     public void turnOff() {
-
+        setState(ActuatorStatus.OFF);
     }
 }
