@@ -1,15 +1,21 @@
 package mykgrow.domain.entities;
 
 import java.util.UUID;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class GrowBox {
     private final UUID id;
     private final String name;
-    private final Status status;
+    private List<Actuator> actuators;
+    private List<Sensor> sensors;
 
-    public GrowBox(String name, Status status) {
+    public GrowBox(String name) {
         this.id = UUID.randomUUID();
         this.name = name;
-        this.status = status;
+        actuators = new ArrayList<>();
+        sensors = new ArrayList<>();
     }
 
     public UUID getId() {
@@ -20,11 +26,12 @@ public class GrowBox {
         return name;
     }
 
-    public Status getStatus() {
-        return status;
+    public void addActuator(Actuator actuator) {
+        actuators.add(actuator);
     }
 
-    public enum Status {
-        ACTIVE, IDLE, ERROR;
+    public void addSensor(Sensor sensor) {
+        sensors.add(sensor);
     }
+
 }

@@ -7,7 +7,7 @@ public class Actuator {
     private final UUID id;
     private final String name;
     private final ActuatorType type;
-    private final ActuatorStatus state; // e.g., ON, OFF
+    private ActuatorStatus state; // e.g., ON, OFF
 
     public Actuator(String name, ActuatorType type, ActuatorStatus state) {
         this.id = UUID.randomUUID();
@@ -30,6 +30,18 @@ public class Actuator {
 
     public ActuatorStatus getState() {
         return state;
+    }
+
+    public void setState(ActuatorStatus state) {
+        this.state = state;
+    }
+
+    public void toggleState() {
+        if (state == ActuatorStatus.ON) {
+            state = ActuatorStatus.OFF;
+        } else {
+            state = ActuatorStatus.ON;
+        }
     }
 
 }
