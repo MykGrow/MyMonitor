@@ -13,7 +13,7 @@ public class VentilationControlService {
 
     public VentilationControlService(GrowBox growBox) {
         this.growBox = growBox;
-        this.fan = (FanActuator) growBox.findActuatorByType(ActuatorType.VENTILATION);
+        this.fan = (FanActuator) growBox.findActuatorByType(ActuatorType.FAN);
         this.temperatureSensor = (TemperatureSensor) growBox.findSensorByType(SensorType.TEMPERATURE);
     }
 

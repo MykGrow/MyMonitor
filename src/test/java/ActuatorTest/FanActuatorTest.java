@@ -3,7 +3,8 @@ package ActuatorTest;
 import mykgrow.domain.entities.Actuator;
 import mykgrow.domain.entities.FanActuator;
 import mykgrow.domain.enums.ActuatorStatus;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

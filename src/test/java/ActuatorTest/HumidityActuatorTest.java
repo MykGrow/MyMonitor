@@ -3,7 +3,7 @@ package ActuatorTest;
 import mykgrow.domain.entities.HumidityActuator;
 import mykgrow.domain.enums.ActuatorStatus;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -5,7 +5,7 @@ import mykgrow.domain.enums.ActuatorType;
 
 public class FanActuator extends Actuator{
     public FanActuator(String name, ActuatorStatus state) {
-        super(name, ActuatorType.VENTILATION, ActuatorStatus.OFF);
+        super(name, ActuatorType.FAN, ActuatorStatus.OFF);
     }
 
     @Override
