@@ -8,6 +8,7 @@ import mykgrow.domain.enums.ActuatorStatus;
 import mykgrow.domain.enums.ActuatorType;
 import mykgrow.domain.enums.MeasurementUnit;
 import mykgrow.domain.enums.SensorType;
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 public class GrowBoxTest {
@@ -25,7 +26,20 @@ public class GrowBoxTest {
         assertEquals("Test Growbox", growBox.getName());
     }
 
+    @Test
+    public void testAddActuator(){
+        FanActuator actuatorMock = EasyMock.createMock(FanActuator.class);
+        EasyMock.expect(actuatorMock.getType()).andReturn(ActuatorType.FAN).times(2);
+        EasyMock.replay(actuatorMock);
 
+        growBox.addActuator(actuatorMock);
+
+        assertEquals(1, growBox.getActuators().size());
+        assertEquals(ActuatorType.FAN, growBox.findActuatorByType(ActuatorType.FAN).getType());
+
+        EasyMock.verify(actuatorMock);
+
+    }
 
     @Test
     public void testFindSensorByType() {

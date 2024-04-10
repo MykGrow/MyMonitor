@@ -55,4 +55,12 @@ public class GrowBox {
         return null; // Actuator of specified type not found
     }
 
+    public List<Actuator> getActuators() {
+        return actuators;
+    }
+
+    public List<Sensor> getSensors() {
+        return sensors;
+    }
+
 }
