@@ -37,4 +37,8 @@ public abstract class Sensor {
         return currentSensorValue;
     }
 
+    public void setCurrentSensorValue(double currentSensorValue){
+        this.currentSensorValue = currentSensorValue;
+    }
+
 }

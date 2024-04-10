@@ -19,9 +19,9 @@ public class HumidityControlService {
     public void regulateHumidity() {
         if (humiditySensor != null && humidifier != null) {
             double currentHumidity = humiditySensor.getCurrentSensorValue();
-            if (currentHumidity < 80) {
+            if (currentHumidity <= 80) {
                 humidifier.turnOn();
-            } else if (currentHumidity > 95) {
+            } else if (currentHumidity > 80) {
                 humidifier.turnOff();
             }
         }

@@ -42,6 +42,20 @@ public class GrowBoxTest {
     }
 
     @Test
+    public void testAddSensor(){
+        TemperatureSensor sensorMock = EasyMock.createMock(TemperatureSensor.class);
+        EasyMock.expect(sensorMock.getType()).andReturn(SensorType.TEMPERATURE).times(2);
+        EasyMock.replay(sensorMock);
+
+        growBox.addSensor(sensorMock);
+
+        assertEquals(1, growBox.getSensors().size());
+        assertEquals(SensorType.TEMPERATURE, growBox.findSensorByType(SensorType.TEMPERATURE).getType());
+
+        EasyMock.verify(sensorMock);
+    }
+
+    @Test
     public void testFindSensorByType() {
         TemperatureSensor temperatureSensor = new TemperatureSensor("DHT22", MeasurementUnit.CELSIUS);
         growBox.addSensor(temperatureSensor);
