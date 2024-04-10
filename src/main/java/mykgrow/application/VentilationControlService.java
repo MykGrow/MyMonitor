@@ -1,11 +1,9 @@
-
 package mykgrow.application;
 
 import mykgrow.domain.entities.FanActuator;
 import mykgrow.domain.entities.GrowBox;
 import mykgrow.domain.entities.TemperatureSensor;
 import mykgrow.domain.enums.ActuatorType;
-import mykgrow.domain.enums.ActuatorStatus;
 import mykgrow.domain.enums.SensorType;
 
 public class VentilationControlService {

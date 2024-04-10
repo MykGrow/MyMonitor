@@ -1,6 +1,7 @@
 package mykgrow.domain.entities;
 import mykgrow.domain.enums.MeasurementUnit;
 import mykgrow.domain.enums.SensorType;
+
 import java.util.UUID;
 public abstract class Sensor {
     private final UUID id;

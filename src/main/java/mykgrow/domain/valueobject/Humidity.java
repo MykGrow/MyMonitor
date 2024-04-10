@@ -1,5 +1,6 @@
 package mykgrow.domain.valueobject;
 import mykgrow.domain.enums.MeasurementUnit;
+
 public class Humidity {
     private final double value;
     private final MeasurementUnit unit;

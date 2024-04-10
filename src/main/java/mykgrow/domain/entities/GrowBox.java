@@ -37,15 +37,6 @@ public class GrowBox {
         sensors.add(sensor);
     }
 
-    public HumiditySensor getHumiditySensor() {
-        for (Sensor sensor : sensors) {
-            if (sensor instanceof HumiditySensor) {
-                return (HumiditySensor) sensor;
-            }
-        }
-        return null;
-    }
-
     public Sensor findSensorByType(SensorType type) {
         for (Sensor sensor : sensors) {
             if (sensor.getType() == type) {
