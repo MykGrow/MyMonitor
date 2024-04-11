@@ -1,6 +1,7 @@
 package mykgrow.plugins;
 
 import mykgrow.adapters.MQTTAdapter;
+import mykgrow.application.HumidifierControlService;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.util.function.Consumer;
@@ -13,7 +14,8 @@ public class Main {
         };
 
         MQTTAdapter mqttAdapter = new MQTTAdapter("tcp://test.mosquitto.org:1883", "Java Application");
-        mqttAdapter.subscribe("box1/msg", messageHandler);
-        mqttAdapter.publish("box1/msg", "Hello from App!");
+
+        HumidifierControlService humidifierControlService = new HumidifierControlService(mqttAdapter);
+        humidifierControlService.turnOffHumidifier();
     }
 }
