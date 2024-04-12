@@ -5,11 +5,11 @@ import mykgrow.domain.enums.Condition;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PresetGrowing {
+public class GrowingPreset {
     private String name;
     private Map<Condition, Double> conditions;
 
-    public PresetGrowing(String name) {
+    public GrowingPreset(String name) {
         this.name = name;
         this.conditions = new HashMap<>();
     }
