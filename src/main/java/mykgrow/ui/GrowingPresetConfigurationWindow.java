@@ -4,6 +4,7 @@ import mykgrow.application.GrowingPresetConfigurationInterface;
 import mykgrow.application.GrowingPresetConfigurationService;
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.enums.Condition;
+import mykgrow.domain.repositories.GrowingPresetRepository;
 
 import javax.swing.*;
 import java.awt.*;
@@ -106,7 +107,7 @@ public class GrowingPresetConfigurationWindow extends JFrame{
 
     public static void main(String[] args) {
         // Create a mock implementation of PresetService for demonstration purposes
-        GrowingPresetConfigurationInterface presetService = new GrowingPresetConfigurationService();
+        GrowingPresetConfigurationInterface presetService = new GrowingPresetConfigurationService(new GrowingPresetRepository());
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new GrowingPresetConfigurationWindow(presetService).setVisible(true);
