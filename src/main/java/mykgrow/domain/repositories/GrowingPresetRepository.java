@@ -5,7 +5,7 @@ import mykgrow.domain.entities.GrowingPreset;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GrowingPresetRepository {
+public class GrowingPresetRepository implements GrowingPresetRepositoryInterface{
     private List<GrowingPreset> growingPresets;
 
     public GrowingPresetRepository() {

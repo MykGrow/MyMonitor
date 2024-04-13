@@ -1,15 +1,16 @@
 package mykgrow.ui;
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.repositories.GrowingPresetRepository;
+import mykgrow.domain.repositories.GrowingPresetRepositoryInterface;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
 public class GrowingPresetsListWindow extends JFrame {
-    private final GrowingPresetRepository presetRepository;
+    private final GrowingPresetRepositoryInterface presetRepository;
 
-    public GrowingPresetsListWindow(GrowingPresetRepository presetRepository) {
+    public GrowingPresetsListWindow(GrowingPresetRepositoryInterface presetRepository) {
         this.presetRepository = presetRepository;
 
         setTitle("Preset List");
