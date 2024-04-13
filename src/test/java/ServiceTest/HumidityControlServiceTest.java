@@ -1,14 +1,13 @@
 package ServiceTest;
 
 import mykgrow.application.HumidityControlService;
-import mykgrow.domain.entities.GrowBox;
-import mykgrow.domain.entities.HumidityActuator;
-import mykgrow.domain.entities.HumiditySensor;
-import mykgrow.domain.enums.ActuatorStatus;
-import mykgrow.domain.enums.ActuatorType;
-import mykgrow.domain.enums.MeasurementUnit;
-import mykgrow.domain.enums.SensorType;
-import org.easymock.EasyMock;
+import mykgrow.trash.GrowBox;
+import mykgrow.trash.HumidityActuator;
+import mykgrow.trash.HumiditySensor;
+import mykgrow.trash.ActuatorStatus;
+import mykgrow.trash.ActuatorType;
+import mykgrow.trash.MeasurementUnit;
+import mykgrow.trash.SensorType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

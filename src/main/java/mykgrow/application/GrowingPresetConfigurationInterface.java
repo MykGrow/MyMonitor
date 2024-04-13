@@ -6,6 +6,5 @@ import mykgrow.domain.repositories.GrowingPresetRepositoryInterface;
 
 public interface GrowingPresetConfigurationInterface {
     void saveGrowingPreset(GrowingPreset growingPreset);
-
     GrowingPresetRepositoryInterface getGrowingPresetRepository();
 }

@@ -1,8 +1,7 @@
 package ActuatorTest;
 
-import mykgrow.domain.entities.Actuator;
-import mykgrow.domain.entities.FanActuator;
-import mykgrow.domain.enums.ActuatorStatus;
+import mykgrow.trash.FanActuator;
+import mykgrow.trash.ActuatorStatus;
 
 import org.junit.jupiter.api.Test;
 

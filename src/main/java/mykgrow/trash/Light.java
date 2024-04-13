@@ -1,9 +1,6 @@
-package mykgrow.domain.entities;
+package mykgrow.trash;
 
-import mykgrow.domain.enums.ActuatorStatus;
-import mykgrow.domain.enums.ActuatorType;
-
-public class Light extends Actuator{
+public class Light extends Actuator {
     public Light(String name, ActuatorStatus state) {
         super(name, ActuatorType.LIGHT, ActuatorStatus.OFF);
     }

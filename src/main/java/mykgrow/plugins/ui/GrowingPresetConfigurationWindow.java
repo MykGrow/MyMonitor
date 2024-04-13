@@ -1,4 +1,4 @@
-package mykgrow.ui;
+package mykgrow.plugins.ui;
 
 import mykgrow.application.GrowingPresetConfigurationInterface;
 import mykgrow.application.GrowingPresetConfigurationService;

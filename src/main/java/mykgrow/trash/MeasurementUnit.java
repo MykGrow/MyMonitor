@@ -1,4 +1,4 @@
-package mykgrow.domain.enums;
+package mykgrow.trash;
 
 public enum MeasurementUnit {
     CELSIUS,

@@ -1,10 +1,10 @@
 package mykgrow.application;
 
-import mykgrow.domain.entities.GrowBox;
-import mykgrow.domain.entities.HumidityActuator;
-import mykgrow.domain.entities.HumiditySensor;
-import mykgrow.domain.enums.ActuatorType;
-import mykgrow.domain.enums.SensorType;
+import mykgrow.trash.GrowBox;
+import mykgrow.trash.HumidityActuator;
+import mykgrow.trash.HumiditySensor;
+import mykgrow.trash.ActuatorType;
+import mykgrow.trash.SensorType;
 public class HumidityControlService {
     private final GrowBox growBox;
     private final HumiditySensor humiditySensor;

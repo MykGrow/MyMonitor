@@ -1,4 +1,4 @@
-package mykgrow.domain.valueobject;
+package mykgrow.trash;
 
 import java.time.LocalDateTime;
 

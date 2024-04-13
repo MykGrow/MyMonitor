@@ -1,9 +1,6 @@
-package mykgrow.domain.entities;
+package mykgrow.trash;
 
-import mykgrow.domain.enums.ActuatorStatus;
-import mykgrow.domain.enums.ActuatorType;
-
-public class HumidityActuator extends Actuator{
+public class HumidityActuator extends Actuator {
 
     public HumidityActuator(String name, ActuatorStatus state) {
         super(name, ActuatorType.HUMIDIFIER, ActuatorStatus.OFF);

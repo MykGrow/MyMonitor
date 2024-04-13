@@ -1,10 +1,10 @@
 package mykgrow.application;
 
-import mykgrow.domain.entities.FanActuator;
-import mykgrow.domain.entities.GrowBox;
-import mykgrow.domain.entities.TemperatureSensor;
-import mykgrow.domain.enums.ActuatorType;
-import mykgrow.domain.enums.SensorType;
+import mykgrow.trash.FanActuator;
+import mykgrow.trash.GrowBox;
+import mykgrow.trash.TemperatureSensor;
+import mykgrow.trash.ActuatorType;
+import mykgrow.trash.SensorType;
 
 public class VentilationControlService {
     private final GrowBox growBox;

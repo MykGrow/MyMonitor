@@ -1,9 +1,9 @@
-package mykgrow.ui;
+package mykgrow.plugins.ui;
 
-import mykgrow.domain.entities.Actuator;
-import mykgrow.domain.entities.FanActuator;
-import mykgrow.domain.entities.Light;
-import mykgrow.domain.enums.ActuatorStatus;
+import mykgrow.trash.Actuator;
+import mykgrow.trash.FanActuator;
+import mykgrow.trash.Light;
+import mykgrow.trash.ActuatorStatus;
 
 import javax.swing.*;
 import java.awt.*;

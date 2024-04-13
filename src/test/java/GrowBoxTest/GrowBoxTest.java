@@ -1,13 +1,14 @@
 package GrowBoxTest;
 
-import mykgrow.domain.entities.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-import mykgrow.domain.enums.ActuatorStatus;
-import mykgrow.domain.enums.ActuatorType;
-import mykgrow.domain.enums.MeasurementUnit;
-import mykgrow.domain.enums.SensorType;
+import mykgrow.trash.ActuatorStatus;
+import mykgrow.trash.ActuatorType;
+import mykgrow.trash.MeasurementUnit;
+import mykgrow.trash.SensorType;
+import mykgrow.trash.FanActuator;
+import mykgrow.trash.GrowBox;
+import mykgrow.trash.TemperatureSensor;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

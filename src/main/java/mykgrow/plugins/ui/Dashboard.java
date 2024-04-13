@@ -1,4 +1,4 @@
-package mykgrow.ui;
+package mykgrow.plugins.ui;
 
 import mykgrow.domain.entities.CurrentConditions;
 import mykgrow.domain.entities.DesiredConditions;

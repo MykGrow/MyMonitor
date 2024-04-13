@@ -1,5 +1,5 @@
-package mykgrow.domain.valueobject;
-import mykgrow.domain.enums.MeasurementUnit;
+package mykgrow.trash;
+import mykgrow.trash.MeasurementUnit;
 public class Temperature {
     private final double value;
     private final MeasurementUnit unit;

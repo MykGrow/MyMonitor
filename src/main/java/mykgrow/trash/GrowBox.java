@@ -1,7 +1,4 @@
-package mykgrow.domain.entities;
-
-import mykgrow.domain.enums.ActuatorType;
-import mykgrow.domain.enums.SensorType;
+package mykgrow.trash;
 
 import java.util.UUID;
 
