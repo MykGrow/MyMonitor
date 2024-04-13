@@ -1,4 +1,4 @@
-package mykgrow.application;
+package mykgrow.application.interfaces;
 
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.repositories.GrowingPresetRepository;

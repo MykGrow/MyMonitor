@@ -1,9 +1,10 @@
 package mykgrow.application;
 
 import mykgrow.adapters.interfaces.MessagePublisher;
+import mykgrow.application.interfaces.HumidifierControlServiceInterface;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
-public class HumidifierControlService {
+public class HumidifierControlService implements HumidifierControlServiceInterface {
     private final MessagePublisher messagePublisher;
 
     public HumidifierControlService(MessagePublisher messagePublisher) {

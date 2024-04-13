@@ -1,12 +1,11 @@
 package mykgrow.application;
 
+import mykgrow.application.interfaces.GrowingPresetConfigurationInterface;
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.repositories.GrowingPresetRepository;
 import mykgrow.domain.repositories.GrowingPresetRepositoryInterface;
 
-import java.util.List;
-
-public class GrowingPresetConfigurationService implements GrowingPresetConfigurationInterface{
+public class GrowingPresetConfigurationService implements GrowingPresetConfigurationInterface {
 
     GrowingPresetRepositoryInterface growingPresetRepository;
 
