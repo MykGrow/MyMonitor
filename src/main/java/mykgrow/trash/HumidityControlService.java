@@ -1,4 +1,4 @@
-package mykgrow.application;
+package mykgrow.trash;
 
 import mykgrow.trash.GrowBox;
 import mykgrow.trash.HumidityActuator;

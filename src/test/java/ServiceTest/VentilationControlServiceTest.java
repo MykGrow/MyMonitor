@@ -1,6 +1,6 @@
 package ServiceTest;
 
-import mykgrow.application.VentilationControlService;
+import mykgrow.trash.VentilationControlService;
 import mykgrow.trash.ActuatorStatus;
 import mykgrow.trash.ActuatorType;
 import mykgrow.trash.MeasurementUnit;

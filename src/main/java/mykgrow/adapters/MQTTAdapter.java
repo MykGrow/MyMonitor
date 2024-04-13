@@ -1,7 +1,7 @@
 package mykgrow.adapters;
 
-import mykgrow.domain.interfaces.MessagePublisher;
-import mykgrow.domain.interfaces.MessageSubscriber;
+import mykgrow.adapters.interfaces.MessagePublisher;
+import mykgrow.adapters.interfaces.MessageSubscriber;
 import org.eclipse.paho.client.mqttv3.*;
 
 import java.util.function.Consumer;

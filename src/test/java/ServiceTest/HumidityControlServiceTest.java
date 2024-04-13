@@ -1,6 +1,6 @@
 package ServiceTest;
 
-import mykgrow.application.HumidityControlService;
+import mykgrow.trash.HumidityControlService;
 import mykgrow.trash.GrowBox;
 import mykgrow.trash.HumidityActuator;
 import mykgrow.trash.HumiditySensor;

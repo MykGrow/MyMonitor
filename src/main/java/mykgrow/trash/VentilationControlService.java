@@ -1,4 +1,4 @@
-package mykgrow.application;
+package mykgrow.trash;
 
 import mykgrow.trash.FanActuator;
 import mykgrow.trash.GrowBox;

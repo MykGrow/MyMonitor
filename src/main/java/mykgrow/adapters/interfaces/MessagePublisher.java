@@ -1,4 +1,4 @@
-package mykgrow.domain.interfaces;
+package mykgrow.adapters.interfaces;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 
