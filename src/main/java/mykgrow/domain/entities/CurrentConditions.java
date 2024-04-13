@@ -1,48 +1,48 @@
 package mykgrow.domain.entities;
 
 public class CurrentConditions {
-    private double temperature;
-    private double humidity;
-    private double lightIntensity;
-    private double airflow;
+    private Condition currentTemperature;
+    private Condition currentHumidity;
+    private Condition currentLightIntensity;
+    private Condition currentAirflow;
 
     public CurrentConditions(double temperature, double humidity, double lightIntensity, double airflow) {
-        this.temperature = temperature;
-        this.humidity = humidity;
-        this.lightIntensity = lightIntensity;
-        this.airflow = airflow;
+        this.currentTemperature = new Condition("Temperature", temperature, "°C");
+        this.currentHumidity = new Condition("Humidity", humidity, "%");
+        this.currentLightIntensity = new Condition("Light Intensity", lightIntensity, "lux");
+        this.currentAirflow = new Condition("Airflow", airflow, "m/s");
     }
 
     // Getters and setters
-    public double getTemperature() {
-        return temperature;
+    public Condition getCurrentTemperature() {
+        return currentTemperature;
     }
 
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
+    public void setCurrentTemperature(double currentTemperature) {
+        this.currentTemperature.setValue(currentTemperature);
     }
 
-    public double getHumidity() {
-        return humidity;
+    public Condition getCurrentHumidity() {
+        return currentHumidity;
     }
 
-    public void setHumidity(double humidity) {
-        this.humidity = humidity;
+    public void setCurrentHumidity(double currentHumidity) {
+        this.currentHumidity.setValue(currentHumidity);
     }
 
-    public double getLightIntensity() {
-        return lightIntensity;
+    public Condition getCurrentLightIntensity() {
+        return currentLightIntensity;
     }
 
-    public void setLightIntensity(double lightIntensity) {
-        this.lightIntensity = lightIntensity;
+    public void setCurrentLightIntensity(double currentLightIntensity) {
+        this.currentLightIntensity.setValue(currentLightIntensity);
     }
 
-    public double getAirflow() {
-        return airflow;
+    public Condition getCurrentAirflow() {
+        return currentAirflow;
     }
 
-    public void setAirflow(double airflow) {
-        this.airflow = airflow;
+    public void setCurrentAirflow(double currentAirflow) {
+        this.currentAirflow.setValue(currentAirflow);
     }
 }

@@ -2,8 +2,6 @@ package mykgrow.ui;
 
 import mykgrow.application.GrowingPresetConfigurationInterface;
 import mykgrow.application.GrowingPresetConfigurationService;
-import mykgrow.domain.entities.GrowingPreset;
-import mykgrow.domain.enums.Condition;
 import mykgrow.domain.repositories.GrowingPresetRepository;
 
 import javax.swing.*;
@@ -88,14 +86,14 @@ public class GrowingPresetConfigurationWindow extends JFrame{
             double airFlow = Double.parseDouble(airFlowField.getText());
 
             // Create a PresetGrowing object with the retrieved values
-            GrowingPreset preset = new GrowingPreset("Custom");
-            preset.addCondition(Condition.TEMPERATURE,temperature);
-            preset.addCondition(Condition.HUMIDITY,humidity);
-            preset.addCondition(Condition.LIGHT_INTENSITY,lightIntensity);
-            preset.addCondition(Condition.AIR_FLOW, airFlow);
+            // GrowingPreset preset = new GrowingPreset("Custom");
+            // preset.addCondition(Condition.TEMPERATURE,temperature);
+            // preset.addCondition(Condition.HUMIDITY,humidity);
+            // preset.addCondition(Condition.LIGHT_INTENSITY,lightIntensity);
+            // preset.addCondition(Condition.AIR_FLOW, airFlow);
 
             // Call the savePreset method from the PresetService
-            presetService.saveGrowingPreset(preset);
+            // presetService.saveGrowingPreset(preset);
 
             // Inform the user that the preset was saved successfully
             JOptionPane.showMessageDialog(this, "Preset saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);

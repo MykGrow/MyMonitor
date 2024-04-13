@@ -1,48 +1,48 @@
 package mykgrow.domain.entities;
 
 public class DesiredConditions {
-    private double desiredTemperature;
-    private double desiredHumidity;
-    private double desiredLightIntensity;
-    private double desiredAirflow;
+    private Condition desiredTemperature;
+    private Condition desiredHumidity;
+    private Condition desiredLightIntensity;
+    private Condition desiredAirflow;
 
     public DesiredConditions(double desiredTemperature, double desiredHumidity, double desiredLightIntensity, double desiredAirflow) {
-        this.desiredTemperature = desiredTemperature;
-        this.desiredHumidity = desiredHumidity;
-        this.desiredLightIntensity = desiredLightIntensity;
-        this.desiredAirflow = desiredAirflow;
+        this.desiredTemperature = new Condition("Temperature", desiredTemperature, "°C");
+        this.desiredHumidity = new Condition("Humidity", desiredHumidity, "%");
+        this.desiredLightIntensity = new Condition("Light Intensity", desiredLightIntensity, "lux");
+        this.desiredAirflow = new Condition("Airflow", desiredAirflow, "m/s");
     }
 
     // Getters and setters
-    public double getDesiredTemperature() {
+    public Condition getDesiredTemperature() {
         return desiredTemperature;
     }
 
     public void setDesiredTemperature(double desiredTemperature) {
-        this.desiredTemperature = desiredTemperature;
+        this.desiredTemperature.setValue(desiredTemperature);
     }
 
-    public double getDesiredHumidity() {
+    public Condition getDesiredHumidity() {
         return desiredHumidity;
     }
 
     public void setDesiredHumidity(double desiredHumidity) {
-        this.desiredHumidity = desiredHumidity;
+        this.desiredHumidity.setValue(desiredHumidity);
     }
 
-    public double getDesiredLightIntensity() {
+    public Condition  getDesiredLightIntensity() {
         return desiredLightIntensity;
     }
 
     public void setDesiredLightIntensity(double desiredLightIntensity) {
-        this.desiredLightIntensity = desiredLightIntensity;
+        this.desiredLightIntensity.setValue(desiredLightIntensity);
     }
 
-    public double getDesiredAirflow() {
+    public Condition getDesiredAirflow() {
         return desiredAirflow;
     }
 
     public void setDesiredAirflow(double desiredAirflow) {
-        this.desiredAirflow = desiredAirflow;
+        this.desiredAirflow.setValue(desiredAirflow);
     }
 }

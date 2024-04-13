@@ -39,11 +39,10 @@ public class GrowingPresetsListWindow extends JFrame {
     public static void main(String[] args) {
         // Create a mock implementation of the repository for demonstration purposes
         GrowingPresetRepository presetRepository = new GrowingPresetRepository();
-        presetRepository.savePreset(new GrowingPreset("Preset 1"));
-        presetRepository.savePreset(new GrowingPreset("Preset 2"));
-        presetRepository.savePreset(new GrowingPreset("Preset 3"));
-        presetRepository.savePreset(new GrowingPreset("Preset 4"));
-
+        GrowingPreset preset1 = new GrowingPreset("Preset 1", 25.0, 60.0, 1000.0, 0.5);
+        GrowingPreset preset2 = new GrowingPreset("Preset 2", 20.0, 50.0, 1200.0, 0.3);
+        GrowingPreset preset3 = new GrowingPreset("Preset 3", 28.0, 70.0, 800.0, 0.7);
+        GrowingPreset preset4 = new GrowingPreset("Preset 4", 22.0, 55.0, 1500.0, 0.4);
         // Create and display the PresetListWindow
         SwingUtilities.invokeLater(() -> {
             GrowingPresetsListWindow window = new GrowingPresetsListWindow(presetRepository);

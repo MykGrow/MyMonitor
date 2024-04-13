@@ -2,7 +2,6 @@ package mykgrow.ui;
 
 import mykgrow.domain.entities.CurrentConditions;
 import mykgrow.domain.entities.DesiredConditions;
-import mykgrow.ui.UIComponents;
 
 import javax.swing.*;
 import java.awt.*;
@@ -78,10 +77,10 @@ public class Dashboard extends JFrame {
             labels[3].setText(desiredConditions.getDesiredAirflow() + " m/s");
         } else if (conditions instanceof CurrentConditions) {
             CurrentConditions currentConditions = (CurrentConditions) conditions;
-            labels[0].setText(currentConditions.getTemperature() + " °C");
-            labels[1].setText(currentConditions.getHumidity() + " %");
-            labels[2].setText(currentConditions.getLightIntensity() + " lux");
-            labels[3].setText(currentConditions.getAirflow() + " m/s");
+            labels[0].setText(currentConditions.getCurrentTemperature() + " °C");
+            labels[1].setText(currentConditions.getCurrentHumidity() + " %");
+            labels[2].setText(currentConditions.getCurrentLightIntensity() + " lux");
+            labels[3].setText(currentConditions.getCurrentAirflow() + " m/s");
         }
     }
 

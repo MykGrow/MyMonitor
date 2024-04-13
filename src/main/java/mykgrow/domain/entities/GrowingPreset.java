@@ -1,19 +1,21 @@
 package mykgrow.domain.entities;
 
-import mykgrow.domain.enums.Condition;
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class GrowingPreset {
-    private String name;
-    private Map<Condition, Double> conditions;
 
-    public GrowingPreset(String name) {
-        this.name = name;
-        this.conditions = new HashMap<>();
+    private String name;
+    private Condition presetTemperature;
+    private Condition presetHumidity;
+    private Condition presetLightIntensity;
+    private Condition presetAirflow;
+
+    public GrowingPreset(String name, double temperature, double humidity, double lightIntensity, double airflow) {
+        this.presetTemperature = new Condition("Temperature", temperature, "°C");
+        this.presetHumidity = new Condition("Humidity", humidity, "%");
+        this.presetLightIntensity = new Condition("Light Intensity", lightIntensity, "lux");
+        this.presetAirflow = new Condition("Airflow", airflow, "m/s");
     }
 
+    // Getters and setters
     public String getName() {
         return name;
     }
@@ -21,21 +23,35 @@ public class GrowingPreset {
     public void setName(String name) {
         this.name = name;
     }
-
-    public Map<Condition, Double> getConditions() {
-        return conditions;
+    public Condition getPresetTemperature() {
+        return presetTemperature;
     }
 
-    public void setConditions(Map<Condition, Double> conditions) {
-        this.conditions = conditions;
+    public void setPresetTemperature(double presetTemperature) {
+        this.presetTemperature.setValue(presetTemperature);
     }
 
-    public void addCondition(Condition condition, double value) {
-        conditions.put(condition, value);
+    public Condition getPresetHumidity() {
+        return presetHumidity;
     }
 
-    public void removeCondition(Condition condition) {
-        conditions.remove(condition);
+    public void setPresetHumidity(double presetHumidity) {
+        this.presetHumidity.setValue(presetHumidity);
     }
 
+    public Condition getPresetLightIntensity() {
+        return presetLightIntensity;
+    }
+
+    public void setPresetLightIntensity(double presetLightIntensity) {
+        this.presetLightIntensity.setValue(presetLightIntensity);
+    }
+
+    public Condition getPresetAirflow() {
+        return presetAirflow;
+    }
+
+    public void setPresetAirflow(double presetAirflow) {
+        this.presetAirflow.setValue(presetAirflow);
+    }
 }
