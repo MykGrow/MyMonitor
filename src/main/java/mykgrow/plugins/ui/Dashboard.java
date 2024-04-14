@@ -6,19 +6,19 @@ import mykgrow.domain.entities.DesiredConditions;
 import javax.swing.*;
 import java.awt.*;
 
-public class Dashboard extends JFrame {
+public class Dashboard extends JPanel {
     private JLabel[] desiredConditionLabels;
     private JLabel[] currentConditionLabels;
 
     public Dashboard() {
-        setTitle("GrowBox Dashboard");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 200);
+        setLayout(new GridLayout(1, 2));
 
         JPanel desiredConditionsPanel = createConditionsPanel("Desired Conditions");
         JPanel currentConditionsPanel = createConditionsPanel("Current Conditions");
 
-        setLayout(new GridLayout(1, 2));
+        desiredConditionsPanel.setBackground(Color.LIGHT_GRAY);
+        currentConditionsPanel.setBackground(Color.LIGHT_GRAY);
+
         add(desiredConditionsPanel);
         add(currentConditionsPanel);
 
@@ -29,19 +29,19 @@ public class Dashboard extends JFrame {
         // Update UI with dummy values
         updateDesiredConditions(dummyDesiredConditions);
         updateCurrentConditions(dummyCurrentConditions);
-
-        setVisible(true);
     }
 
     private JPanel createConditionsPanel(String title) {
         JPanel panel = new JPanel(new GridLayout(4, 2));
         panel.setBorder(BorderFactory.createTitledBorder(title));
+        // change the color of the border
+        panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), title));
 
         JLabel[] conditionLabels = new JLabel[]{
-                UIComponents.createLabel("Temperature:", 14, SwingConstants.RIGHT),
-                UIComponents.createLabel("Humidity:", 14, SwingConstants.RIGHT),
-                UIComponents.createLabel("Light Intensity:", 14, SwingConstants.RIGHT),
-                UIComponents.createLabel("Airflow:", 14, SwingConstants.RIGHT)
+                UIComponents.createLabel("Temperature: ", 14, SwingConstants.RIGHT),
+                UIComponents.createLabel("Humidity: ", 14, SwingConstants.RIGHT),
+                UIComponents.createLabel("Light Intensity: ", 14, SwingConstants.RIGHT),
+                UIComponents.createLabel("Airflow: ", 14, SwingConstants.RIGHT)
         };
 
         JLabel[] valueLabels = new JLabel[4];
@@ -71,19 +71,18 @@ public class Dashboard extends JFrame {
     private void updateConditionLabels(JLabel[] labels, Object conditions) {
         if (conditions instanceof DesiredConditions) {
             DesiredConditions desiredConditions = (DesiredConditions) conditions;
-            labels[0].setText(desiredConditions.getDesiredTemperature() + " °C");
-            labels[1].setText(desiredConditions.getDesiredHumidity() + " %");
-            labels[2].setText(desiredConditions.getDesiredLightIntensity() + " lux");
-            labels[3].setText(desiredConditions.getDesiredAirflow() + " m/s");
+            labels[0].setText(desiredConditions.getDesiredTemperature().getValue() + " °C");
+            labels[1].setText(desiredConditions.getDesiredHumidity().getValue() + " %");
+            labels[2].setText(desiredConditions.getDesiredLightIntensity().getValue() + " lux");
+            labels[3].setText(desiredConditions.getDesiredAirflow().getValue() + " m/s");
         } else if (conditions instanceof CurrentConditions) {
             CurrentConditions currentConditions = (CurrentConditions) conditions;
-            labels[0].setText(currentConditions.getCurrentTemperature() + " °C");
-            labels[1].setText(currentConditions.getCurrentHumidity() + " %");
-            labels[2].setText(currentConditions.getCurrentLightIntensity() + " lux");
-            labels[3].setText(currentConditions.getCurrentAirflow() + " m/s");
+            labels[0].setText(currentConditions.getCurrentTemperature().getValue() + " °C");
+            labels[1].setText(currentConditions.getCurrentHumidity().getValue() + " %");
+            labels[2].setText(currentConditions.getCurrentLightIntensity().getValue() + " lux");
+            labels[3].setText(currentConditions.getCurrentAirflow().getValue() + " m/s");
         }
     }
-
 
     // Method to create dummy desired conditions
     private DesiredConditions createDummyDesiredConditions() {
@@ -93,9 +92,5 @@ public class Dashboard extends JFrame {
     // Method to create dummy current conditions
     private CurrentConditions createDummyCurrentConditions() {
         return new CurrentConditions(24.5, 58.0, 950.0, 0.4); // Dummy values for temperature, humidity, light intensity, and airflow
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(Dashboard::new);
     }
 }

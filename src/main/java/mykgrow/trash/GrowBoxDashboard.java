@@ -1,9 +1,6 @@
-package mykgrow.plugins.ui;
+package mykgrow.trash;
 
-import mykgrow.trash.Actuator;
-import mykgrow.trash.FanActuator;
-import mykgrow.trash.Light;
-import mykgrow.trash.ActuatorStatus;
+import mykgrow.plugins.ui.UIComponents;
 
 import javax.swing.*;
 import java.awt.*;

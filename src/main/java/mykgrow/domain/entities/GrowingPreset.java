@@ -1,7 +1,6 @@
 package mykgrow.domain.entities;
 
 public class GrowingPreset {
-
     private String name;
     private Condition presetTemperature;
     private Condition presetHumidity;
