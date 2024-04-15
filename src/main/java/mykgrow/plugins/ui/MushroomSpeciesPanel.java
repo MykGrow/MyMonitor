@@ -1,22 +1,13 @@
 package mykgrow.plugins.ui;
 
 import mykgrow.application.RandomDataGenerator;
-import mykgrow.domain.entities.GrowingPreset;
-import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.entities.MushroomSpecies;
-import mykgrow.domain.valueObjects.AirflowCondition;
-import mykgrow.domain.valueObjects.HumidityCondition;
-import mykgrow.domain.valueObjects.LightCondition;
-import mykgrow.domain.valueObjects.TemperatureCondition;
 
 import javax.swing.*;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MushroomSpeciesPanel extends JPanel {
@@ -87,7 +78,7 @@ public class MushroomSpeciesPanel extends JPanel {
     private void showPresetInformation(MushroomSpecies species) {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this); // Get the parent JFrame
         frame.getContentPane().removeAll(); // Remove all components from the frame
-        frame.getContentPane().add(new GrowingPresetDetailScreen(species)); // Add the PresetDetailScreen
+        frame.getContentPane().add(new GrowingPresetDetailPanel(species)); // Add the PresetDetailScreen
         frame.revalidate(); // Revalidate the frame to reflect the changes
         frame.repaint(); // Repaint the frame
     }

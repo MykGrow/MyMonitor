@@ -4,7 +4,6 @@ import mykgrow.application.GrowingPresetConfigurationService;
 import mykgrow.domain.repositories.GrowingPresetRepository;
 import mykgrow.domain.repositories.GrowingPresetRepositoryInterface;
 import mykgrow.plugins.ui.GrowingPresetConfigurationWindow;
-import mykgrow.plugins.ui.GrowingPresetsListWindow;
 import mykgrow.plugins.ui.UIComponents;
 
 import javax.swing.*;

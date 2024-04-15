@@ -1,31 +1,15 @@
 package mykgrow.plugins.ui;
 
-import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.entities.MushroomSpecies;
 
 import javax.swing.*;
 import java.awt.*;
 
-import javax.swing.*;
-import java.awt.*;
-
-import javax.swing.*;
-import java.awt.*;
-
-import javax.swing.*;
-import java.awt.*;
-
-import javax.swing.*;
-import java.awt.*;
-
-import javax.swing.*;
-import java.awt.*;
-
-public class GrowingPresetDetailScreen extends JPanel {
+public class GrowingPresetDetailPanel extends JPanel {
     private MushroomSpecies species;
 
-    public GrowingPresetDetailScreen(MushroomSpecies species) {
+    public GrowingPresetDetailPanel(MushroomSpecies species) {
         this.species = species;
 
         setLayout(new BorderLayout());
