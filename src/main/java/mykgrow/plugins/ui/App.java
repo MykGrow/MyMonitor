@@ -12,11 +12,12 @@ public class App {
 
         // Create and add cards to the panel with unique names
         Dashboard dashboard = new Dashboard();
+        PresetPanel presetPanel = new PresetPanel();
         JPanel card1 = createCard("Growing Presets", Color.LIGHT_GRAY);
         JPanel card2 = createCard("Mushroom Species", Color.LIGHT_GRAY);
         //
         cardPanel.add(dashboard, "Dashboard");
-        cardPanel.add(card1, "Growing Presets");
+        cardPanel.add(presetPanel, "Growing Presets");
         cardPanel.add(card2, "Mushroom Species");
 
         // Navigation bar with buttons to switch between cards

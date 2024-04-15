@@ -11,9 +11,9 @@ import java.awt.event.ActionListener;
 
 public class GrowingPresetConfigurationWindow extends JFrame {
     private JTextField lowerTempField;
-    private JTextField upperTempField;
+    private JTextField targetTempField;
     private JTextField lowerHumidityField;
-    private JTextField upperHumidityField;
+    private JTextField targetHumidityField;
     private JTextField lightIntensityField;
     private JTextField airFlowField;
     private JTextField lightStartComboBox;
@@ -42,14 +42,14 @@ public class GrowingPresetConfigurationWindow extends JFrame {
         JLabel lowerTempLabel = UIComponents.createLabel("Lower Temperature Threshold:", 14, SwingConstants.LEFT);
         lowerTempField = UIComponents.createTextField(10, 12);
 
-        JLabel upperTempLabel = UIComponents.createLabel("Upper Temperature Threshold:", 14, SwingConstants.LEFT);
-        upperTempField = UIComponents.createTextField(10, 12);
+        JLabel targetTempLabel = UIComponents.createLabel("Target Temperature:", 14, SwingConstants.LEFT);
+        targetTempField = UIComponents.createTextField(10, 12);
 
         JLabel lowerHumidityLabel = UIComponents.createLabel("Lower Humidity Threshold:", 14, SwingConstants.LEFT);
         lowerHumidityField = UIComponents.createTextField(10, 12);
 
-        JLabel upperHumidityLabel = UIComponents.createLabel("Upper Humidity Threshold:", 14, SwingConstants.LEFT);
-        upperHumidityField = UIComponents.createTextField(10, 12);
+        JLabel targetHumidityLabel = UIComponents.createLabel("Target Humidity:", 14, SwingConstants.LEFT);
+        targetHumidityField = UIComponents.createTextField(10, 12);
 
         JLabel lightIntensityLabel = UIComponents.createLabel("Light Intensity:", 14, SwingConstants.LEFT);
         lightIntensityField = UIComponents.createTextField(10, 12);
@@ -67,12 +67,12 @@ public class GrowingPresetConfigurationWindow extends JFrame {
 
         UIComponents.addComponent(panel, lowerTempLabel);
         UIComponents.addComponent(panel, lowerTempField);
-        UIComponents.addComponent(panel, upperTempLabel);
-        UIComponents.addComponent(panel, upperTempField);
+        UIComponents.addComponent(panel, targetTempLabel);
+        UIComponents.addComponent(panel, targetTempField);
         UIComponents.addComponent(panel, lowerHumidityLabel);
         UIComponents.addComponent(panel, lowerHumidityField);
-        UIComponents.addComponent(panel, upperHumidityLabel);
-        UIComponents.addComponent(panel, upperHumidityField);
+        UIComponents.addComponent(panel, targetHumidityLabel);
+        UIComponents.addComponent(panel, targetHumidityField);
         UIComponents.addComponent(panel, lightIntensityLabel);
         UIComponents.addComponent(panel, lightIntensityField);
         UIComponents.addComponent(panel, lightStartLabel);
@@ -96,9 +96,9 @@ public class GrowingPresetConfigurationWindow extends JFrame {
     private void savePreset() {
         try {
             double lowerTemp = Double.parseDouble(lowerTempField.getText());
-            double upperTemp = Double.parseDouble(upperTempField.getText());
+            double upperTemp = Double.parseDouble(targetTempField.getText());
             double lowerHumidity = Double.parseDouble(lowerHumidityField.getText());
-            double upperHumidity = Double.parseDouble(upperHumidityField.getText());
+            double upperHumidity = Double.parseDouble(targetHumidityField.getText());
             double lightIntensity = Double.parseDouble(lightIntensityField.getText());
             double airFlow = Double.parseDouble(airFlowField.getText());
 
