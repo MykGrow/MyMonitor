@@ -1,7 +1,9 @@
 package mykgrow.plugins.ui;
 import mykgrow.domain.entities.GrowingPreset;
+import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.repositories.GrowingPresetRepository;
 import mykgrow.domain.repositories.GrowingPresetRepositoryInterface;
+import mykgrow.domain.valueObjects.AirflowCondition;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,12 +39,14 @@ public class GrowingPresetsListWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-        // Create a mock implementation of the repository for demonstration purposes
         GrowingPresetRepository presetRepository = new GrowingPresetRepository();
-        GrowingPreset preset1 = new GrowingPreset("Preset 1", 25.0, 60.0, 1000.0, 0.5);
-        GrowingPreset preset2 = new GrowingPreset("Preset 2", 20.0, 50.0, 1200.0, 0.3);
-        GrowingPreset preset3 = new GrowingPreset("Preset 3", 28.0, 70.0, 800.0, 0.7);
-        GrowingPreset preset4 = new GrowingPreset("Preset 4", 22.0, 55.0, 1500.0, 0.4);
+
+        GrowthPeriod growthPeriod1 = new GrowthPeriod.GrowthPeriodBuilder("Growth Period 1", "First growth period", 10)
+                .withAirflowCondition(new AirflowCondition(1)).build();
+        GrowthPeriod growthPeriod2 = new GrowthPeriod.GrowthPeriodBuilder("Growth Period 2", "Second growth period", 20)
+                .withAirflowCondition(new AirflowCondition(2)).build();
+        GrowingPreset preset1 = new GrowingPreset("Preset 1", List.of(growthPeriod1, growthPeriod2));
+        // Create a mock implementation of the repository for demonstration purposes
         // Create and display the PresetListWindow
         SwingUtilities.invokeLater(() -> {
             GrowingPresetsListWindow window = new GrowingPresetsListWindow(presetRepository);
