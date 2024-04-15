@@ -7,6 +7,21 @@ import mykgrow.domain.entities.MushroomSpecies;
 import javax.swing.*;
 import java.awt.*;
 
+import javax.swing.*;
+import java.awt.*;
+
+import javax.swing.*;
+import java.awt.*;
+
+import javax.swing.*;
+import java.awt.*;
+
+import javax.swing.*;
+import java.awt.*;
+
+import javax.swing.*;
+import java.awt.*;
+
 public class GrowingPresetDetailScreen extends JPanel {
     private MushroomSpecies species;
 
@@ -22,29 +37,18 @@ public class GrowingPresetDetailScreen extends JPanel {
         titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
         add(titleLabel, BorderLayout.NORTH);
 
-        JTextArea descriptionArea = new JTextArea(species.getDescription());
-        descriptionArea.setEditable(false);
-        descriptionArea.setLineWrap(true);
-        descriptionArea.setWrapStyleWord(true);
-        descriptionArea.setPreferredSize(new Dimension(0, 80)); // Adjust the height as needed
-        JScrollPane descriptionScrollPane = new JScrollPane(descriptionArea);
-        add(descriptionScrollPane, BorderLayout.CENTER);
-
-        GrowingPreset recommendedPreset = species.getRecommendedConditions();
-        JPanel contentPanel = new JPanel(new GridLayout(0, 1));
-        contentPanel.setBackground(Color.WHITE);
-        contentPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
-
-        for (GrowthPeriod growthPeriod : recommendedPreset.getGrowthPeriods()) {
-            GrowthPeriodPanel conditionsPanel = new GrowthPeriodPanel(growthPeriod);
-            contentPanel.add(conditionsPanel);
+        JPanel contentPanel = new JPanel(new BorderLayout());
+        JPanel presetsPanel = new JPanel(new GridLayout(0, 1));
+        for (GrowthPeriod growthPeriod : species.getRecommendedConditions().getGrowthPeriods()) {
+            presetsPanel.add(new GrowthPeriodPanel(growthPeriod));
         }
 
-        JScrollPane contentScrollPane = new JScrollPane(contentPanel);
-        add(contentScrollPane, BorderLayout.SOUTH);
+        contentPanel.add(presetsPanel, BorderLayout.CENTER);
+
+        JScrollPane scrollPane = new JScrollPane(contentPanel);
+        add(scrollPane, BorderLayout.CENTER);
     }
 }
-
 
 
 
