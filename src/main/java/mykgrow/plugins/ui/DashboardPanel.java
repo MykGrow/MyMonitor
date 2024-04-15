@@ -6,11 +6,11 @@ import mykgrow.domain.entities.DesiredConditions;
 import javax.swing.*;
 import java.awt.*;
 
-public class Dashboard extends JPanel {
+public class DashboardPanel extends JPanel {
     private JLabel[] desiredConditionLabels;
     private JLabel[] currentConditionLabels;
 
-    public Dashboard() {
+    public DashboardPanel() {
         setLayout(new GridLayout(1, 2));
 
         JPanel desiredConditionsPanel = createConditionsPanel("Desired Conditions");

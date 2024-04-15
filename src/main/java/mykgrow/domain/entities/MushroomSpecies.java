@@ -3,12 +3,12 @@ package mykgrow.domain.entities;
 public class MushroomSpecies {
     private final String name;
     private final String description;
-    private final RecommendedConditions recommendedConditions;
+    private final GrowingPreset recommendedPresets;
 
-    public MushroomSpecies(String name, String description, RecommendedConditions recommendedConditions) {
+    public MushroomSpecies(String name, String description, GrowingPreset recommendedPresets) {
         this.name = name;
         this.description = description;
-        this.recommendedConditions = recommendedConditions;
+        this.recommendedPresets = recommendedPresets;
     }
 
     public String getName() {
@@ -19,7 +19,7 @@ public class MushroomSpecies {
         return description;
     }
 
-    public RecommendedConditions getRecommendedConditions() {
-        return recommendedConditions;
+    public GrowingPreset getRecommendedConditions() {
+        return recommendedPresets;
     }
 }

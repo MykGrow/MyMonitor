@@ -24,6 +24,35 @@ public class GrowthPeriod {
         temperatureCondition = builder.temperatureCondition;
     }
 
+    public String getName() {
+        return name;
+    }
+    public String getDescription() {
+        return description;
+    }
+
+    public int getDurationInDays() {
+        return durationInDays;
+    }
+
+    public AirflowCondition getAirflowCondition() {
+        return airflowCondition;
+    }
+
+    public HumidityCondition getHumidityCondition() {
+        return humidityCondition;
+    }
+
+    public LightCondition getLightCondition() {
+        return lightCondition;
+    }
+
+    public TemperatureCondition getTemperatureCondition() {
+        return temperatureCondition;
+    }
+
+
+
     public static class GrowthPeriodBuilder {
         private String name;
         private String description;
@@ -62,5 +91,6 @@ public class GrowthPeriod {
         public GrowthPeriod build() {
             return new GrowthPeriod(this);
         }
+
     }
 }
