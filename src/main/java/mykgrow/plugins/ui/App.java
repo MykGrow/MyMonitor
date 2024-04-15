@@ -11,14 +11,13 @@ public class App {
         JPanel cardPanel = new JPanel(new CardLayout());
 
         // Create and add cards to the panel with unique names
-        Dashboard dashboard = new Dashboard();
+        DashboardPanel dashboard = new DashboardPanel();
         PresetPanel presetPanel = new PresetPanel();
-        JPanel card1 = createCard("Growing Presets", Color.LIGHT_GRAY);
-        JPanel card2 = createCard("Mushroom Species", Color.LIGHT_GRAY);
-        //
+        MushroomSpeciesPanel mushroomSpeciesPanel = new MushroomSpeciesPanel();
+
         cardPanel.add(dashboard, "Dashboard");
         cardPanel.add(presetPanel, "Growing Presets");
-        cardPanel.add(card2, "Mushroom Species");
+        cardPanel.add(mushroomSpeciesPanel, "Mushroom Species");
 
         // Navigation bar with buttons to switch between cards
         JPanel navPanel = createNavBar(cardPanel);
@@ -28,14 +27,6 @@ public class App {
         frame.setSize(1200, 650);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-    }
-
-    private static JPanel createCard(String cardName, Color color) {
-        JPanel card = new JPanel();
-        card.setBackground(color);
-        JLabel label = new JLabel(cardName);
-        card.add(label);
-        return card;
     }
 
     private static JButton createNavButton(String cardName, JPanel cardPanel) {
@@ -58,13 +49,13 @@ public class App {
         navPanel.setBackground(Color.DARK_GRAY); // Set background color
 
         // Create navigation buttons
-        JButton card1Button = createNavButton("Growing Presets", cardPanel);
-        JButton card2Button = createNavButton("Mushroom Species", cardPanel);
         JButton dashboardButton = createNavButton("Dashboard", cardPanel);
+        JButton growingPresetButton = createNavButton("Growing Presets", cardPanel);
+        JButton mushroomSpeciesButton = createNavButton("Mushroom Species", cardPanel);
 
 
         // Configure buttons
-        for (JButton button : new JButton[]{dashboardButton, card1Button, card2Button}) {
+        for (JButton button : new JButton[]{dashboardButton, growingPresetButton, mushroomSpeciesButton}) {
             button.setForeground(Color.WHITE);
             button.setBackground(Color.DARK_GRAY);
             button.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Adjust left and right padding

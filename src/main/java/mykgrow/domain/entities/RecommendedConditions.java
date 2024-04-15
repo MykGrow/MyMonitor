@@ -1,48 +1,54 @@
 package mykgrow.domain.entities;
 
-public class RecommendedConditions {
-    private Condition recommendedTemperature;
-    private Condition recommendedHumidity;
-    private Condition recommendedLightIntensity;
-    private Condition recommendedAirflow;
+import mykgrow.domain.valueObjects.AirflowCondition;
+import mykgrow.domain.valueObjects.HumidityCondition;
+import mykgrow.domain.valueObjects.LightCondition;
+import mykgrow.domain.valueObjects.TemperatureCondition;
 
-    public RecommendedConditions(double desiredTemperature, double desiredHumidity, double desiredLightIntensity, double desiredAirflow) {
-        this.recommendedTemperature = new Condition("Temperature", desiredTemperature, "°C");
-        this.recommendedHumidity = new Condition("Humidity", desiredHumidity, "%");
-        this.recommendedLightIntensity = new Condition("Light Intensity", desiredLightIntensity, "lux");
-        this.recommendedAirflow = new Condition("Airflow", desiredAirflow, "m/s");
+import java.time.LocalTime;
+
+public class RecommendedConditions {
+    private TemperatureCondition recommendedTemperature;
+    private HumidityCondition recommendedHumidity;
+    private LightCondition recommendedLightIntensity;
+    private AirflowCondition recommendedAirflow;
+
+    public RecommendedConditions(double lowerTemperatureThreshold, double upperTemperatureThreshold, double airExchangePerHour, double lowerHumidityThreshold, double upperHumidityThreshold, int lightLevel, LocalTime startTime, LocalTime endTime) {
+        this.recommendedTemperature = new TemperatureCondition(lowerTemperatureThreshold, upperTemperatureThreshold);
+        this.recommendedHumidity = new HumidityCondition(lowerHumidityThreshold, upperHumidityThreshold);
+        this.recommendedLightIntensity = new LightCondition(lightLevel, startTime, endTime);
+        this.recommendedAirflow = new AirflowCondition(airExchangePerHour);
     }
 
-    // Getters and setters
-    public Condition getRecommendedTemperature() {
+    public TemperatureCondition getRecommendedTemperature() {
         return recommendedTemperature;
     }
 
-    public void setRecommendedTemperature(double recommendedTemperature) {
-        this.recommendedTemperature.setValue(recommendedTemperature);
+    public void setRecommendedTemperature(TemperatureCondition recommendedTemperature) {
+        this.recommendedTemperature = recommendedTemperature;
     }
 
-    public Condition getRecommendedHumidity() {
+    public HumidityCondition getRecommendedHumidity() {
         return recommendedHumidity;
     }
 
-    public void setRecommendedHumidity(double recommendedHumidity) {
-        this.recommendedHumidity.setValue(recommendedHumidity);
+    public void setRecommendedHumidity(HumidityCondition recommendedHumidity) {
+        this.recommendedHumidity = recommendedHumidity;
     }
 
-    public Condition getRecommendedLightIntensity() {
+    public LightCondition getRecommendedLightIntensity() {
         return recommendedLightIntensity;
     }
 
-    public void setRecommendedLightIntensity(double recommendedLightIntensity) {
-        this.recommendedLightIntensity.setValue(recommendedLightIntensity);
+    public void setRecommendedLightIntensity(LightCondition recommendedLightIntensity) {
+        this.recommendedLightIntensity = recommendedLightIntensity;
     }
 
-    public Condition getRecommendedAirflow() {
+    public AirflowCondition getRecommendedAirflow() {
         return recommendedAirflow;
     }
 
-    public void setRecommendedAirflow(double recommendedAirflow) {
-        this.recommendedAirflow.setValue(recommendedAirflow);
+    public void setRecommendedAirflow(AirflowCondition recommendedAirflow) {
+        this.recommendedAirflow = recommendedAirflow;
     }
 }
