@@ -1,5 +1,6 @@
 package mykgrow.plugins.ui;
 
+import mykgrow.application.RandomDataGenerator;
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.entities.MushroomSpecies;
@@ -25,41 +26,8 @@ public class MushroomSpeciesPanel extends JPanel {
         setBackground(Color.WHITE); // Set background color of the panel
 
         // Create dummy GrowthPeriods
-        List<GrowthPeriod> growthPeriods1 = new ArrayList<>();
-        growthPeriods1.add(new GrowthPeriod.GrowthPeriodBuilder("Period 1", "Description 1", 10)
-                .withTemperatureCondition(new TemperatureCondition(20.0, 25.0))
-                .withHumidityCondition(new HumidityCondition(50.0, 70.0))
-                .withLightCondition(new LightCondition(100, LocalTime.of(9,0),LocalTime.of(18,0)))
-                .withAirflowCondition(new AirflowCondition(0.3))
-                .build());
+        List<MushroomSpecies> mushroomSpeciesList = RandomDataGenerator.generateRandomMushroomSpecies(5, 3);
 
-        List<GrowthPeriod> growthPeriods2 = new ArrayList<>();
-        growthPeriods2.add(new GrowthPeriod.GrowthPeriodBuilder("Period 1", "Description 1", 10)
-                .withTemperatureCondition(new TemperatureCondition(20.0, 25.0))
-                .withHumidityCondition(new HumidityCondition(43.0, 70.0))
-                .withLightCondition(new LightCondition(100, LocalTime.of(10,0),LocalTime.of(14,0)))
-                .withAirflowCondition(new AirflowCondition(0.3))
-                .build());
-
-        List<GrowthPeriod> growthPeriods3 = new ArrayList<>();
-        growthPeriods3.add(new GrowthPeriod.GrowthPeriodBuilder("Period 1", "Description 1", 10)
-                .withTemperatureCondition(new TemperatureCondition(20.0, 25.0))
-                .withHumidityCondition(new HumidityCondition(51.0, 66.0))
-                .withLightCondition(new LightCondition(100, LocalTime.of(11,0),LocalTime.of(12,0)))
-                .withAirflowCondition(new AirflowCondition(0.3))
-                .build());
-
-// Create dummy GrowingPresets
-        GrowingPreset preset1 = new GrowingPreset("Preset 1", growthPeriods1);
-        GrowingPreset preset2 = new GrowingPreset("Preset 2", growthPeriods2);
-        GrowingPreset preset3 = new GrowingPreset("Preset 3", growthPeriods3);
-
-// Create dummy MushroomSpecies objects
-        MushroomSpecies species1 = new MushroomSpecies("Species 1", "Description 1", preset1);
-        MushroomSpecies species2 = new MushroomSpecies("Species 2", "Description 2", preset2);
-        MushroomSpecies species3 = new MushroomSpecies("Species 3", "Description 3", preset3);
-
-        List<MushroomSpecies> mushroomSpeciesList = List.of(species1, species2, species3);
 
         for (MushroomSpecies species : mushroomSpeciesList) {
             add(createMushroomSpeciesPanel(species));
