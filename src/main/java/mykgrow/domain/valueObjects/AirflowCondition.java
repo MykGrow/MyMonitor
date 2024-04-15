@@ -15,7 +15,10 @@ public class AirflowCondition {
         return (int) (60 / airExchangesPerHour);
     }
 
-    private int getIntervalInMinutes() {
+    public double getAirExchangesPerHour() {
+        return airExchangesPerHour;
+    }
+    public int getIntervalInMinutes() {
         return intervalInMinutes;
     }
 
