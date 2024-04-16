@@ -1,6 +1,7 @@
 package mykgrow.plugins.ui;
 
 import mykgrow.application.RandomDataGenerator;
+import mykgrow.application.interfaces.SaveMushromPresetAsPresetInterface;
 import mykgrow.domain.entities.MushroomSpecies;
 
 import javax.swing.*;
@@ -11,8 +12,11 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class MushroomSpeciesPanel extends JPanel {
-
-    public MushroomSpeciesPanel() {
+    App app;
+    SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService;
+    public MushroomSpeciesPanel(App app, SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService) {
+        this.app = app;
+        this.saveMushromPresetAsPresetService = saveMushromPresetAsPresetService;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.WHITE); // Set background color of the panel
 
@@ -73,12 +77,10 @@ public class MushroomSpeciesPanel extends JPanel {
         return panel;
     }
 
-
-
     private void showPresetInformation(MushroomSpecies species) {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this); // Get the parent JFrame
         frame.getContentPane().removeAll(); // Remove all components from the frame
-        frame.getContentPane().add(new GrowingPresetDetailPanel(species)); // Add the PresetDetailScreen
+        frame.getContentPane().add(new GrowingPresetDetailPanel(species, app, saveMushromPresetAsPresetService)); // Add the PresetDetailScreen
         frame.revalidate(); // Revalidate the frame to reflect the changes
         frame.repaint(); // Repaint the frame
     }
