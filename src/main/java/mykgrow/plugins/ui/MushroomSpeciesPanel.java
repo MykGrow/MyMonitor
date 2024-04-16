@@ -73,8 +73,6 @@ public class MushroomSpeciesPanel extends JPanel {
         return panel;
     }
 
-
-
     private void showPresetInformation(MushroomSpecies species) {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this); // Get the parent JFrame
         frame.getContentPane().removeAll(); // Remove all components from the frame
