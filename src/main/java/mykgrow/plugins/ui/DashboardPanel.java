@@ -11,7 +11,11 @@ public class DashboardPanel extends JPanel {
     private JLabel[] currentConditionLabels;
 
     public DashboardPanel() {
-        setLayout(new GridLayout(1, 2));
+        initUI();
+    }
+
+    private void initUI(){
+        setLayout(new GridLayout(0, 2));
 
         JPanel desiredConditionsPanel = createConditionsPanel("Desired Conditions");
         JPanel currentConditionsPanel = createConditionsPanel("Current Conditions");
