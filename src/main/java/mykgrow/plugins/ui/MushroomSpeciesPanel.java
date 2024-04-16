@@ -11,8 +11,9 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class MushroomSpeciesPanel extends JPanel {
-
-    public MushroomSpeciesPanel() {
+    App app;
+    public MushroomSpeciesPanel(App app) {
+        this.app = app;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.WHITE); // Set background color of the panel
 
@@ -73,12 +74,10 @@ public class MushroomSpeciesPanel extends JPanel {
         return panel;
     }
 
-
-
     private void showPresetInformation(MushroomSpecies species) {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this); // Get the parent JFrame
         frame.getContentPane().removeAll(); // Remove all components from the frame
-        frame.getContentPane().add(new GrowingPresetDetailPanel(species)); // Add the PresetDetailScreen
+        frame.getContentPane().add(new GrowingPresetDetailPanel(species, app)); // Add the PresetDetailScreen
         frame.revalidate(); // Revalidate the frame to reflect the changes
         frame.repaint(); // Repaint the frame
     }
