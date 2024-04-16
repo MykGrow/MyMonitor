@@ -1,5 +1,7 @@
 package mykgrow.plugins.ui;
 
+import mykgrow.application.SaveMushromPresetAsPresetService;
+import mykgrow.application.interfaces.SaveMushromPresetAsPresetInterface;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.entities.MushroomSpecies;
 
@@ -12,9 +14,13 @@ public class GrowingPresetDetailPanel extends JPanel {
     private MushroomSpecies species;
     private App app;
 
-    public GrowingPresetDetailPanel(MushroomSpecies species, App app) {
+    private SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService;
+
+
+    public GrowingPresetDetailPanel(MushroomSpecies species, App app, SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService) {
         this.species = species;
         this.app = app;
+        this.saveMushromPresetAsPresetService = saveMushromPresetAsPresetService;
 
         initializeComponents();
         createUI();
@@ -33,6 +39,11 @@ public class GrowingPresetDetailPanel extends JPanel {
         JPanel contentPanel = createContentPanel();
         JScrollPane scrollPane = new JScrollPane(contentPanel);
         add(scrollPane, BorderLayout.CENTER);
+
+        JButton saveButton = createSaveButton();
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(saveButton);
+        add(buttonPanel, BorderLayout.SOUTH);
     }
 
     private JPanel createHeaderPanel() {
@@ -56,6 +67,12 @@ public class GrowingPresetDetailPanel extends JPanel {
         return backButton;
     }
 
+    private JButton createSaveButton() {
+        JButton saveButton = new JButton("Save as Preset");
+        saveButton.addActionListener(e -> saveAsPreset());
+        return saveButton;
+    }
+
     private void navigateToHome() {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         if (frame != null) {
@@ -77,7 +94,12 @@ public class GrowingPresetDetailPanel extends JPanel {
         contentPanel.add(presetsPanel, BorderLayout.CENTER);
         return contentPanel;
     }
+
+    private void saveAsPreset() {
+        saveMushromPresetAsPresetService.saveMushromPresetAsPreset(species);
+    }
 }
+
 
 
 

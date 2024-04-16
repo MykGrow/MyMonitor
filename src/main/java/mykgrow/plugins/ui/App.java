@@ -1,5 +1,9 @@
 package mykgrow.plugins.ui;
 
+import mykgrow.application.SaveMushromPresetAsPresetService;
+import mykgrow.application.interfaces.SaveMushromPresetAsPresetInterface;
+import mykgrow.domain.repositories.GrowingPresetRepository;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,8 +14,10 @@ public class App extends JFrame {
     private CardLayout cardLayout;
     private JPanel navPanel;
 
-    public App() {
+    private SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService;
+    public App(SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService) {
         super("CardLayout Example");
+        this.saveMushromPresetAsPresetService = saveMushromPresetAsPresetService;
         paintAll();
     }
 
@@ -36,7 +42,7 @@ public class App extends JFrame {
         // Create and add cards to the panel with unique names
         DashboardPanel dashboard = new DashboardPanel();
         PresetPanel presetPanel = new PresetPanel();
-        MushroomSpeciesPanel mushroomSpeciesPanel = new MushroomSpeciesPanel(this);
+        MushroomSpeciesPanel mushroomSpeciesPanel = new MushroomSpeciesPanel(this, saveMushromPresetAsPresetService);
 
         cardPanel.add(dashboard, "Dashboard");
         cardPanel.add(presetPanel, "Growing Presets");
@@ -83,7 +89,9 @@ public class App extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                App app = new App();
+                GrowingPresetRepository growingPresetRepository = new GrowingPresetRepository();
+                SaveMushromPresetAsPresetService saveMushromPresetAsPresetService = new SaveMushromPresetAsPresetService(growingPresetRepository);
+                App app = new App(saveMushromPresetAsPresetService);
                 app.setVisible(true);
             }
         });
