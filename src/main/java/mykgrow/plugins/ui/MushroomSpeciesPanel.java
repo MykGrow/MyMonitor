@@ -80,7 +80,7 @@ public class MushroomSpeciesPanel extends JPanel {
     private void showPresetInformation(MushroomSpecies species) {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this); // Get the parent JFrame
         frame.getContentPane().removeAll(); // Remove all components from the frame
-        frame.getContentPane().add(new GrowingPresetDetailPanel(species, app, saveMushromPresetAsPresetService)); // Add the PresetDetailScreen
+        frame.getContentPane().add(new GrowingPresetDetailPanel(species, app, saveMushromPresetAsPresetService).getPanel()); // Add the PresetDetailScreen
         frame.revalidate(); // Revalidate the frame to reflect the changes
         frame.repaint(); // Repaint the frame
     }

@@ -41,7 +41,7 @@ public class App extends JFrame {
     private void initUI() {
         // Create and add cards to the panel with unique names
         DashboardPanel dashboard = new DashboardPanel();
-        PresetPanel presetPanel = new PresetPanel();
+        PresetPanel presetPanel = new PresetPanel(this);
         MushroomSpeciesPanel mushroomSpeciesPanel = new MushroomSpeciesPanel(this, saveMushromPresetAsPresetService);
 
         cardPanel.add(dashboard, "Dashboard");
