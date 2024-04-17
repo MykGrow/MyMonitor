@@ -80,7 +80,7 @@ public class BorderedScrollablePanel extends JPanel {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         if (frame != null) {
             frame.getContentPane().removeAll();
-            app.paintAll();
+            app.initUI();
             frame.revalidate();
             frame.repaint();
         } else {

@@ -1,4 +1,6 @@
-package mykgrow.plugins.ui;
+package mykgrow.trash;
+
+import mykgrow.plugins.ui.App;
 
 import javax.swing.*;
 import java.awt.*;

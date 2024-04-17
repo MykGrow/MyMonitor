@@ -44,5 +44,4 @@ public class DatabaseClientConnection {
         return presetList;
     }
 }
-}
 

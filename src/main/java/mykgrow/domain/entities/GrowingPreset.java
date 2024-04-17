@@ -24,8 +24,4 @@ public class GrowingPreset {
     public List<GrowthPeriod> getGrowthPeriods() {
         return this.growthPeriods;
     }
-
-    public int getId() {
-        return this.id;
-    }
 }

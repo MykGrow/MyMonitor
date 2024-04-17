@@ -2,6 +2,7 @@ package mykgrow.application;
 
 import mykgrow.application.interfaces.SaveMushromPresetAsPresetInterface;
 import mykgrow.domain.entities.MushroomSpecies;
+import mykgrow.domain.repositories.GrowingPresetRepository;
 import mykgrow.domain.repositories.GrowingPresetRepositoryInterface;
 
 public class SaveMushromPresetAsPresetService implements SaveMushromPresetAsPresetInterface {
@@ -17,5 +18,10 @@ public class SaveMushromPresetAsPresetService implements SaveMushromPresetAsPres
     public void saveMushromPresetAsPreset(MushroomSpecies species) {
         growingPresetRepository.savePreset(species.getRecommendedConditions());
         System.out.println("Mushroom preset saved as preset");
+    }
+
+    @Override
+    public GrowingPresetRepositoryInterface getGrowingPresetRepository() {
+        return growingPresetRepository;
     }
 }

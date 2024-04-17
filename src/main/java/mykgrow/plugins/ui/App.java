@@ -19,14 +19,15 @@ public class App extends JFrame {
     private CardLayout cardLayout;
     private JPanel navPanel;
     private SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService;
-  
+    private GrowingPresetRepository growingPresetRepository;
+
     public App(SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService) {
         super("CardLayout Example");
         this.saveMushromPresetAsPresetService = saveMushromPresetAsPresetService;
         initUI();
     }
 
-    private void initUI() {
+    public void initUI() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1199, 650);
 
@@ -51,7 +52,7 @@ public class App extends JFrame {
         List<GrowthPeriod> growthPeriods = new ArrayList<>();
         growthPeriods.add(new GrowthPeriod.GrowthPeriodBuilder("test", "Test", 10).
                 withAirflowCondition(new AirflowCondition(1)).build());
-        GrowingPresetRepository growingPresetRepository = new GrowingPresetRepository();
+        growingPresetRepository = new GrowingPresetRepository();
         growingPresetRepository.savePreset(new GrowingPreset("test", growthPeriods));
         growingPresetRepository.savePreset(new GrowingPreset("test2", growthPeriods));
         growingPresetRepository.savePreset(new GrowingPreset("test3", growthPeriods));
@@ -135,7 +136,6 @@ public class App extends JFrame {
                 GrowingPresetRepository growingPresetRepository = new GrowingPresetRepository();
                 SaveMushromPresetAsPresetService saveMushromPresetAsPresetService = new SaveMushromPresetAsPresetService(growingPresetRepository);
                 App app = new App(saveMushromPresetAsPresetService);
-
                 app.setVisible(true);
             }
         });
