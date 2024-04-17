@@ -1,5 +1,6 @@
 package mykgrow.domain.entities;
 
+import mykgrow.Exceptions.ConditionNotSetException;
 import mykgrow.domain.valueObjects.AirflowCondition;
 import mykgrow.domain.valueObjects.HumidityCondition;
 import mykgrow.domain.valueObjects.LightCondition;
@@ -35,19 +36,31 @@ public class GrowthPeriod {
         return durationInDays;
     }
 
-    public AirflowCondition getAirflowCondition() {
+    public AirflowCondition getAirflowCondition() throws ConditionNotSetException {
+        if (airflowCondition == null) {
+            throw new ConditionNotSetException();
+        }
         return airflowCondition;
     }
 
-    public HumidityCondition getHumidityCondition() {
+    public HumidityCondition getHumidityCondition() throws ConditionNotSetException{
+        if (humidityCondition == null) {
+            throw new ConditionNotSetException();
+        }
         return humidityCondition;
     }
 
-    public LightCondition getLightCondition() {
+    public LightCondition getLightCondition() throws ConditionNotSetException {
+        if (lightCondition == null) {
+            throw new ConditionNotSetException();
+        }
         return lightCondition;
     }
 
-    public TemperatureCondition getTemperatureCondition() {
+    public TemperatureCondition getTemperatureCondition() throws ConditionNotSetException {
+        if (temperatureCondition == null) {
+            throw new ConditionNotSetException();
+        }
         return temperatureCondition;
     }
 

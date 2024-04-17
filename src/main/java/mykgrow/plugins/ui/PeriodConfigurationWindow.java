@@ -1,7 +1,7 @@
 package mykgrow.plugins.ui;
 
-import mykgrow.application.interfaces.GrowingPresetConfigurationInterface;
-import mykgrow.application.GrowingPresetConfigurationService;
+import mykgrow.application.interfaces.PeriodConfigurationInterface;
+import mykgrow.application.PeriodConfigurationService;
 import mykgrow.domain.repositories.GrowingPresetRepository;
 
 import javax.swing.*;
@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GrowingPresetConfigurationWindow extends JFrame {
+public class PeriodConfigurationWindow extends JFrame {
     private JTextField lowerTempField;
     private JTextField targetTempField;
     private JTextField lowerHumidityField;
@@ -18,9 +18,9 @@ public class GrowingPresetConfigurationWindow extends JFrame {
     private JTextField airFlowField;
     private JTextField lightStartComboBox;
     private JTextField lightEndComboBox;
-    private final GrowingPresetConfigurationInterface presetService;
+    private final PeriodConfigurationInterface presetService;
 
-    public GrowingPresetConfigurationWindow(GrowingPresetConfigurationInterface presetService) {
+    public PeriodConfigurationWindow(PeriodConfigurationInterface presetService) {
         this.presetService = presetService;
         setupUI();
         initializeComponents();
@@ -124,10 +124,10 @@ public class GrowingPresetConfigurationWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-        GrowingPresetConfigurationInterface presetService = new GrowingPresetConfigurationService(new GrowingPresetRepository());
+        PeriodConfigurationInterface presetService = new PeriodConfigurationService(new GrowingPresetRepository());
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new GrowingPresetConfigurationWindow(presetService).setVisible(true);
+                new PeriodConfigurationWindow(presetService).setVisible(true);
             }
         });
     }

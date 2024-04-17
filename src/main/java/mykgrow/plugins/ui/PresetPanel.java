@@ -6,10 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PresetPanel extends JPanel {
-    private DefaultListModel<Item> listModel;
-    private JList<Item> itemList;
+    private DefaultListModel<Preset> listModel;
+    private JList<Preset> itemList;
+    private App app;
 
-    public PresetPanel() {
+    public PresetPanel(App app) {
+        this.app = app;
         setupUI();
     }
 
@@ -50,11 +52,11 @@ public class PresetPanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
 
         // Button to add new items
-        JButton addButton = new JButton("Add Item");
+        JButton addButton = new JButton("Add Preset");
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addItem();
+                addPreset();
             }
         });
 
@@ -64,55 +66,53 @@ public class PresetPanel extends JPanel {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    private void addItem() {
-        // Prompt user for item details (you can use dialogs or text fields)
-        String name = JOptionPane.showInputDialog(this, "Enter Name:");
-        String attr1 = JOptionPane.showInputDialog(this, "Enter Attribute 1:");
-        String attr2 = JOptionPane.showInputDialog(this, "Enter Attribute 2:");
-        String attr3 = JOptionPane.showInputDialog(this, "Enter Attribute 3:");
-        String attr4 = JOptionPane.showInputDialog(this, "Enter Attribute 4:");
-
-        // Create a new item
-        Item item = new Item(name, attr1, attr2, attr3, attr4);
-
+    private void addPreset() {
+        //BorderedScrollablePanel test = new BorderedScrollablePanel(app, "Test");
+        //test.getContentPanel().add(new BorderedScrollablePanel(app, "Test2"));
+        //test.getContentPanel().add(new BorderedScrollablePanel(app, "Test3"));
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this); // Get the parent JFrame
+        frame.getContentPane().removeAll(); // Remove all components from the frame
+        //frame.getContentPane().add(test); // Add the PresetDetailScreen
+        frame.revalidate(); // Revalidate the frame to reflect the changes
+        frame.repaint(); // Repaint the frame
         // Add the item to the list model
-        listModel.addElement(item);
+        //listModel.addElement(preset);
     }
 
     // Custom list cell renderer to display item details
-    private static class ItemCellRenderer extends JPanel implements ListCellRenderer<Item> {
+    private static class ItemCellRenderer extends JPanel implements ListCellRenderer<Preset> {
         private JLabel nameLabel;
-        private JLabel attr1Label;
-        private JLabel attr2Label;
-        private JLabel attr3Label;
-        private JLabel attr4Label;
+        private JLabel temperatureLabel;
+        private JLabel humidityLabel;
+        private JLabel faeLabel;
+        private JLabel numberOfPeriodsLabel;
 
         public ItemCellRenderer() {
             setLayout(new GridLayout(1, 5));
             setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
             nameLabel = new JLabel();
-            attr1Label = new JLabel();
-            attr2Label = new JLabel();
-            attr3Label = new JLabel();
-            attr3Label = new JLabel();
-            attr4Label = new JLabel();
+            temperatureLabel = new JLabel();
+            humidityLabel = new JLabel();
+            faeLabel = new JLabel();
+            faeLabel = new JLabel();
+            numberOfPeriodsLabel = new JLabel();
 
             add(nameLabel);
-            add(attr1Label);
-            add(attr2Label);
-            add(attr3Label);
-            add(attr4Label);
+            add(temperatureLabel);
+            add(humidityLabel);
+            add(faeLabel);
+            add(numberOfPeriodsLabel);
         }
 
         @Override
-        public Component getListCellRendererComponent(JList<? extends Item> list, Item value, int index,
+        public Component getListCellRendererComponent(JList<? extends Preset> list, Preset value, int index,
                                                       boolean isSelected, boolean cellHasFocus) {
             nameLabel.setText(value.getName());
-            attr1Label.setText(value.getAttr1());
-            attr2Label.setText(value.getAttr2());
-            attr3Label.setText(value.getAttr3());
-            attr4Label.setText(value.getAttr4());
+            temperatureLabel.setText(value.getHumidity());
+            humidityLabel.setText(value.getTemperature());
+            faeLabel.setText(value.getFae());
+            numberOfPeriodsLabel.setText(value.getNumberOfPeriods());
 
             if (isSelected) {
                 setBackground(list.getSelectionBackground());
@@ -128,39 +128,39 @@ public class PresetPanel extends JPanel {
     }
 
     // Item class representing a list item with multiple attributes
-    private static class Item {
+    private static class Preset {
         private String name;
-        private String attr1;
-        private String attr2;
-        private String attr3;
-        private String attr4;
+        private String humidity;
+        private String temperature;
+        private String fae;
+        private String numberOfPeriods;
 
-        public Item(String name, String attr1, String attr2, String attr3, String attr4) {
+        public Preset(String name, String humidity, String temperature, String fae, String numberOfPeriods) {
             this.name = name;
-            this.attr1 = attr1;
-            this.attr2 = attr2;
-            this.attr3 = attr3;
-            this.attr4 = attr4;
+            this.humidity = humidity;
+            this.temperature = temperature;
+            this.fae = fae;
+            this.numberOfPeriods = numberOfPeriods;
         }
 
         public String getName() {
             return name;
         }
 
-        public String getAttr1() {
-            return attr1;
+        public String getHumidity() {
+            return humidity;
         }
 
-        public String getAttr2() {
-            return attr2;
+        public String getTemperature() {
+            return temperature;
         }
 
-        public String getAttr3() {
-            return attr3;
+        public String getFae() {
+            return fae;
         }
 
-        public String getAttr4() {
-            return attr4;
+        public String getNumberOfPeriods() {
+            return numberOfPeriods;
         }
     }
 }

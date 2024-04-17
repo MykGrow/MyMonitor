@@ -1,9 +1,9 @@
 package mykgrow.trash;
-import mykgrow.application.interfaces.GrowingPresetConfigurationInterface;
-import mykgrow.application.GrowingPresetConfigurationService;
+import mykgrow.application.interfaces.PeriodConfigurationInterface;
+import mykgrow.application.PeriodConfigurationService;
 import mykgrow.domain.repositories.GrowingPresetRepository;
 import mykgrow.domain.repositories.GrowingPresetRepositoryInterface;
-import mykgrow.plugins.ui.GrowingPresetConfigurationWindow;
+import mykgrow.plugins.ui.PeriodConfigurationWindow;
 import mykgrow.plugins.ui.UIComponents;
 
 import javax.swing.*;
@@ -13,9 +13,9 @@ import java.awt.event.ActionListener;
 
 public class MainMenu extends JFrame {
     private final GrowingPresetRepositoryInterface presetRepository;
-    private final GrowingPresetConfigurationInterface presetConfigurationService;
+    private final PeriodConfigurationInterface presetConfigurationService;
 
-    public MainMenu(GrowingPresetConfigurationInterface presetConfigurationService) {
+    public MainMenu(PeriodConfigurationInterface presetConfigurationService) {
         this.presetRepository = presetConfigurationService.getGrowingPresetRepository();
         this.presetConfigurationService = presetConfigurationService;
 
@@ -48,7 +48,7 @@ public class MainMenu extends JFrame {
     }
 
     private void openPatternConfigurationWindow() {
-        GrowingPresetConfigurationWindow configurationWindow = new GrowingPresetConfigurationWindow(presetConfigurationService);
+        PeriodConfigurationWindow configurationWindow = new PeriodConfigurationWindow(presetConfigurationService);
         configurationWindow.setVisible(true);
     }
 
@@ -59,7 +59,7 @@ public class MainMenu extends JFrame {
 
     public static void main(String[] args) {
         GrowingPresetRepository patternRepository = new GrowingPresetRepository();
-        GrowingPresetConfigurationService configurationService = new GrowingPresetConfigurationService(patternRepository);
+        PeriodConfigurationService configurationService = new PeriodConfigurationService(patternRepository);
         SwingUtilities.invokeLater(() -> {
             MainMenu mainMenu = new MainMenu(configurationService);
             mainMenu.setVisible(true);

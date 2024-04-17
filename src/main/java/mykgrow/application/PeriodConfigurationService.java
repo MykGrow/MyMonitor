@@ -1,15 +1,15 @@
 package mykgrow.application;
 
-import mykgrow.application.interfaces.GrowingPresetConfigurationInterface;
+import mykgrow.application.interfaces.PeriodConfigurationInterface;
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.repositories.GrowingPresetRepository;
 import mykgrow.domain.repositories.GrowingPresetRepositoryInterface;
 
-public class GrowingPresetConfigurationService implements GrowingPresetConfigurationInterface {
+public class PeriodConfigurationService implements PeriodConfigurationInterface {
 
     GrowingPresetRepositoryInterface growingPresetRepository;
 
-    public GrowingPresetConfigurationService(GrowingPresetRepository growingPresetRepository) {
+    public PeriodConfigurationService(GrowingPresetRepository growingPresetRepository) {
         this.growingPresetRepository = growingPresetRepository;
     }
 

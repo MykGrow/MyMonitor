@@ -1,5 +1,6 @@
 package mykgrow.plugins.ui;
 
+import mykgrow.Exceptions.ConditionNotSetException;
 import mykgrow.domain.entities.GrowthPeriod;
 import javax.swing.*;
 import java.awt.*;
@@ -24,24 +25,44 @@ public class GrowthPeriodPanel extends JPanel {
         conditionsPanel.setLayout(new GridLayout(0, 1));
 
         conditionsPanel.add(createConditionPanel("Description", growthPeriod.getDescription()));
-
-        conditionsPanel.add(createConditionPanel("Airflow",
-                "Air Exchanges per Hour", growthPeriod.getAirflowCondition().getAirExchangesPerHour(),
-                "Interval", growthPeriod.getAirflowCondition().getIntervalInMinutes()));
-
-        conditionsPanel.add(createConditionPanel("Light",
-                "Light Level", growthPeriod.getLightCondition().getLightLevel(),
-                "Start Time", formatTime(growthPeriod.getLightCondition().getStartTime()),
-                "End Time", formatTime(growthPeriod.getLightCondition().getEndTime())));
-
-        conditionsPanel.add(createConditionPanel("Humidity",
-                "Lower Threshold", growthPeriod.getHumidityCondition().getLowerThreshold(),
-                "Upper Threshold", growthPeriod.getHumidityCondition().getUpperThreshold()));
-
-        conditionsPanel.add(createConditionPanel("Temperature",
-                "Lower Threshold", growthPeriod.getTemperatureCondition().getLowerThreshold(),
-                "Upper Threshold", growthPeriod.getTemperatureCondition().getUpperThreshold()));
-
+        try {
+            conditionsPanel.add(createConditionPanel("Airflow",
+                    "Air Exchanges per Hour", growthPeriod.getAirflowCondition().getAirExchangesPerHour(),
+                    "Interval", growthPeriod.getAirflowCondition().getIntervalInMinutes()));
+        }catch (ConditionNotSetException e) {
+            conditionsPanel.add(createConditionPanel("Airflow",
+                    "Air Exchanges per Hour", 0,
+                    "Interval", 0));
+        }
+        try {
+            conditionsPanel.add(createConditionPanel("Light",
+                    "Light Level", growthPeriod.getLightCondition().getLightLevel(),
+                    "Start Time", formatTime(growthPeriod.getLightCondition().getStartTime()),
+                    "End Time", formatTime(growthPeriod.getLightCondition().getEndTime())));
+        } catch (ConditionNotSetException e) {
+            conditionsPanel.add(createConditionPanel("Light",
+                    "Light Level", 0,
+                    "Start Time", "00:00",
+                    "End Time", "00:00"));
+        }
+        try {
+            conditionsPanel.add(createConditionPanel("Humidity",
+                    "Lower Threshold", growthPeriod.getHumidityCondition().getLowerThreshold(),
+                    "Upper Threshold", growthPeriod.getHumidityCondition().getUpperThreshold()));
+        } catch (ConditionNotSetException e) {
+            conditionsPanel.add(createConditionPanel("Humidity",
+                    "Lower Threshold", 0,
+                    "Upper Threshold", 0));
+        }
+        try {
+            conditionsPanel.add(createConditionPanel("Temperature",
+                    "Lower Threshold", growthPeriod.getTemperatureCondition().getLowerThreshold(),
+                    "Upper Threshold", growthPeriod.getTemperatureCondition().getUpperThreshold()));
+        } catch (ConditionNotSetException e) {
+            conditionsPanel.add(createConditionPanel("Temperature",
+                    "Lower Threshold", 0,
+                    "Upper Threshold", 0));
+        }
         JScrollPane scrollPane = new JScrollPane(conditionsPanel);
         add(scrollPane, BorderLayout.CENTER);
     }

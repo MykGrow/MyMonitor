@@ -1,10 +1,9 @@
 package mykgrow.application.interfaces;
 
 import mykgrow.domain.entities.GrowingPreset;
-import mykgrow.domain.repositories.GrowingPresetRepository;
 import mykgrow.domain.repositories.GrowingPresetRepositoryInterface;
 
-public interface GrowingPresetConfigurationInterface {
+public interface PeriodConfigurationInterface {
     void saveGrowingPreset(GrowingPreset growingPreset);
     GrowingPresetRepositoryInterface getGrowingPresetRepository();
 }
