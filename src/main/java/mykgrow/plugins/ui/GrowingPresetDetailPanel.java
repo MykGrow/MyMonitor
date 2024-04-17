@@ -17,8 +17,6 @@ public class GrowingPresetDetailPanel implements BorderedScrollablePanelConsumer
     private GrowingPreset preset;
     private BorderedScrollablePanel borderPanel;
 
-
-
     public GrowingPresetDetailPanel(GrowingPreset preset, App app) {
         this.app = app;
         this.preset = preset;
@@ -38,6 +36,7 @@ public class GrowingPresetDetailPanel implements BorderedScrollablePanelConsumer
 
     public JPanel getPanel() {
         return this.borderPanel;
+
     }
 
 }

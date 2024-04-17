@@ -18,35 +18,36 @@ public class App extends JFrame {
     private JPanel cardPanel;
     private CardLayout cardLayout;
     private JPanel navPanel;
-
     private SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService;
+  
     public App(SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService) {
         super("CardLayout Example");
         this.saveMushromPresetAsPresetService = saveMushromPresetAsPresetService;
-        paintAll();
+        initUI();
     }
 
-    public void paintAll(){
+    private void initUI() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1199, 650);
 
         cardPanel = new JPanel(new CardLayout());
         this.cardLayout = (CardLayout) cardPanel.getLayout();
 
-        // Initialize UI components
-        initUI();
+        fillRepository();
+        DashboardPanel dashboard = new DashboardPanel();
+        GrowingPresetPanel presetPanel = new GrowingPresetPanel(growingPresetRepository, this);
+        MushroomSpeciesPanel mushroomSpeciesPanel = new MushroomSpeciesPanel(this, saveMushromPresetAsPresetService);
 
-        // Navigation bar with buttons to switch between cards
+        cardPanel.add(dashboard, "Dashboard");
+        cardPanel.add(presetPanel, "Growing Presets");
+        cardPanel.add(mushroomSpeciesPanel, "Mushroom Species");
+      
         navPanel = createNavBar();
-
         add(navPanel, BorderLayout.NORTH);
         add(cardPanel, BorderLayout.CENTER);
     }
-
-    private void initUI() {
-        // Create and add cards to the panel with unique names
-        DashboardPanel dashboard = new DashboardPanel();
-        // new list of GrowthPeriods
+  
+  public void fillRepository(){
         List<GrowthPeriod> growthPeriods = new ArrayList<>();
         growthPeriods.add(new GrowthPeriod.GrowthPeriodBuilder("test", "Test", 10).
                 withAirflowCondition(new AirflowCondition(1)).build());
@@ -88,17 +89,8 @@ public class App extends JFrame {
         growingPresetRepository.savePreset(new GrowingPreset("test4", growthPeriods));
         growingPresetRepository.savePreset(new GrowingPreset("test5", growthPeriods));
         growingPresetRepository.savePreset(new GrowingPreset("test6", growthPeriods));
+  }
 
-
-
-
-        GrowingPresetPanel presetPanel = new GrowingPresetPanel(growingPresetRepository, this);
-        MushroomSpeciesPanel mushroomSpeciesPanel = new MushroomSpeciesPanel(this, saveMushromPresetAsPresetService);
-
-        cardPanel.add(dashboard, "Dashboard");
-        cardPanel.add(presetPanel, "Growing Presets");
-        cardPanel.add(mushroomSpeciesPanel, "Mushroom Species");
-    }
 
     private JButton createNavButton(String cardName) {
         JButton button = new JButton(cardName);
@@ -143,6 +135,7 @@ public class App extends JFrame {
                 GrowingPresetRepository growingPresetRepository = new GrowingPresetRepository();
                 SaveMushromPresetAsPresetService saveMushromPresetAsPresetService = new SaveMushromPresetAsPresetService(growingPresetRepository);
                 App app = new App(saveMushromPresetAsPresetService);
+
                 app.setVisible(true);
             }
         });

@@ -6,6 +6,7 @@ import mykgrow.domain.repositories.GrowingPresetRepositoryInterface;
 
 import javax.swing.*;
 import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -17,7 +18,6 @@ public class GrowingPresetPanel extends JPanel {
     private List<GrowingPreset> growingPresets;
 
     private App app;
-
     public GrowingPresetPanel(GrowingPresetRepositoryInterface growingPresetRepository, App app) {
         this.app = app;
         initializeComponents(growingPresetRepository);
@@ -30,7 +30,6 @@ public class GrowingPresetPanel extends JPanel {
         setBackground(Color.WHITE);
 
         JButton addButton = new JButton("Add Preset");
-
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         buttonPanel.add(addButton);
@@ -47,6 +46,7 @@ public class GrowingPresetPanel extends JPanel {
     private void addPreset(){
         System.out.println("Add Preset");
     }
+
     private void initializeComponents(GrowingPresetRepositoryInterface growingPresetRepository) {
         this.growingPresetRepository = growingPresetRepository;
         this.growingPresets = growingPresetRepository.getGrowingPresets();
@@ -98,4 +98,5 @@ public class GrowingPresetPanel extends JPanel {
     private void showPresetInformation(GrowingPreset preset){
         UiUtils.fullWindowView(this, new GrowingPresetDetailPanel(preset, app).getPanel());
     }
+
 }

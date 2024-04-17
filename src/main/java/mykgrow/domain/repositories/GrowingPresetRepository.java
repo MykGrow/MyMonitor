@@ -20,6 +20,21 @@ public class GrowingPresetRepository implements GrowingPresetRepositoryInterface
         }
     }
 
+    @Override
+    public void updatePreset(GrowingPreset preset) {
+        System.out.println("Preset updated");
+    }
+
+    @Override
+    public void deletePreset(GrowingPreset preset) {
+        System.out.println("Preset deleted");
+    }
+
+    @Override
+    public GrowingPreset getPresetById(int id) {
+        return null;
+    }
+
     public List<GrowingPreset> getGrowingPresets() {
         return growingPresets;
     }
