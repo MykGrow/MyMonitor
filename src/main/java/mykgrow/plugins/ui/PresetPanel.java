@@ -67,12 +67,12 @@ public class PresetPanel extends JPanel {
     }
 
     private void addPreset() {
-        BorderedScrollablePanel test = new BorderedScrollablePanel(app, "Test");
-        test.getContentPanel().add(new BorderedScrollablePanel(app, "Test2"));
-        test.getContentPanel().add(new BorderedScrollablePanel(app, "Test3"));
+        //BorderedScrollablePanel test = new BorderedScrollablePanel(app, "Test");
+        //test.getContentPanel().add(new BorderedScrollablePanel(app, "Test2"));
+        //test.getContentPanel().add(new BorderedScrollablePanel(app, "Test3"));
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this); // Get the parent JFrame
         frame.getContentPane().removeAll(); // Remove all components from the frame
-        frame.getContentPane().add(test); // Add the PresetDetailScreen
+        //frame.getContentPane().add(test); // Add the PresetDetailScreen
         frame.revalidate(); // Revalidate the frame to reflect the changes
         frame.repaint(); // Repaint the frame
         // Add the item to the list model

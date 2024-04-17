@@ -3,6 +3,7 @@ package mykgrow.domain.entities;
 import java.util.List;
 
 public class GrowingPreset {
+    private int id;
     private String name;
     private List<GrowthPeriod> growthPeriods;
 
@@ -16,5 +17,9 @@ public class GrowingPreset {
     }
     public List<GrowthPeriod> getGrowthPeriods() {
         return this.growthPeriods;
+    }
+
+    public int getId() {
+        return this.id;
     }
 }

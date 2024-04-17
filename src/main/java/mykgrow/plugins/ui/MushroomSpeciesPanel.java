@@ -19,18 +19,18 @@ public class MushroomSpeciesPanel extends JPanel {
         this.saveMushromPresetAsPresetService = saveMushromPresetAsPresetService;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.WHITE); // Set background color of the panel
+        ScrollablePanel scrollablePanel = new ScrollablePanel();
 
         // Create dummy GrowthPeriods
-        List<MushroomSpecies> mushroomSpeciesList = RandomDataGenerator.generateRandomMushroomSpecies(5, 3);
+        List<MushroomSpecies> mushroomSpeciesList = RandomDataGenerator.generateRandomMushroomSpecies(5, 6);
 
 
         for (MushroomSpecies species : mushroomSpeciesList) {
-            add(createMushroomSpeciesPanel(species));
-            add(Box.createRigidArea(new Dimension(0, 10))); // Add space between mushroom species panels
+            scrollablePanel.add(createMushroomSpeciesPanel(species));
+            //scrollablePanel.add(Box.createRigidArea(new Dimension(0, 1))); // Add space between mushroom species panels
         }
 
-        JScrollPane scrollPane = new JScrollPane(this);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        add(scrollablePanel.getPanel());
     }
 
     private JPanel createMushroomSpeciesPanel(MushroomSpecies species) {
@@ -58,7 +58,7 @@ public class MushroomSpeciesPanel extends JPanel {
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                showPresetInformation(species);
+                showSpeciesInformation(species);
             }
 
             @Override
@@ -77,12 +77,8 @@ public class MushroomSpeciesPanel extends JPanel {
         return panel;
     }
 
-    private void showPresetInformation(MushroomSpecies species) {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this); // Get the parent JFrame
-        frame.getContentPane().removeAll(); // Remove all components from the frame
-        frame.getContentPane().add(new GrowingPresetDetailPanel(species, app, saveMushromPresetAsPresetService).getPanel()); // Add the PresetDetailScreen
-        frame.revalidate(); // Revalidate the frame to reflect the changes
-        frame.repaint(); // Repaint the frame
+    private void showSpeciesInformation(MushroomSpecies species) {
+        UiUtils.fullWindowView(this, new MushroomSpeciesDetailPanel(species, app).getPanel());
     }
 
     public static void main(String[] args) {

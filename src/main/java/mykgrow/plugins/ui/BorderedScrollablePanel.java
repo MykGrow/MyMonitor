@@ -8,22 +8,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BorderedScrollablePanel extends JPanel {
+
+    public enum Layout {
+
+        GRIDBAG(new GridBagLayout()),
+        GRID(new GridLayout(0,1)),
+        BOX();
+        private LayoutManager layout;
+        private Layout(LayoutManager layout){
+            this.layout = layout;
+        }
+        private Layout(){
+            this.layout = null;
+        }
+
+        public LayoutManager getLayout(){
+            return this.layout;
+        }
+    }
     private App app;
     private String title;
     private JPanel headerPanel;
     private JPanel contentPanel;
     private JPanel buttonPanel;
-
-    public BorderedScrollablePanel() {
-        initializeComponents();
-        createUI();
-    }
-
-    public BorderedScrollablePanel(App app, String title) {
+    public BorderedScrollablePanel(App app, String title, Layout layout) {
         this.app = app;
         this.title = title;
         initializeComponents();
-        createUI();
+        createUI(layout);
     }
 
     private void initializeComponents() {
@@ -31,11 +43,11 @@ public class BorderedScrollablePanel extends JPanel {
         setBackground(Color.WHITE);
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
     }
-    private void createUI() {
+    private void createUI(Layout layout) {
         JPanel headerPanel = createHeaderPanel();
         add(headerPanel, BorderLayout.NORTH);
 
-        this.contentPanel = createContentPanel();
+        this.contentPanel = createContentPanel(layout);
         JScrollPane scrollPane = new JScrollPane(this.contentPanel);
         add(scrollPane, BorderLayout.CENTER);
 
@@ -76,8 +88,13 @@ public class BorderedScrollablePanel extends JPanel {
         }
     }
 
-    private JPanel createContentPanel() {
-        return new JPanel(new GridLayout(0,1));
+    private JPanel createContentPanel(Layout layout){
+        if (layout == Layout.BOX) {
+            JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+            return panel;
+        }
+        return new JPanel(layout.getLayout());
     }
 
     public JPanel getHeaderPanel() {
