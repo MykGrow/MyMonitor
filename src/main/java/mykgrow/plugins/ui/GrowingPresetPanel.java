@@ -17,7 +17,7 @@ public class GrowingPresetPanel extends JPanel {
     private List<GrowingPreset> growingPresets;
 
     private App app;
-    public GrowingPresetPanel(GrowingPresetRepositoryInterface growingPresetRepository, App app) {
+    public GrowingPresetPanel(App app) {
         this.app = app;
         initializeComponents();
         setupUI();

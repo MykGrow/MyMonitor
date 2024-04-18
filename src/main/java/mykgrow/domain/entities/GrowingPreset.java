@@ -18,6 +18,10 @@ public class GrowingPreset {
     public String getName() {
         return this.name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     public UUID getId() {
         return this.id;
     }

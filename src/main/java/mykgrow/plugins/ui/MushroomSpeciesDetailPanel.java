@@ -1,7 +1,9 @@
 package mykgrow.plugins.ui;
 
+import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.entities.MushroomSpecies;
+import mykgrow.domain.repositories.GrowingPresetRepository;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -24,7 +26,26 @@ public class MushroomSpeciesDetailPanel implements BorderedScrollablePanelConsum
 
     private void createUI(){
         this.borderPanel = new BorderedScrollablePanel(this.app, this.species.getName(), BorderedScrollablePanel.Layout.BOX);
+        JButton savePresetButton = new JButton("Save Preset");
+        this.borderPanel.getButtonPanel().add(savePresetButton);
+
+        savePresetButton.addActionListener(e -> {
+            savePreset();
+        });
+
         fillContentPanel();
+    }
+
+    private void savePreset(){
+        String name = JOptionPane.showInputDialog(this.borderPanel, "Preset name:");
+        GrowingPreset preset = this.species.getRecommendedConditions();
+        preset.setName(name);
+        try{if(name.isEmpty()){
+            JOptionPane.showMessageDialog(this.borderPanel, "Preset name cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }}catch (NullPointerException e){return;}
+        GrowingPresetRepository.INSTANCE.savePreset(preset);
+        JOptionPane.showMessageDialog(this.borderPanel, "Preset saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void fillContentPanel(){
@@ -32,7 +53,6 @@ public class MushroomSpeciesDetailPanel implements BorderedScrollablePanelConsum
         this.borderPanel.getContentPanel().add(createSpeciesPanel());
         this.borderPanel.getContentPanel().add(createRecommendedPresetPanel());
     }
-
     private JPanel createSpeciesPanel(){
         JPanel panel = new JPanel(new GridBagLayout());
         // Create components
@@ -71,8 +91,6 @@ public class MushroomSpeciesDetailPanel implements BorderedScrollablePanelConsum
         for (GrowthPeriod growthPeriod : species.getRecommendedConditions().getGrowthPeriods()){
             presetPanel.getContentPanel().add(new GrowthPeriodPanel(growthPeriod));
         }
-
-
         return presetPanel;
     }
 

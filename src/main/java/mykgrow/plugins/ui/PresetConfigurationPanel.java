@@ -15,10 +15,12 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
     private BorderedScrollablePanel borderPanel;
     private BorderedScrollablePanel periodPanel;
     private JTextField nameField;
+    private App app;
 
     private List<GrowthPeriod> growthPeriods = new ArrayList<GrowthPeriod>();
 
     PresetConfigurationPanel(App app){
+        this.app = app;
         this.borderPanel = new BorderedScrollablePanel(app, "Preset Configuration", BorderedScrollablePanel.Layout.BOX);
         this.periodPanel = new BorderedScrollablePanel(app, "Growth Periods", BorderedScrollablePanel.Layout.GRID, false);
         fillContentPanel();
@@ -54,6 +56,8 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
     private void savePreset(){
         GrowingPreset preset = new GrowingPreset(this.nameField.getText(), this.growthPeriods);
         GrowingPresetRepository.INSTANCE.savePreset(preset);
+        JOptionPane.showMessageDialog(this.borderPanel, "Preset saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        UiUtils.navigateHome(this.borderPanel, this.app);
     }
     private void addGrowthPeriod(){
         PeriodConfigurationWindow popup = new PeriodConfigurationWindow();

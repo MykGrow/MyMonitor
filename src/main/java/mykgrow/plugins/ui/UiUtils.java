@@ -11,4 +11,16 @@ public class UiUtils {
         frame.revalidate(); // Revalidate the frame to reflect the changes
         frame.repaint(); // Repaint the frame
     }
+
+    public static void navigateHome(Component currentComponent, App app) {
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(currentComponent);
+        if (frame != null) {
+            frame.getContentPane().removeAll();
+            app.initUI();
+            frame.revalidate();
+            frame.repaint();
+        } else {
+            System.err.println("Parent JFrame is null");
+        }
+    }
 }

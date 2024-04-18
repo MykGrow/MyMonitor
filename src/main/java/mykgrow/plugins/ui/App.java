@@ -18,12 +18,9 @@ public class App extends JFrame {
     private JPanel cardPanel;
     private CardLayout cardLayout;
     private JPanel navPanel;
-    private SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService;
-    private GrowingPresetRepository growingPresetRepository;
 
-    public App(SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService) {
+    public App() {
         super("CardLayout Example");
-        this.saveMushromPresetAsPresetService = saveMushromPresetAsPresetService;
         initUI();
     }
 
@@ -36,8 +33,8 @@ public class App extends JFrame {
 
         fillRepository();
         DashboardPanel dashboard = new DashboardPanel();
-        GrowingPresetPanel presetPanel = new GrowingPresetPanel(growingPresetRepository, this);
-        MushroomSpeciesPanel mushroomSpeciesPanel = new MushroomSpeciesPanel(this, saveMushromPresetAsPresetService);
+        GrowingPresetPanel presetPanel = new GrowingPresetPanel(this);
+        MushroomSpeciesPanel mushroomSpeciesPanel = new MushroomSpeciesPanel(this);
 
         cardPanel.add(dashboard, "Dashboard");
         cardPanel.add(presetPanel, "Growing Presets");
@@ -96,7 +93,7 @@ public class App extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 SaveMushromPresetAsPresetService saveMushromPresetAsPresetService = new SaveMushromPresetAsPresetService();
-                App app = new App(saveMushromPresetAsPresetService);
+                App app = new App();
                 app.setVisible(true);
             }
         });
