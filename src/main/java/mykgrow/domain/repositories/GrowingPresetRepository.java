@@ -11,15 +11,17 @@ public enum GrowingPresetRepository implements GrowingPresetRepositoryInterface{
     private List<GrowingPreset> growingPresets;
     private SaveGrowingPresetInterface saveGrowingPresetService;
 
-    public void initialize(SaveGrowingPresetInterface saveGrowingPresetService) {
+    private GrowingPresetRepository() {
         growingPresets = new ArrayList<>();
+    }
+    public void initialize(SaveGrowingPresetInterface saveGrowingPresetService) {
         this.saveGrowingPresetService = saveGrowingPresetService;
     }
 
     @Override
     public void savePreset(GrowingPreset preset){
         if (preset != null) {
-            saveGrowingPresetService.saveGrowingPreset(preset);
+            //saveGrowingPresetService.saveGrowingPreset(preset);
             growingPresets.add(preset);
         } else {
             throw new IllegalArgumentException("Preset cannot be null");
