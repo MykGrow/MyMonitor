@@ -7,9 +7,6 @@ import java.util.UUID;
 
 public interface GrowingPresetRepositoryInterface {
     void savePreset(GrowingPreset preset);
-    void updatePreset(GrowingPreset preset);
-    void deletePreset(GrowingPreset preset);
-    GrowingPreset getPresetById(UUID id);
     List<GrowingPreset> getGrowingPresets();
 
 
