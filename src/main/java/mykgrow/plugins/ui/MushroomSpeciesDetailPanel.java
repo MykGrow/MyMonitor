@@ -36,13 +36,13 @@ public class MushroomSpeciesDetailPanel implements BorderedScrollablePanelConsum
     private JPanel createSpeciesPanel(){
         JPanel panel = new JPanel(new GridBagLayout());
         // Create components
-        BufferedImage myPicture = null;
+        BufferedImage speciesPicture = null;
         try {
-            myPicture = ImageIO.read(new File("src/main/resources/images/mush.jpg"));
+            speciesPicture = ImageIO.read(new File("src/main/resources/images/mush.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        JLabel picLabel = new JLabel(new ImageIcon( new ImageIcon(myPicture).getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)));
+        JLabel speciesPictureLabel = new JLabel(new ImageIcon( new ImageIcon(speciesPicture).getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)));
         JPanel descriptionPanel = new JPanel(new GridLayout(0, 1));
         JLabel nameLabel = new JLabel(this.species.getName());
         JLabel descriptionLabel = new JLabel(this.species.getDescription());
@@ -53,14 +53,15 @@ public class MushroomSpeciesDetailPanel implements BorderedScrollablePanelConsum
         GridBagConstraints gbcLeft = new GridBagConstraints();
         gbcLeft.gridx = 0;
         gbcLeft.gridy = 0;
-        gbcLeft.weightx = 0.25; // 25% width
-        gbcLeft.fill = GridBagConstraints.BOTH; // Fill both horizontally and vertically
-        panel.add(picLabel, gbcLeft);
+        gbcLeft.ipadx = 15; // Add padding
+        gbcLeft.anchor = GridBagConstraints.NORTHWEST; // Align to the left
+        panel.add(speciesPictureLabel, gbcLeft);
 
         GridBagConstraints gbcRight = new GridBagConstraints();
         gbcRight.gridx = 1;
         gbcRight.gridy = 0;
-        gbcRight.weightx = 0.75; // 75% width
+        gbcRight.weightx = 1; // Take up remaining space
+        gbcRight.anchor = GridBagConstraints.NORTHWEST; // Align to the left
         gbcRight.fill = GridBagConstraints.BOTH; // Fill both horizontally and vertically
         panel.add(descriptionPanel, gbcRight);
         return panel;
