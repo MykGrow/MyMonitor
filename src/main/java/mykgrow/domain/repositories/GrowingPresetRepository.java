@@ -4,6 +4,7 @@ import mykgrow.domain.entities.GrowingPreset;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public enum GrowingPresetRepository implements GrowingPresetRepositoryInterface{
 
@@ -33,7 +34,7 @@ public enum GrowingPresetRepository implements GrowingPresetRepositoryInterface{
     }
 
     @Override
-    public GrowingPreset getPresetById(int id) {
+    public GrowingPreset getPresetById(UUID id) {
         return null;
     }
 

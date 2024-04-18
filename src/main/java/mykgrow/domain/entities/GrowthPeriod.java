@@ -5,14 +5,22 @@ import mykgrow.domain.valueObjects.AirflowCondition;
 import mykgrow.domain.valueObjects.HumidityCondition;
 import mykgrow.domain.valueObjects.LightCondition;
 import mykgrow.domain.valueObjects.TemperatureCondition;
+import org.bson.codecs.pojo.annotations.BsonProperty;
 
 public class GrowthPeriod {
+    @BsonProperty("PeriodName")
     private String name;
+    @BsonProperty("PeriodDescription")
     private String description;
+    @BsonProperty("PeriodDuration")
     private int durationInDays;
+    @BsonProperty("AirflowCondition")
     private AirflowCondition airflowCondition;
+    @BsonProperty("HumidityCondition")
     private HumidityCondition humidityCondition;
+    @BsonProperty("LightCondition")
     private LightCondition lightCondition;
+    @BsonProperty("TemperatureCondition")
     private TemperatureCondition temperatureCondition;
 
     public GrowthPeriod(GrowthPeriodBuilder builder) {

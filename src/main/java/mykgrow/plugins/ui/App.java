@@ -1,10 +1,7 @@
 package mykgrow.plugins.ui;
 
 import mykgrow.application.SaveMushromPresetAsPresetService;
-import mykgrow.application.interfaces.SaveMushromPresetAsPresetInterface;
-import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
-import mykgrow.domain.repositories.GrowingPresetRepository;
 import mykgrow.domain.valueObjects.AirflowCondition;
 
 import javax.swing.*;
