@@ -21,7 +21,7 @@ public enum GrowingPresetRepository implements GrowingPresetRepositoryInterface{
     @Override
     public void savePreset(GrowingPreset preset){
         if (preset != null) {
-            //saveGrowingPresetService.saveGrowingPreset(preset);
+            saveGrowingPresetService.saveGrowingPreset(preset);
             growingPresets.add(preset);
         } else {
             throw new IllegalArgumentException("Preset cannot be null");
