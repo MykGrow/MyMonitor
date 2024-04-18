@@ -39,7 +39,6 @@ public class GrowingPresetsListWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-        GrowingPresetRepository presetRepository = new GrowingPresetRepository();
 
         GrowthPeriod growthPeriod1 = new GrowthPeriod.GrowthPeriodBuilder("Growth Period 1", "First growth period", 10)
                 .withAirflowCondition(new AirflowCondition(1)).build();
@@ -48,12 +47,12 @@ public class GrowingPresetsListWindow extends JFrame {
         GrowingPreset preset1 = new GrowingPreset("Preset 1", List.of(growthPeriod1, growthPeriod2));
         GrowingPreset preset2 = new GrowingPreset("Preset 2", List.of(growthPeriod1, growthPeriod2));
 
-        presetRepository.savePreset(preset1);
-        presetRepository.savePreset(preset2);
+        GrowingPresetRepository.INSTANCE.savePreset(preset1);
+        GrowingPresetRepository.INSTANCE.savePreset(preset2);
         // Create a mock implementation of the repository for demonstration purposes
         // Create and display the PresetListWindow
         SwingUtilities.invokeLater(() -> {
-            GrowingPresetsListWindow window = new GrowingPresetsListWindow(presetRepository);
+            GrowingPresetsListWindow window = new GrowingPresetsListWindow(GrowingPresetRepository.INSTANCE);
             window.setVisible(true);
         });
     }

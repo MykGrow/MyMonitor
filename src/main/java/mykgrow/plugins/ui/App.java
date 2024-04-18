@@ -52,44 +52,6 @@ public class App extends JFrame {
         List<GrowthPeriod> growthPeriods = new ArrayList<>();
         growthPeriods.add(new GrowthPeriod.GrowthPeriodBuilder("test", "Test", 10).
                 withAirflowCondition(new AirflowCondition(1)).build());
-        growingPresetRepository = new GrowingPresetRepository();
-        growingPresetRepository.savePreset(new GrowingPreset("test", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test2", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test3", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test4", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test5", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test6", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test2", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test3", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test4", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test5", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test6", growthPeriods));
-
-        growingPresetRepository.savePreset(new GrowingPreset("test", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test2", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test3", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test4", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test5", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test6", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test2", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test3", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test4", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test5", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test6", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test2", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test3", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test4", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test5", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test6", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test2", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test3", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test4", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test5", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test6", growthPeriods));
   }
 
 
@@ -133,8 +95,7 @@ public class App extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                GrowingPresetRepository growingPresetRepository = new GrowingPresetRepository();
-                SaveMushromPresetAsPresetService saveMushromPresetAsPresetService = new SaveMushromPresetAsPresetService(growingPresetRepository);
+                SaveMushromPresetAsPresetService saveMushromPresetAsPresetService = new SaveMushromPresetAsPresetService();
                 App app = new App(saveMushromPresetAsPresetService);
                 app.setVisible(true);
             }

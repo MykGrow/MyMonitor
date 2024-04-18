@@ -2,14 +2,24 @@ package mykgrow.plugins.ui;
 
 import mykgrow.application.interfaces.PeriodConfigurationInterface;
 import mykgrow.application.PeriodConfigurationService;
-import mykgrow.domain.repositories.GrowingPresetRepository;
+import mykgrow.domain.entities.GrowthPeriod;
+import mykgrow.domain.valueObjects.AirflowCondition;
+import mykgrow.domain.valueObjects.HumidityCondition;
+import mykgrow.domain.valueObjects.LightCondition;
+import mykgrow.domain.valueObjects.TemperatureCondition;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PeriodConfigurationWindow extends JFrame {
+    private JTextField nameField;
+
+    private JTextField durationField;
     private JTextField lowerTempField;
     private JTextField targetTempField;
     private JTextField lowerHumidityField;
@@ -18,26 +28,36 @@ public class PeriodConfigurationWindow extends JFrame {
     private JTextField airFlowField;
     private JTextField lightStartComboBox;
     private JTextField lightEndComboBox;
-    private final PeriodConfigurationInterface presetService;
 
-    public PeriodConfigurationWindow(PeriodConfigurationInterface presetService) {
-        this.presetService = presetService;
+    private List<GrowthPeriodListener> listeners = new ArrayList<>();
+
+    public PeriodConfigurationWindow() {
         setupUI();
         initializeComponents();
         setLocationRelativeTo(null);
     }
 
+    public void addListener(GrowthPeriodListener listener){
+        this.listeners.add(listener);
+    }
+
     private void setupUI() {
-        setTitle("Preset Configuration");
+        setTitle("Period Configuration");
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation((JFrame.DISPOSE_ON_CLOSE));
     }
 
     private void initializeComponents() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(10, 2));
+        panel.setLayout(new GridLayout(0, 2));
 
-        JLabel titleLabel = UIComponents.createLabel("Custom Preset", 16, SwingConstants.CENTER);
+        JLabel titleLabel = UIComponents.createLabel("Custom Period", 16, SwingConstants.CENTER);
+
+        JLabel nameLabel = UIComponents.createLabel("Name:", 14, SwingConstants.LEFT);
+        nameField = UIComponents.createTextField(10, 12);
+
+        JLabel durationLabel = UIComponents.createLabel("Duration in Days:", 14, SwingConstants.LEFT);
+        durationField = UIComponents.createTextField(10, 12);
 
         JLabel lowerTempLabel = UIComponents.createLabel("Lower Temperature Threshold:", 14, SwingConstants.LEFT);
         lowerTempField = UIComponents.createTextField(10, 12);
@@ -65,6 +85,10 @@ public class PeriodConfigurationWindow extends JFrame {
 
         JButton saveButton = UIComponents.createButton("Save", 14);
 
+        UIComponents.addComponent(panel, nameLabel);
+        UIComponents.addComponent(panel, nameField);
+        UIComponents.addComponent(panel, durationLabel);
+        UIComponents.addComponent(panel, durationField);
         UIComponents.addComponent(panel, lowerTempLabel);
         UIComponents.addComponent(panel, lowerTempField);
         UIComponents.addComponent(panel, targetTempLabel);
@@ -95,11 +119,15 @@ public class PeriodConfigurationWindow extends JFrame {
 
     private void savePreset() {
         try {
+            String name = nameField.getText();
+            int duration = Integer.parseInt(durationField.getText());
             double lowerTemp = Double.parseDouble(lowerTempField.getText());
             double upperTemp = Double.parseDouble(targetTempField.getText());
             double lowerHumidity = Double.parseDouble(lowerHumidityField.getText());
             double upperHumidity = Double.parseDouble(targetHumidityField.getText());
-            double lightIntensity = Double.parseDouble(lightIntensityField.getText());
+            int lightIntensity = Integer.parseInt(lightIntensityField.getText());
+            LocalTime lightStartTime = LocalTime.parse(lightStartComboBox.getText());
+            LocalTime lightEndTime = LocalTime.parse(lightEndComboBox.getText());
             double airFlow = Double.parseDouble(airFlowField.getText());
 
             // Create a PresetGrowing object with the retrieved values
@@ -117,18 +145,23 @@ public class PeriodConfigurationWindow extends JFrame {
             // presetService.saveGrowingPreset(preset);
 
             // Inform the user that the preset was saved successfully
+
+            GrowthPeriod growthPeriod = new GrowthPeriod.GrowthPeriodBuilder(name, "test", duration).
+                    withAirflowCondition(new AirflowCondition(airFlow)).
+                    withLightCondition(new LightCondition(lightIntensity, lightStartTime, lightEndTime)).
+                    withHumidityCondition(new HumidityCondition(lowerHumidity, upperHumidity)).
+                    withTemperatureCondition(new TemperatureCondition(lowerTemp, upperTemp)).build();
+            notifyListeners(growthPeriod);
             JOptionPane.showMessageDialog(this, "Preset saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Invalid input values", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public static void main(String[] args) {
-        PeriodConfigurationInterface presetService = new PeriodConfigurationService(new GrowingPresetRepository());
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new PeriodConfigurationWindow(presetService).setVisible(true);
-            }
-        });
+    private void notifyListeners(GrowthPeriod growthPeriod) {
+        for (GrowthPeriodListener listener : listeners) {
+            listener.growthPeriodAdded(growthPeriod);
+        }
     }
 }

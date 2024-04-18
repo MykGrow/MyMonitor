@@ -77,7 +77,7 @@ public class MushroomSpeciesDetailPanel implements BorderedScrollablePanelConsum
     }
 
     @Override
-    public JPanel getPanel() {
+    public BorderedScrollablePanel getPanel() {
         return this.borderPanel;
     }
 }
