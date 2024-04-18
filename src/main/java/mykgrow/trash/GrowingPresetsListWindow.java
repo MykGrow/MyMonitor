@@ -23,7 +23,7 @@ public class GrowingPresetsListWindow extends JFrame {
         JPanel panel = new JPanel(new GridLayout(2, 1));
 
         // Retrieve all presets from the repository
-        List<GrowingPreset> presets = presetRepository.getGrowingPresets();
+        List<GrowingPreset> presets = presetRepository.getGrowingPresetsAsList();
 
         // Add each preset to the panel
         for (GrowingPreset preset : presets) {

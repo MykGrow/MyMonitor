@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer, GrowthPeriodListener{
 
@@ -16,6 +17,9 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
     private BorderedScrollablePanel periodPanel;
     private JTextField nameField;
     private App app;
+    private boolean editMode = false;
+
+    private UUID id = null;
 
     private List<GrowthPeriod> growthPeriods = new ArrayList<GrowthPeriod>();
 
@@ -24,6 +28,15 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
         this.borderPanel = new BorderedScrollablePanel(app, "Preset Configuration", BorderedScrollablePanel.Layout.BOX);
         this.periodPanel = new BorderedScrollablePanel(app, "Growth Periods", BorderedScrollablePanel.Layout.GRID, false);
         fillContentPanel();
+    }
+
+    PresetConfigurationPanel(App app, GrowingPreset preset){
+        this(app);
+        this.growthPeriods = preset.getGrowthPeriods();
+        this.nameField.setText(preset.getName());
+        this.editMode = true;
+        this.id = preset.getId();
+        updatePeriods();
     }
 
     private void fillContentPanel(){
@@ -54,10 +67,18 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
     }
 
     private void savePreset(){
-        GrowingPreset preset = new GrowingPreset(this.nameField.getText(), this.growthPeriods);
-        GrowingPresetRepository.INSTANCE.savePreset(preset);
-        JOptionPane.showMessageDialog(this.borderPanel, "Preset saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-        UiUtils.navigateHome(this.borderPanel, this.app);
+        if(!editMode) {
+            GrowingPreset preset = new GrowingPreset(this.nameField.getText(), this.growthPeriods);
+            GrowingPresetRepository.INSTANCE.savePreset(preset);
+            JOptionPane.showMessageDialog(this.borderPanel, "Preset saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            UiUtils.navigateHome(this.borderPanel, this.app);
+        }else{
+            GrowingPreset preset = new GrowingPreset(this.nameField.getText(), this.growthPeriods);
+            GrowingPresetRepository.INSTANCE.updatePreset(this.id, preset);
+            JOptionPane.showMessageDialog(this.borderPanel, "Preset updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            UiUtils.navigateHome(this.borderPanel, this.app);
+
+        }
     }
     private void addGrowthPeriod(){
         PeriodConfigurationWindow popup = new PeriodConfigurationWindow();
