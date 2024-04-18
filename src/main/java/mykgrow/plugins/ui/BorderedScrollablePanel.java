@@ -31,11 +31,19 @@ public class BorderedScrollablePanel extends JPanel {
     private JPanel headerPanel;
     private JPanel contentPanel;
     private JPanel buttonPanel;
+
+    public BorderedScrollablePanel(App app, String title) {
+        this(app, title, Layout.GRID, true);
+    }
     public BorderedScrollablePanel(App app, String title, Layout layout) {
+        this(app, title, layout, true);
+    }
+
+    public BorderedScrollablePanel(App app, String title, Layout layout, boolean homeButton) {
         this.app = app;
         this.title = title;
         initializeComponents();
-        createUI(layout);
+        createUI(layout, homeButton);
     }
 
     private void initializeComponents() {
@@ -43,8 +51,8 @@ public class BorderedScrollablePanel extends JPanel {
         setBackground(Color.WHITE);
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
     }
-    private void createUI(Layout layout) {
-        JPanel headerPanel = createHeaderPanel();
+    private void createUI(Layout layout, boolean homeButton){
+        JPanel headerPanel = createHeaderPanel(homeButton);
         add(headerPanel, BorderLayout.NORTH);
 
         this.contentPanel = createContentPanel(layout);
@@ -55,7 +63,7 @@ public class BorderedScrollablePanel extends JPanel {
         add(this.buttonPanel, BorderLayout.SOUTH);
     }
 
-    private JPanel createHeaderPanel() {
+    private JPanel createHeaderPanel(boolean homeButton){
         this.headerPanel = new JPanel(new BorderLayout());
         this.headerPanel.setBackground(Color.WHITE);
 
@@ -63,10 +71,10 @@ public class BorderedScrollablePanel extends JPanel {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
         titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
         this.headerPanel.add(titleLabel, BorderLayout.WEST);
-
-        JButton backButton = createBackButton();
-        this.headerPanel.add(backButton, BorderLayout.EAST); // Add the button to the left side
-
+        if (homeButton) {
+            JButton backButton = createBackButton();
+            this.headerPanel.add(backButton, BorderLayout.EAST); // Add the button to the left side
+        }
         return this.headerPanel;
     }
 
