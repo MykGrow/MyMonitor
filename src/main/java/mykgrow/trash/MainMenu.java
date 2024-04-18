@@ -48,7 +48,7 @@ public class MainMenu extends JFrame {
     }
 
     private void openPatternConfigurationWindow() {
-        PeriodConfigurationWindow configurationWindow = new PeriodConfigurationWindow(presetConfigurationService);
+        PeriodConfigurationWindow configurationWindow = new PeriodConfigurationWindow();
         configurationWindow.setVisible(true);
     }
 
@@ -58,8 +58,7 @@ public class MainMenu extends JFrame {
     }
 
     public static void main(String[] args) {
-        GrowingPresetRepository patternRepository = new GrowingPresetRepository();
-        PeriodConfigurationService configurationService = new PeriodConfigurationService(patternRepository);
+        PeriodConfigurationService configurationService = new PeriodConfigurationService(GrowingPresetRepository.INSTANCE);
         SwingUtilities.invokeLater(() -> {
             MainMenu mainMenu = new MainMenu(configurationService);
             mainMenu.setVisible(true);

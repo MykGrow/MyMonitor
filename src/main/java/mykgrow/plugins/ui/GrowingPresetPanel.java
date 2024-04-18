@@ -14,13 +14,12 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class GrowingPresetPanel extends JPanel {
-    private GrowingPresetRepositoryInterface growingPresetRepository;
     private List<GrowingPreset> growingPresets;
 
     private App app;
-    public GrowingPresetPanel(GrowingPresetRepositoryInterface growingPresetRepository, App app) {
+    public GrowingPresetPanel(App app) {
         this.app = app;
-        initializeComponents(growingPresetRepository);
+        initializeComponents();
         setupUI();
         displayGrowingPresets();
     }
@@ -44,12 +43,11 @@ public class GrowingPresetPanel extends JPanel {
     }
 
     private void addPreset(){
-        System.out.println("Add Preset");
+        UiUtils.fullWindowView(this, new PresetConfigurationPanel(app).getPanel());
     }
 
-    private void initializeComponents(GrowingPresetRepositoryInterface growingPresetRepository) {
-        this.growingPresetRepository = growingPresetRepository;
-        this.growingPresets = growingPresetRepository.getGrowingPresets();
+    private void initializeComponents() {
+        this.growingPresets = GrowingPresetRepository.INSTANCE.getGrowingPresets();
     }
 
     private void displayGrowingPresets() {

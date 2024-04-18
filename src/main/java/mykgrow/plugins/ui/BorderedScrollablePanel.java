@@ -85,15 +85,7 @@ public class BorderedScrollablePanel extends JPanel {
     }
 
     private void navigateToHome() {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        if (frame != null) {
-            frame.getContentPane().removeAll();
-            app.initUI();
-            frame.revalidate();
-            frame.repaint();
-        } else {
-            System.err.println("Parent JFrame is null");
-        }
+        UiUtils.navigateHome(this,this.app);
     }
 
     private JPanel createContentPanel(Layout layout){

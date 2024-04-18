@@ -5,10 +5,12 @@ import mykgrow.domain.entities.GrowingPreset;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GrowingPresetRepository implements GrowingPresetRepositoryInterface{
+public enum GrowingPresetRepository implements GrowingPresetRepositoryInterface{
+
+    INSTANCE;
     private List<GrowingPreset> growingPresets;
 
-    public GrowingPresetRepository() {
+    private GrowingPresetRepository() {
         this.growingPresets = new ArrayList<>();
     }
 

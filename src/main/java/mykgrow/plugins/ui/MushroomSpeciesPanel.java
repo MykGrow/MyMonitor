@@ -13,10 +13,8 @@ import java.util.List;
 
 public class MushroomSpeciesPanel extends JPanel {
     App app;
-    SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService;
-    public MushroomSpeciesPanel(App app, SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService) {
+    public MushroomSpeciesPanel(App app) {
         this.app = app;
-        this.saveMushromPresetAsPresetService = saveMushromPresetAsPresetService;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.WHITE); // Set background color of the panel
         ScrollablePanel scrollablePanel = new ScrollablePanel();

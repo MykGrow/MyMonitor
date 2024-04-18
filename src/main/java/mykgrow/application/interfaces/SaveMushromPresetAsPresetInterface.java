@@ -6,6 +6,4 @@ import mykgrow.domain.repositories.GrowingPresetRepositoryInterface;
 
 public interface SaveMushromPresetAsPresetInterface {
     void saveMushromPresetAsPreset(MushroomSpecies species);
-
-    GrowingPresetRepositoryInterface getGrowingPresetRepository();
 }

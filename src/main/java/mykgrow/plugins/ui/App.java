@@ -18,12 +18,9 @@ public class App extends JFrame {
     private JPanel cardPanel;
     private CardLayout cardLayout;
     private JPanel navPanel;
-    private SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService;
-    private GrowingPresetRepository growingPresetRepository;
 
-    public App(SaveMushromPresetAsPresetInterface saveMushromPresetAsPresetService) {
+    public App() {
         super("CardLayout Example");
-        this.saveMushromPresetAsPresetService = saveMushromPresetAsPresetService;
         initUI();
     }
 
@@ -36,8 +33,8 @@ public class App extends JFrame {
 
         fillRepository();
         DashboardPanel dashboard = new DashboardPanel();
-        GrowingPresetPanel presetPanel = new GrowingPresetPanel(growingPresetRepository, this);
-        MushroomSpeciesPanel mushroomSpeciesPanel = new MushroomSpeciesPanel(this, saveMushromPresetAsPresetService);
+        GrowingPresetPanel presetPanel = new GrowingPresetPanel(this);
+        MushroomSpeciesPanel mushroomSpeciesPanel = new MushroomSpeciesPanel(this);
 
         cardPanel.add(dashboard, "Dashboard");
         cardPanel.add(presetPanel, "Growing Presets");
@@ -52,44 +49,6 @@ public class App extends JFrame {
         List<GrowthPeriod> growthPeriods = new ArrayList<>();
         growthPeriods.add(new GrowthPeriod.GrowthPeriodBuilder("test", "Test", 10).
                 withAirflowCondition(new AirflowCondition(1)).build());
-        growingPresetRepository = new GrowingPresetRepository();
-        growingPresetRepository.savePreset(new GrowingPreset("test", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test2", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test3", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test4", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test5", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test6", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test2", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test3", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test4", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test5", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test6", growthPeriods));
-
-        growingPresetRepository.savePreset(new GrowingPreset("test", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test2", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test3", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test4", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test5", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test6", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test2", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test3", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test4", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test5", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test6", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test2", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test3", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test4", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test5", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test6", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test2", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test3", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test4", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test5", growthPeriods));
-        growingPresetRepository.savePreset(new GrowingPreset("test6", growthPeriods));
   }
 
 
@@ -133,9 +92,8 @@ public class App extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                GrowingPresetRepository growingPresetRepository = new GrowingPresetRepository();
-                SaveMushromPresetAsPresetService saveMushromPresetAsPresetService = new SaveMushromPresetAsPresetService(growingPresetRepository);
-                App app = new App(saveMushromPresetAsPresetService);
+                SaveMushromPresetAsPresetService saveMushromPresetAsPresetService = new SaveMushromPresetAsPresetService();
+                App app = new App();
                 app.setVisible(true);
             }
         });

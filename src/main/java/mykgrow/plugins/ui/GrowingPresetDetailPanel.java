@@ -34,7 +34,7 @@ public class GrowingPresetDetailPanel implements BorderedScrollablePanelConsumer
         }
     }
 
-    public JPanel getPanel() {
+    public BorderedScrollablePanel getPanel() {
         return this.borderPanel;
 
     }
