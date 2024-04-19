@@ -16,7 +16,7 @@ import mykgrow.domain.entities.MushroomSpecies;
 import org.bson.Document;
 
 import java.util.Formattable;
-import java.util.List;
+import java.util.Lit;
 
 public class MongoClientConnectionExample {
     public static void main(String[] args) {

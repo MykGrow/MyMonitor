@@ -22,6 +22,9 @@ public class GrowingPreset {
     public void setName(String name) {
         this.name = name;
     }
+    public void setGrowthPeriods(List<GrowthPeriod> growthPeriods) {
+        this.growthPeriods = growthPeriods;
+    }
     public UUID getId() {
         return this.id;
     }

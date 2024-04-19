@@ -23,7 +23,7 @@ public class GrowingPresetsListWindow extends JFrame {
         JPanel panel = new JPanel(new GridLayout(2, 1));
 
         // Retrieve all presets from the repository
-        List<GrowingPreset> presets = presetRepository.getGrowingPresets();
+        List<GrowingPreset> presets = presetRepository.getGrowingPresetsAsList();
 
         // Add each preset to the panel
         for (GrowingPreset preset : presets) {
@@ -40,9 +40,9 @@ public class GrowingPresetsListWindow extends JFrame {
 
     public static void main(String[] args) {
 
-        GrowthPeriod growthPeriod1 = new GrowthPeriod.GrowthPeriodBuilder("Growth Period 1", "First growth period", 10)
+        GrowthPeriod growthPeriod1 = new GrowthPeriod.GrowthPeriodBuilder("Growth Period 1", "Desc 1",10)
                 .withAirflowCondition(new AirflowCondition(1)).build();
-        GrowthPeriod growthPeriod2 = new GrowthPeriod.GrowthPeriodBuilder("Growth Period 2", "Second growth period", 20)
+        GrowthPeriod growthPeriod2 = new GrowthPeriod.GrowthPeriodBuilder("Growth Period 2", "Desc 2",20)
                 .withAirflowCondition(new AirflowCondition(2)).build();
         GrowingPreset preset1 = new GrowingPreset("Preset 1", List.of(growthPeriod1, growthPeriod2));
         GrowingPreset preset2 = new GrowingPreset("Preset 2", List.of(growthPeriod1, growthPeriod2));

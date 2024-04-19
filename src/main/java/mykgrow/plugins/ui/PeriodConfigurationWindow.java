@@ -1,7 +1,7 @@
 package mykgrow.plugins.ui;
 
-import mykgrow.application.interfaces.PeriodConfigurationInterface;
-import mykgrow.application.PeriodConfigurationService;
+import mykgrow.Exceptions.ConditionNotSetException;
+import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.valueObjects.AirflowCondition;
 import mykgrow.domain.valueObjects.HumidityCondition;
@@ -16,7 +16,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PeriodConfigurationWindow extends JFrame {
+public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEventEmitter{
     private JTextField nameField;
 
     private JTextField durationField;
@@ -29,12 +29,63 @@ public class PeriodConfigurationWindow extends JFrame {
     private JTextField lightStartComboBox;
     private JTextField lightEndComboBox;
 
+    private boolean editMode = false;
     private List<GrowthPeriodListener> listeners = new ArrayList<>();
+
+    private GrowthPeriod growthPeriod = null;
 
     public PeriodConfigurationWindow() {
         setupUI();
         initializeComponents();
         setLocationRelativeTo(null);
+    }
+
+    PeriodConfigurationWindow(GrowthPeriod growthPeriod){
+        this();
+        this.editMode = true;
+        this.growthPeriod = growthPeriod;
+        nameField.setText(growthPeriod.getName());
+        durationField.setText(String.valueOf(growthPeriod.getDurationInDays()));
+        try {
+            lowerTempField.setText(String.valueOf(growthPeriod.getTemperatureCondition().getLowerThreshold()));
+        } catch (ConditionNotSetException e) {
+            lowerTempField.setText("0");
+        }
+        try {
+            targetTempField.setText(String.valueOf(growthPeriod.getTemperatureCondition().getUpperThreshold()));
+        } catch (ConditionNotSetException e) {
+            targetTempField.setText("0");
+        }
+        try {
+            lowerHumidityField.setText(String.valueOf(growthPeriod.getHumidityCondition().getLowerThreshold()));
+        } catch (ConditionNotSetException e) {
+            lowerHumidityField.setText("0");
+        }
+        try {
+            targetHumidityField.setText(String.valueOf(growthPeriod.getHumidityCondition().getUpperThreshold()));
+        } catch (ConditionNotSetException e) {
+            targetHumidityField.setText("0");
+        }
+        try {
+            lightIntensityField.setText(String.valueOf(growthPeriod.getLightCondition().getLightLevel()));
+        } catch (ConditionNotSetException e) {
+            lightIntensityField.setText("0");
+        }
+        try {
+            airFlowField.setText(String.valueOf(growthPeriod.getAirflowCondition().getAirExchangesPerHour()));
+        } catch (ConditionNotSetException e) {
+            airFlowField.setText("0");
+        }
+        try {
+            lightStartComboBox.setText(growthPeriod.getLightCondition().getStartTime().toString());
+        } catch (ConditionNotSetException e) {
+            lightStartComboBox.setText("00:00");
+        }
+        try {
+            lightEndComboBox.setText(growthPeriod.getLightCondition().getEndTime().toString());
+        } catch (ConditionNotSetException e) {
+            lightEndComboBox.setText("00:00");
+        }
     }
 
     public void addListener(GrowthPeriodListener listener){
@@ -112,12 +163,12 @@ public class PeriodConfigurationWindow extends JFrame {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                savePreset();
+                savePeriod();
             }
         });
     }
 
-    private void savePreset() {
+    private void savePeriod() {
         try {
             String name = nameField.getText();
             int duration = Integer.parseInt(durationField.getText());
@@ -145,23 +196,38 @@ public class PeriodConfigurationWindow extends JFrame {
             // presetService.saveGrowingPreset(preset);
 
             // Inform the user that the preset was saved successfully
-
-            GrowthPeriod growthPeriod = new GrowthPeriod.GrowthPeriodBuilder(name, "test", duration).
-                    withAirflowCondition(new AirflowCondition(airFlow)).
-                    withLightCondition(new LightCondition(lightIntensity, lightStartTime, lightEndTime)).
-                    withHumidityCondition(new HumidityCondition(lowerHumidity, upperHumidity)).
-                    withTemperatureCondition(new TemperatureCondition(lowerTemp, upperTemp)).build();
-            notifyListeners(growthPeriod);
-            JOptionPane.showMessageDialog(this, "Preset saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            if (!editMode) {
+                GrowthPeriod growthPeriod = new GrowthPeriod.GrowthPeriodBuilder(name,"test", duration).
+                        withAirflowCondition(new AirflowCondition(airFlow)).
+                        withLightCondition(new LightCondition(lightIntensity, lightStartTime, lightEndTime)).
+                        withHumidityCondition(new HumidityCondition(lowerHumidity, upperHumidity)).
+                        withTemperatureCondition(new TemperatureCondition(lowerTemp, upperTemp)).build();
+                notifyListenersAboutNewPeriod(growthPeriod);
+                JOptionPane.showMessageDialog(this, "Period saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }else {
+                this.growthPeriod.setName(name);
+                this.growthPeriod.setDurationInDays(duration);
+                this.growthPeriod.setAirflowCondition(new AirflowCondition(airFlow));
+                this.growthPeriod.setLightCondition(new LightCondition(lightIntensity, lightStartTime, lightEndTime));
+                this.growthPeriod.setHumidityCondition(new HumidityCondition(lowerHumidity, upperHumidity));
+                this.growthPeriod.setTemperatureCondition(new TemperatureCondition(lowerTemp, upperTemp));
+                notifyListernersAboutPeriodUpdate();
+            }
             dispose();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Invalid input values", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void notifyListeners(GrowthPeriod growthPeriod) {
+    private void notifyListenersAboutNewPeriod(GrowthPeriod growthPeriod) {
         for (GrowthPeriodListener listener : listeners) {
             listener.growthPeriodAdded(growthPeriod);
+        }
+    }
+
+    private void notifyListernersAboutPeriodUpdate() {
+        for (GrowthPeriodListener listener : listeners) {
+            listener.growthPeriodUpdated();
         }
     }
 }
