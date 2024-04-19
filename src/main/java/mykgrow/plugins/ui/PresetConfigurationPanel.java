@@ -3,6 +3,7 @@ package mykgrow.plugins.ui;
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.repositories.GrowingPresetRepository;
+import org.bson.types.ObjectId;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +19,7 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
     private App app;
     private boolean editMode = false;
 
-    private UUID id = null;
+    private ObjectId id = null;
 
     private List<GrowthPeriod> growthPeriods = new ArrayList<GrowthPeriod>();
 
