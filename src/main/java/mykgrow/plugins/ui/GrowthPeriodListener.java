@@ -4,4 +4,6 @@ import mykgrow.domain.entities.GrowthPeriod;
 
 public interface GrowthPeriodListener {
     void growthPeriodAdded(GrowthPeriod growthPeriod);
+    void growthPeriodUpdated();
+    void growthPeriodDeleted(GrowthPeriod growthPeriod);
 }

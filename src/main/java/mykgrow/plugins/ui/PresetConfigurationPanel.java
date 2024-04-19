@@ -1,6 +1,5 @@
 package mykgrow.plugins.ui;
 
-import mykgrow.application.PeriodConfigurationService;
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.repositories.GrowingPresetRepository;
@@ -9,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer, GrowthPeriodListener{
 
@@ -16,6 +16,9 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
     private BorderedScrollablePanel periodPanel;
     private JTextField nameField;
     private App app;
+    private boolean editMode = false;
+
+    private UUID id = null;
 
     private List<GrowthPeriod> growthPeriods = new ArrayList<GrowthPeriod>();
 
@@ -24,6 +27,15 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
         this.borderPanel = new BorderedScrollablePanel(app, "Preset Configuration", BorderedScrollablePanel.Layout.BOX);
         this.periodPanel = new BorderedScrollablePanel(app, "Growth Periods", BorderedScrollablePanel.Layout.GRID, false);
         fillContentPanel();
+    }
+
+    PresetConfigurationPanel(App app, GrowingPreset preset){
+        this(app);
+        this.growthPeriods = new ArrayList<>(preset.getGrowthPeriods());
+        this.nameField.setText(preset.getName());
+        this.editMode = true;
+        this.id = preset.getId();
+        updatePeriods();
     }
 
     private void fillContentPanel(){
@@ -45,9 +57,7 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
             savePreset();
         });
 
-        this.borderPanel.getContentPanel().add(Box.createVerticalGlue());
         this.borderPanel.getContentPanel().add(detailPanel);
-        this.borderPanel.getContentPanel().add(Box.createVerticalGlue());
         this.borderPanel.getContentPanel().add(this.periodPanel);
         this.borderPanel.getButtonPanel().add(addGrowthPeriodButton);
         this.borderPanel.getButtonPanel().add(saveButton);
@@ -55,8 +65,14 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
 
     private void savePreset(){
         GrowingPreset preset = new GrowingPreset(this.nameField.getText(), this.growthPeriods);
-        GrowingPresetRepository.INSTANCE.savePreset(preset);
-        JOptionPane.showMessageDialog(this.borderPanel, "Preset saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        this.growthPeriods = new ArrayList<>(this.growthPeriods);
+        if(!editMode) {
+            GrowingPresetRepository.INSTANCE.savePreset(preset);
+            JOptionPane.showMessageDialog(this.borderPanel, "Preset saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            GrowingPresetRepository.INSTANCE.updatePreset(this.id, preset);
+            JOptionPane.showMessageDialog(this.borderPanel, "Preset updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
         UiUtils.navigateHome(this.borderPanel, this.app);
     }
     private void addGrowthPeriod(){
@@ -68,7 +84,9 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
     private void updatePeriods(){
         this.periodPanel.getContentPanel().removeAll();
         for (GrowthPeriod period : this.growthPeriods) {
-            this.periodPanel.getContentPanel().add(new GrowthPeriodPanel(period));
+            GrowthPeriodPanel growthPeriodPanel = new GrowthPeriodPanel(period, true, this);
+            growthPeriodPanel.addListener(this);
+            this.periodPanel.getContentPanel().add(growthPeriodPanel);
         }
         this.periodPanel.getContentPanel().revalidate();
         this.periodPanel.getContentPanel().repaint();
@@ -81,6 +99,17 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
     @Override
     public void growthPeriodAdded(GrowthPeriod growthPeriod) {
         this.growthPeriods.add(growthPeriod);
+        updatePeriods();
+    }
+
+    @Override
+    public void growthPeriodUpdated() {
+        updatePeriods();
+    }
+
+    @Override
+    public void growthPeriodDeleted(GrowthPeriod growthPeriod) {
+        this.growthPeriods.remove(growthPeriod);
         updatePeriods();
     }
 }

@@ -6,20 +6,28 @@ import javax.swing.*;
 import java.awt.*;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
-public class GrowthPeriodPanel extends JPanel {
+public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitter{
     private GrowthPeriod growthPeriod;
+    private JPanel headerPanel;
+    private boolean editMode = false;
+
+    private List<GrowthPeriodListener> listeners = new ArrayList<>();
 
     public GrowthPeriodPanel(GrowthPeriod growthPeriod) {
         this.growthPeriod = growthPeriod;
-
+        this.headerPanel = new JPanel(new BorderLayout());
+        this.headerPanel.setBackground(Color.WHITE);
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JLabel nameLabel = new JLabel(growthPeriod.getName());
         nameLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        add(nameLabel, BorderLayout.NORTH);
+        headerPanel.add(nameLabel, BorderLayout.WEST);
+        add(headerPanel, BorderLayout.NORTH);
 
         JPanel conditionsPanel = new JPanel();
         conditionsPanel.setLayout(new GridLayout(0, 1));
@@ -67,7 +75,29 @@ public class GrowthPeriodPanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
-
+    GrowthPeriodPanel(GrowthPeriod growthPeriod, boolean editMode, PresetConfigurationPanel presetConfigurationPanel){
+        this(growthPeriod);
+        this.editMode = editMode;
+        if (editMode) {
+            JPanel buttonPanel = new JPanel(new BorderLayout());
+            JButton editButton = new JButton("Edit");
+            JButton deleteButton = new JButton("Delete");
+            editButton.addActionListener(e -> {
+                PeriodConfigurationWindow popup = new PeriodConfigurationWindow(growthPeriod);
+                popup.addListener(presetConfigurationPanel);
+                popup.setVisible(true);
+            });
+            deleteButton.addActionListener(e -> {
+                deleteGrowthPeriod();
+            });
+            buttonPanel.add(deleteButton, BorderLayout.EAST);
+            buttonPanel.add(editButton, BorderLayout.WEST);
+            this.headerPanel.add(buttonPanel, BorderLayout.EAST);
+        }
+    }
+    private void deleteGrowthPeriod() {
+        notifyListenersAboutDelete();
+    }
     private String formatTime(LocalTime time) {
         return String.format("%02d:%02d", time.getHour(), time.getMinute());
     }
@@ -143,6 +173,16 @@ public class GrowthPeriodPanel extends JPanel {
         JLabel valueLabel = new JLabel(value);
         valueLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         panel.add(valueLabel);
+    }
+
+    @Override
+    public void addListener(GrowthPeriodListener listener) {
+        this.listeners.add(listener);
+    }
+    private void notifyListenersAboutDelete(){
+        for(GrowthPeriodListener listener : this.listeners){
+            listener.growthPeriodDeleted(this.growthPeriod);
+        }
     }
 }
 
