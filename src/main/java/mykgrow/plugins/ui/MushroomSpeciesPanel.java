@@ -16,7 +16,7 @@ public class MushroomSpeciesPanel extends JPanel {
     public MushroomSpeciesPanel(App app) {
         this.app = app;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(Color.WHITE); // Set background color of the panel
+        //setBackground(Color.WHITE); // Set background color of the panel
         ScrollablePanel scrollablePanel = new ScrollablePanel();
 
         // Create dummy GrowthPeriods
@@ -34,11 +34,11 @@ public class MushroomSpeciesPanel extends JPanel {
     private JPanel createMushroomSpeciesPanel(MushroomSpecies species) {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        panel.setBackground(Color.WHITE);
-        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        //panel.setBackground(Color.WHITE);
+        panel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
         JPanel contentPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        contentPanel.setBackground(Color.WHITE);
+        //contentPanel.setBackground(Color.WHITE);
         contentPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add padding
 
         JLabel nameLabel = new JLabel(species.getName());
@@ -58,20 +58,7 @@ public class MushroomSpeciesPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 showSpeciesInformation(species);
             }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                panel.setBackground(Color.LIGHT_GRAY); // Change background color on mouse hover
-                contentPanel.setBackground(Color.LIGHT_GRAY); // Change background color of content panel
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                panel.setBackground(Color.WHITE); // Reset background color on mouse exit
-                contentPanel.setBackground(Color.WHITE); // Reset background color of content panel
-            }
         });
-
         return panel;
     }
 

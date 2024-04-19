@@ -19,9 +19,9 @@ public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitte
     public GrowthPeriodPanel(GrowthPeriod growthPeriod) {
         this.growthPeriod = growthPeriod;
         this.headerPanel = new JPanel(new BorderLayout());
-        this.headerPanel.setBackground(Color.WHITE);
+        //this.headerPanel.setBackground(Color.WHITE);
         setLayout(new BorderLayout());
-        setBackground(Color.WHITE);
+        //setBackground(Color.WHITE);
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JLabel nameLabel = new JLabel(growthPeriod.getName());
@@ -164,7 +164,7 @@ public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitte
         JLabel valueLabel = new JLabel(value);
         labelLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         valueLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        valueLabel.setForeground(Color.BLUE); // Highlight the numerical value
+        //valueLabel.setForeground(Color.BLUE); // Highlight the numerical value
         panel.add(labelLabel);
         panel.add(valueLabel);
     }

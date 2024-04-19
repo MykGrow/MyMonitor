@@ -20,8 +20,8 @@ public class DashboardPanel extends JPanel {
         JPanel desiredConditionsPanel = createConditionsPanel("Desired Conditions");
         JPanel currentConditionsPanel = createConditionsPanel("Current Conditions");
 
-        desiredConditionsPanel.setBackground(Color.LIGHT_GRAY);
-        currentConditionsPanel.setBackground(Color.LIGHT_GRAY);
+        //desiredConditionsPanel.setBackground(Color.LIGHT_GRAY);
+        //currentConditionsPanel.setBackground(Color.LIGHT_GRAY);
 
         add(desiredConditionsPanel);
         add(currentConditionsPanel);
@@ -39,7 +39,7 @@ public class DashboardPanel extends JPanel {
         JPanel panel = new JPanel(new GridLayout(4, 2));
         panel.setBorder(BorderFactory.createTitledBorder(title));
         // change the color of the border
-        panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), title));
+        panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY), title));
 
         JLabel[] conditionLabels = new JLabel[]{
                 UIComponents.createLabel("Temperature: ", 14, SwingConstants.RIGHT),
