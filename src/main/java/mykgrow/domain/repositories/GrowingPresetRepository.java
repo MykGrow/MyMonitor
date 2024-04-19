@@ -28,7 +28,7 @@ public enum GrowingPresetRepository implements GrowingPresetRepositoryInterface{
     }
 
     @Override
-    public void updatePreset(UUID id, GrowingPreset preset) {
+    public void updatePreset(ObjectId id, GrowingPreset preset) {
         getPresetById(id).setName(preset.getName());
         //getPresetById(id).setGrowthPeriods(preset.getGrowthPeriods());
     }
@@ -40,7 +40,7 @@ public enum GrowingPresetRepository implements GrowingPresetRepositoryInterface{
     }
 
     @Override
-    public GrowingPreset getPresetById(UUID id) {
+    public GrowingPreset getPresetById(ObjectId id) {
         return growingPresets.get(id);
     }
 
