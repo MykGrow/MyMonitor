@@ -46,7 +46,7 @@ public class App extends JFrame {
   
   public void fillRepository(){
         List<GrowthPeriod> growthPeriods = new ArrayList<>();
-        growthPeriods.add(new GrowthPeriod.GrowthPeriodBuilder("test", "Test", 10).
+        growthPeriods.add(new GrowthPeriod.GrowthPeriodBuilder("test", "test",10).
                 withAirflowCondition(new AirflowCondition(1)).build());
   }
 

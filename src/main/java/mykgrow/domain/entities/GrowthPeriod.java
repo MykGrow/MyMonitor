@@ -72,7 +72,33 @@ public class GrowthPeriod {
         return temperatureCondition;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDurationInDays(int durationInDays) {
+        this.durationInDays = durationInDays;
+    }
+
+    public void setAirflowCondition(AirflowCondition airflowCondition) {
+        this.airflowCondition = airflowCondition;
+    }
+
+    public void setHumidityCondition(HumidityCondition humidityCondition) {
+        this.humidityCondition = humidityCondition;
+    }
+
+    public void setLightCondition(LightCondition lightCondition) {
+        this.lightCondition = lightCondition;
+    }
+
+    public void setTemperatureCondition(TemperatureCondition temperatureCondition) {
+        this.temperatureCondition = temperatureCondition;
+    }
 
     public static class GrowthPeriodBuilder {
         private String name;
@@ -112,6 +138,5 @@ public class GrowthPeriod {
         public GrowthPeriod build() {
             return new GrowthPeriod(this);
         }
-
     }
 }

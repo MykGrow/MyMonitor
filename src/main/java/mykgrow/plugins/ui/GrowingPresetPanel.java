@@ -2,7 +2,6 @@ package mykgrow.plugins.ui;
 
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.repositories.GrowingPresetRepository;
-import mykgrow.domain.repositories.GrowingPresetRepositoryInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,7 +46,7 @@ public class GrowingPresetPanel extends JPanel {
     }
 
     private void initializeComponents() {
-        this.growingPresets = GrowingPresetRepository.INSTANCE.getGrowingPresets();
+        this.growingPresets = GrowingPresetRepository.INSTANCE.getGrowingPresetsAsList();
     }
 
     private void displayGrowingPresets() {
