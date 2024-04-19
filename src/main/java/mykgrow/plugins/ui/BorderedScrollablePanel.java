@@ -48,7 +48,7 @@ public class BorderedScrollablePanel extends JPanel {
 
     private void initializeComponents() {
         setLayout(new BorderLayout());
-        setBackground(Color.WHITE);
+        //setBackground(Color.WHITE);
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
     }
     private void createUI(Layout layout, boolean homeButton){
@@ -65,7 +65,7 @@ public class BorderedScrollablePanel extends JPanel {
 
     private JPanel createHeaderPanel(boolean homeButton){
         this.headerPanel = new JPanel(new BorderLayout());
-        this.headerPanel.setBackground(Color.WHITE);
+        //this.headerPanel.setBackground(Color.WHITE);
 
         JLabel titleLabel = new JLabel(this.title);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20));

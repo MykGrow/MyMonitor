@@ -1,5 +1,7 @@
 package mykgrow.plugins.ui;
 
+import com.formdev.flatlaf.*;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import mykgrow.application.SaveMushromPresetAsPresetService;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.repositories.GrowingPresetRepository;
@@ -67,7 +69,7 @@ public class App extends JFrame {
     private JPanel createNavBar() {
         JPanel navPanel = new JPanel();
         navPanel.setLayout(new BoxLayout(navPanel, BoxLayout.X_AXIS)); // Use BoxLayout with X_AXIS alignment
-        navPanel.setBackground(Color.DARK_GRAY); // Set background color
+        //navPanel.setBackground(Color.DARK_GRAY); // Set background color
 
         // Create navigation buttons
         JButton dashboardButton = createNavButton("Dashboard");
@@ -76,8 +78,8 @@ public class App extends JFrame {
 
         // Configure buttons
         for (JButton button : new JButton[]{dashboardButton, growingPresetButton, mushroomSpeciesButton}) {
-            button.setForeground(Color.WHITE);
-            button.setBackground(Color.DARK_GRAY);
+            //button.setForeground(Color.WHITE);
+            //button.setBackground(Color.DARK_GRAY);
             button.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Adjust left and right padding
             // Add glue components to make buttons span the entire width
             navPanel.add(Box.createHorizontalGlue());
@@ -89,8 +91,15 @@ public class App extends JFrame {
     }
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new FlatDarculaLaf());
+
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
+
                 SaveMushromPresetAsPresetService saveMushromPresetAsPresetService = new SaveMushromPresetAsPresetService();
                 DatabaseClient mappingPOJO = new DatabaseClient("MykGrow", "Presets", "mongodb+srv://mykgrow:mykgrow@cluster0.ljmudqt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
                 GrowingPresetRepository.INSTANCE.initialize(mappingPOJO);

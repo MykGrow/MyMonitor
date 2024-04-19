@@ -25,7 +25,7 @@ public class GrowingPresetPanel extends JPanel {
 
     private void setupUI() {
         setLayout(new BorderLayout());
-        setBackground(Color.WHITE);
+        //setBackground(Color.WHITE);
 
         JButton addButton = new JButton("Add Preset");
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -60,13 +60,13 @@ public class GrowingPresetPanel extends JPanel {
 
     private JPanel createPresetPanel(GrowingPreset preset) {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(Color.WHITE);
-        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        //panel.setBackground(Color.WHITE);
+        panel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
         JLabel nameLabel = new JLabel("Name: " + preset.getName());
 
         JPanel contentPanel = new JPanel(new BorderLayout());
-        contentPanel.setBackground(Color.WHITE);
+        //contentPanel.setBackground(Color.WHITE);
         contentPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         contentPanel.add(nameLabel, BorderLayout.NORTH);
         panel.add(contentPanel, BorderLayout.CENTER);
@@ -77,17 +77,6 @@ public class GrowingPresetPanel extends JPanel {
                 showPresetInformation(preset);
             }
 
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                panel.setBackground(Color.LIGHT_GRAY); // Change background color on mouse hover
-                contentPanel.setBackground(Color.LIGHT_GRAY); // Change background color of content panel
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                panel.setBackground(Color.WHITE); // Reset background color on mouse exit
-                contentPanel.setBackground(Color.WHITE); // Reset background color of content panel
-            }
         });
 
         return panel;
