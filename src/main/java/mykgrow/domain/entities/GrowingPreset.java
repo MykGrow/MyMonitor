@@ -1,16 +1,20 @@
 package mykgrow.domain.entities;
 
+import org.bson.codecs.pojo.annotations.BsonProperty;
+import org.bson.types.ObjectId;
+
 import java.util.List;
 import java.util.UUID;
 
 public class GrowingPreset {
     // uuid
-    private UUID id;
+    private ObjectId id;
+    @BsonProperty("name")
     private String name;
+    @BsonProperty("growthPeriods")
     private List<GrowthPeriod> growthPeriods;
 
     public GrowingPreset(String name, List<GrowthPeriod> growthPeriods) {
-        this.id = UUID.randomUUID();
         this.name = name;
         this.growthPeriods = growthPeriods;
     }
@@ -22,10 +26,14 @@ public class GrowingPreset {
     public void setName(String name) {
         this.name = name;
     }
+<<<<<<< HEAD
+    public ObjectId getId() {
+=======
     public void setGrowthPeriods(List<GrowthPeriod> growthPeriods) {
         this.growthPeriods = growthPeriods;
     }
     public UUID getId() {
+>>>>>>> main
         return this.id;
     }
     public List<GrowthPeriod> getGrowthPeriods() {

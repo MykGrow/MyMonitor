@@ -1,11 +1,10 @@
 package mykgrow.plugins.ui;
 
 import mykgrow.application.SaveMushromPresetAsPresetService;
-import mykgrow.application.interfaces.SaveMushromPresetAsPresetInterface;
-import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.repositories.GrowingPresetRepository;
 import mykgrow.domain.valueObjects.AirflowCondition;
+import mykgrow.plugins.database.DatabaseClient;
 
 import javax.swing.*;
 import java.awt.*;
@@ -93,6 +92,8 @@ public class App extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 SaveMushromPresetAsPresetService saveMushromPresetAsPresetService = new SaveMushromPresetAsPresetService();
+                DatabaseClient mappingPOJO = new DatabaseClient("MykGrow", "Presets", "mongodb+srv://mykgrow:mykgrow@cluster0.ljmudqt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+                GrowingPresetRepository.INSTANCE.initialize(mappingPOJO);
                 App app = new App();
                 app.setVisible(true);
             }

@@ -1,9 +1,13 @@
 package mykgrow.domain.valueObjects;
 
+import org.bson.codecs.pojo.annotations.BsonProperty;
+
 public class AirflowCondition {
     //Cubic feet per minute will be calculated based on box size
+    @BsonProperty("AirExchangesPerHour")
     private final double airExchangesPerHour;
     //Probably change int
+    @BsonProperty("IntervalInMinutes")
     private int intervalInMinutes;
 
     public AirflowCondition(double airExchangesPerHour) {

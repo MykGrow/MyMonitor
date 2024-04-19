@@ -1,8 +1,10 @@
 package mykgrow.domain.repositories;
 
 import mykgrow.domain.entities.GrowingPreset;
+import org.bson.types.ObjectId;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public interface GrowingPresetRepositoryInterface {
@@ -11,6 +13,7 @@ public interface GrowingPresetRepositoryInterface {
     void deletePreset(GrowingPreset preset);
     GrowingPreset getPresetById(UUID id);
     List<GrowingPreset> getGrowingPresetsAsList();
+    Map<ObjectId, GrowingPreset> getGrowingPresets();
 
 
 }

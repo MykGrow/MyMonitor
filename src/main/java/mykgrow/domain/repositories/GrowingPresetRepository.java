@@ -1,20 +1,26 @@
 package mykgrow.domain.repositories;
 
 import mykgrow.domain.entities.GrowingPreset;
+import org.bson.types.ObjectId;
 
 import java.util.*;
-
 public enum GrowingPresetRepository implements GrowingPresetRepositoryInterface{
-
     INSTANCE;
-    private Map<UUID, GrowingPreset> growingPresets;
+    private Map<ObjectId, GrowingPreset> growingPresets;
+    private SaveGrowingPresetInterface saveGrowingPresetService;
 
     private GrowingPresetRepository() {
-        this.growingPresets = new HashMap<>();
+        growingPresets = new HashMap<>();
+    }
+    public void initialize(SaveGrowingPresetInterface saveGrowingPresetService) {
+        this.saveGrowingPresetService = saveGrowingPresetService;
+
     }
 
+    @Override
     public void savePreset(GrowingPreset preset){
         if (preset != null) {
+            saveGrowingPresetService.saveGrowingPreset(preset);
             growingPresets.put(preset.getId(), preset);
         } else {
             throw new IllegalArgumentException("Preset cannot be null");
@@ -24,7 +30,7 @@ public enum GrowingPresetRepository implements GrowingPresetRepositoryInterface{
     @Override
     public void updatePreset(UUID id, GrowingPreset preset) {
         getPresetById(id).setName(preset.getName());
-        getPresetById(id).setGrowthPeriods(preset.getGrowthPeriods());
+        //getPresetById(id).setGrowthPeriods(preset.getGrowthPeriods());
     }
 
     @Override
@@ -38,7 +44,8 @@ public enum GrowingPresetRepository implements GrowingPresetRepositoryInterface{
         return growingPresets.get(id);
     }
 
-    public Map<UUID, GrowingPreset> getGrowingPresets() {
+    @Override
+    public Map<ObjectId, GrowingPreset> getGrowingPresets() {
         return growingPresets;
     }
     public List<GrowingPreset> getGrowingPresetsAsList() {

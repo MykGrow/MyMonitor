@@ -4,19 +4,15 @@ package mykgrow.plugins.database;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoException;
-import com.mongodb.ServerApi;
-import com.mongodb.ServerApiVersion;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
 import mykgrow.application.RandomDataGenerator;
-import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.MushroomSpecies;
 import org.bson.Document;
 
-import java.util.Formattable;
-import java.util.Lit;
+import java.util.List;
 
 public class MongoClientConnectionExample {
     public static void main(String[] args) {
