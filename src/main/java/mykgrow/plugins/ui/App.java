@@ -34,10 +34,12 @@ public class App extends JFrame {
 
         fillRepository();
         DashboardPanel dashboard = new DashboardPanel();
+        ChartsPanel charts = new ChartsPanel();
         GrowingPresetPanel presetPanel = new GrowingPresetPanel(this);
         MushroomSpeciesPanel mushroomSpeciesPanel = new MushroomSpeciesPanel(this);
 
         cardPanel.add(dashboard, "Dashboard");
+        cardPanel.add(charts, "Charts");
         cardPanel.add(presetPanel, "Growing Presets");
         cardPanel.add(mushroomSpeciesPanel, "Mushroom Species");
       
@@ -73,11 +75,12 @@ public class App extends JFrame {
 
         // Create navigation buttons
         JButton dashboardButton = createNavButton("Dashboard");
+        JButton chartsButton = createNavButton("Charts");
         JButton growingPresetButton = createNavButton("Growing Presets");
         JButton mushroomSpeciesButton = createNavButton("Mushroom Species");
 
         // Configure buttons
-        for (JButton button : new JButton[]{dashboardButton, growingPresetButton, mushroomSpeciesButton}) {
+        for (JButton button : new JButton[]{dashboardButton, chartsButton, growingPresetButton, mushroomSpeciesButton}) {
             //button.setForeground(Color.WHITE);
             //button.setBackground(Color.DARK_GRAY);
             button.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Adjust left and right padding
