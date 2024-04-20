@@ -1,6 +1,5 @@
 package mykgrow.plugins.ui;
 
-import mykgrow.domain.entities.CurrentConditions;
 import mykgrow.domain.entities.DesiredConditions;
 
 import javax.swing.*;
@@ -8,7 +7,6 @@ import java.awt.*;
 
 public class DashboardPanel extends JPanel {
     private JLabel[] desiredConditionLabels;
-    private JLabel[] currentConditionLabels;
 
     public DashboardPanel() {
         initUI();
@@ -18,7 +16,7 @@ public class DashboardPanel extends JPanel {
         setLayout(new GridLayout(0, 2));
 
         JPanel desiredConditionsPanel = createConditionsPanel("Desired Conditions");
-        JPanel currentConditionsPanel = createConditionsPanel("Current Conditions");
+        JPanel currentConditionsPanel = new CurrentConditionsPanel();
 
         //desiredConditionsPanel.setBackground(Color.LIGHT_GRAY);
         //currentConditionsPanel.setBackground(Color.LIGHT_GRAY);
@@ -28,11 +26,9 @@ public class DashboardPanel extends JPanel {
 
         // Set dummy values for desired and current conditions
         DesiredConditions dummyDesiredConditions = createDummyDesiredConditions();
-        CurrentConditions dummyCurrentConditions = createDummyCurrentConditions();
 
         // Update UI with dummy values
         updateDesiredConditions(dummyDesiredConditions);
-        updateCurrentConditions(dummyCurrentConditions);
     }
 
     private JPanel createConditionsPanel(String title) {
@@ -57,19 +53,12 @@ public class DashboardPanel extends JPanel {
 
         if (title.equals("Desired Conditions")) {
             desiredConditionLabels = valueLabels;
-        } else if (title.equals("Current Conditions")) {
-            currentConditionLabels = valueLabels;
         }
-
         return panel;
     }
 
     public void updateDesiredConditions(DesiredConditions desiredConditions) {
         updateConditionLabels(desiredConditionLabels, desiredConditions);
-    }
-
-    public void updateCurrentConditions(CurrentConditions currentConditions) {
-        updateConditionLabels(currentConditionLabels, currentConditions);
     }
 
     private void updateConditionLabels(JLabel[] labels, Object conditions) {
@@ -79,12 +68,6 @@ public class DashboardPanel extends JPanel {
             labels[1].setText(desiredConditions.getDesiredHumidity().getValue() + " %");
             labels[2].setText(desiredConditions.getDesiredLightIntensity().getValue() + " lux");
             labels[3].setText(desiredConditions.getDesiredAirflow().getValue() + " m/s");
-        } else if (conditions instanceof CurrentConditions) {
-            CurrentConditions currentConditions = (CurrentConditions) conditions;
-            labels[0].setText(currentConditions.getCurrentTemperature().getValue() + " °C");
-            labels[1].setText(currentConditions.getCurrentHumidity().getValue() + " %");
-            labels[2].setText(currentConditions.getCurrentLightIntensity().getValue() + " lux");
-            labels[3].setText(currentConditions.getCurrentAirflow().getValue() + " m/s");
         }
     }
 
@@ -93,8 +76,4 @@ public class DashboardPanel extends JPanel {
         return new DesiredConditions(25.0, 60.0, 1000.0, 0.5); // Dummy values for temperature, humidity, light intensity, and airflow
     }
 
-    // Method to create dummy current conditions
-    private CurrentConditions createDummyCurrentConditions() {
-        return new CurrentConditions(24.5, 58.0, 950.0, 0.4); // Dummy values for temperature, humidity, light intensity, and airflow
-    }
 }
