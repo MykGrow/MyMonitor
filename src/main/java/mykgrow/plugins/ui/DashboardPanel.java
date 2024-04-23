@@ -1,6 +1,7 @@
 package mykgrow.plugins.ui;
 
 import mykgrow.domain.entities.DesiredConditions;
+import mykgrow.plugins.ui.UIComponents.FontSizes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,15 +39,15 @@ public class DashboardPanel extends JPanel {
         panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY), title));
 
         JLabel[] conditionLabels = new JLabel[]{
-                UIComponents.createLabel("Temperature: ", 14, SwingConstants.RIGHT),
-                UIComponents.createLabel("Humidity: ", 14, SwingConstants.RIGHT),
-                UIComponents.createLabel("Light Intensity: ", 14, SwingConstants.RIGHT),
-                UIComponents.createLabel("Airflow: ", 14, SwingConstants.RIGHT)
+                UIComponents.createLabel("Temperature: ", FontSizes.SMALL, SwingConstants.RIGHT),
+                UIComponents.createLabel("Humidity: ", FontSizes.SMALL, SwingConstants.RIGHT),
+                UIComponents.createLabel("Light Intensity: ", FontSizes.SMALL, SwingConstants.RIGHT),
+                UIComponents.createLabel("Airflow: ", FontSizes.SMALL, SwingConstants.RIGHT)
         };
 
-        JLabel[] valueLabels = new JLabel[4];
-        for (int i = 0; i < 4; i++) {
-            valueLabels[i] = UIComponents.createLabel("--", 14, SwingConstants.LEFT);
+        JLabel[] valueLabels = new JLabel[conditionLabels.length];
+        for (int i = 0; i < conditionLabels.length; i++) {
+            valueLabels[i] = UIComponents.createLabel("--", FontSizes.SMALL, SwingConstants.LEFT);
             panel.add(conditionLabels[i]);
             panel.add(valueLabels[i]);
         }

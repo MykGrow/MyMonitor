@@ -1,5 +1,7 @@
 package mykgrow.plugins.ui;
 
+import mykgrow.plugins.ui.UIComponents.FontSizes;
+
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -39,40 +41,20 @@ public class CurrentConditionsPanel extends JPanel {
         setLayout(new GridLayout(1, 1));
 
         // Create the temperature labels
-        temperatureTextLabel = new JLabel("Temperature:");
-        temperatureTextLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        temperatureTextLabel.setFont(new Font("Arial", Font.BOLD, 19));
-
+        temperatureTextLabel = createDashboardLabel("Temperature:");
         temperatureValueLabel = new JLabel("N/A");
-        temperatureValueLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        temperatureValueLabel.setFont(new Font("Arial", Font.BOLD, 19));
 
         // Create the humidity labels
-        humidityTextLabel = new JLabel("Humidity:");
-        humidityTextLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        humidityTextLabel.setFont(new Font("Arial", Font.BOLD, 19));
-
-        humidityValueLabel = new JLabel("N/A");
-        humidityValueLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        humidityValueLabel.setFont(new Font("Arial", Font.BOLD, 19));
+        humidityTextLabel = createDashboardLabel("Humidity:");
+        humidityValueLabel = createDashboardLabel("N/A");
 
         // Create Light Intensity labels
         lightIntensityTextLabel = new JLabel("Light Intensity:");
-        lightIntensityTextLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        lightIntensityTextLabel.setFont(new Font("Arial", Font.BOLD, 19));
-
         lightIntensityValueLabel = new JLabel("N/A");
-        lightIntensityValueLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        lightIntensityValueLabel.setFont(new Font("Arial", Font.BOLD, 19));
 
         // Create Air Flow labels
         airFlowTextLabel = new JLabel("Air Flow:");
-        airFlowTextLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        airFlowTextLabel.setFont(new Font("Arial", Font.BOLD, 19));
-
         airFlowValueLabel = new JLabel("N/A");
-        airFlowValueLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        airFlowValueLabel.setFont(new Font("Arial" ,Font.BOLD, 19));
 
 
         JPanel mainPanel = new JPanel(new GridLayout(4, 2, 10, 10));
@@ -87,6 +69,13 @@ public class CurrentConditionsPanel extends JPanel {
         mainPanel.add(airFlowValueLabel);
 
         add(mainPanel);
+    }
+
+    private JLabel createDashboardLabel(String text) {
+        JLabel label = new JLabel(text);
+        temperatureTextLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        temperatureTextLabel.setFont(new Font("Arial", Font.BOLD, FontSizes.SMALL.getSize()));
+        return label;
     }
     private void initSubscriptions(){
         // Create and configure the MQTTAdapter

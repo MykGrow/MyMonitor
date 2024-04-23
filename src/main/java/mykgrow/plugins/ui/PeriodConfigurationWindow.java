@@ -1,12 +1,12 @@
 package mykgrow.plugins.ui;
 
 import mykgrow.Exceptions.ConditionNotSetException;
-import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.valueObjects.AirflowCondition;
 import mykgrow.domain.valueObjects.HumidityCondition;
 import mykgrow.domain.valueObjects.LightCondition;
 import mykgrow.domain.valueObjects.TemperatureCondition;
+import mykgrow.plugins.ui.UIComponents.FontSizes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -102,39 +102,39 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(0, 2));
 
-        JLabel titleLabel = UIComponents.createLabel("Custom Period", 16, SwingConstants.CENTER);
+        JLabel titleLabel = UIComponents.createLabel("Custom Period", FontSizes.MEDIUM, SwingConstants.CENTER);
 
-        JLabel nameLabel = UIComponents.createLabel("Name:", 14, SwingConstants.LEFT);
-        nameField = UIComponents.createTextField(10, 12);
+        JLabel nameLabel = UIComponents.createLabel("Name:", FontSizes.MEDIUM, SwingConstants.LEFT);
+        nameField = UIComponents.createTextField(10, FontSizes.SMALL);
 
-        JLabel durationLabel = UIComponents.createLabel("Duration in Days:", 14, SwingConstants.LEFT);
-        durationField = UIComponents.createTextField(10, 12);
+        JLabel durationLabel = UIComponents.createLabel("Duration in Days:", FontSizes.MEDIUM, SwingConstants.LEFT);
+        durationField = UIComponents.createTextField(10, FontSizes.SMALL);
 
-        JLabel lowerTempLabel = UIComponents.createLabel("Lower Temperature Threshold:", 14, SwingConstants.LEFT);
-        lowerTempField = UIComponents.createTextField(10, 12);
+        JLabel lowerTempLabel = UIComponents.createLabel("Lower Temperature Threshold:", FontSizes.MEDIUM, SwingConstants.LEFT);
+        lowerTempField = UIComponents.createTextField(10, FontSizes.SMALL);
 
-        JLabel targetTempLabel = UIComponents.createLabel("Target Temperature:", 14, SwingConstants.LEFT);
-        targetTempField = UIComponents.createTextField(10, 12);
+        JLabel targetTempLabel = UIComponents.createLabel("Target Temperature:", FontSizes.MEDIUM, SwingConstants.LEFT);
+        targetTempField = UIComponents.createTextField(10, FontSizes.SMALL);
 
-        JLabel lowerHumidityLabel = UIComponents.createLabel("Lower Humidity Threshold:", 14, SwingConstants.LEFT);
-        lowerHumidityField = UIComponents.createTextField(10, 12);
+        JLabel lowerHumidityLabel = UIComponents.createLabel("Lower Humidity Threshold:", FontSizes.MEDIUM, SwingConstants.LEFT);
+        lowerHumidityField = UIComponents.createTextField(10, FontSizes.SMALL);
 
-        JLabel targetHumidityLabel = UIComponents.createLabel("Target Humidity:", 14, SwingConstants.LEFT);
-        targetHumidityField = UIComponents.createTextField(10, 12);
+        JLabel targetHumidityLabel = UIComponents.createLabel("Target Humidity:", FontSizes.MEDIUM, SwingConstants.LEFT);
+        targetHumidityField = UIComponents.createTextField(10, FontSizes.SMALL);
 
-        JLabel lightIntensityLabel = UIComponents.createLabel("Light Intensity:", 14, SwingConstants.LEFT);
-        lightIntensityField = UIComponents.createTextField(10, 12);
+        JLabel lightIntensityLabel = UIComponents.createLabel("Light Intensity:", FontSizes.MEDIUM, SwingConstants.LEFT);
+        lightIntensityField = UIComponents.createTextField(10, FontSizes.SMALL);
 
-        JLabel lightStartLabel = UIComponents.createLabel("Light Start Time:", 14, SwingConstants.LEFT);
-        lightStartComboBox = UIComponents.createTextField(10, 12);
+        JLabel lightStartLabel = UIComponents.createLabel("Light Start Time:", FontSizes.MEDIUM, SwingConstants.LEFT);
+        lightStartComboBox = UIComponents.createTextField(10, FontSizes.SMALL);
 
-        JLabel lightEndLabel = UIComponents.createLabel("Light End Time:", 14, SwingConstants.LEFT);
-        lightEndComboBox = UIComponents.createTextField(10, 12);
+        JLabel lightEndLabel = UIComponents.createLabel("Light End Time:", FontSizes.MEDIUM, SwingConstants.LEFT);
+        lightEndComboBox = UIComponents.createTextField(10, FontSizes.SMALL);
 
-        JLabel airFlowLabel = UIComponents.createLabel("Airflow (Full Air Exchanges per hour):", 14, SwingConstants.LEFT);
-        airFlowField = UIComponents.createTextField(10, 12);
+        JLabel airFlowLabel = UIComponents.createLabel("Airflow (Full Air Exchanges per hour):", FontSizes.MEDIUM, SwingConstants.LEFT);
+        airFlowField = UIComponents.createTextField(10, FontSizes.SMALL);
 
-        JButton saveButton = UIComponents.createButton("Save", 14);
+        JButton saveButton = UIComponents.createButton("Save", FontSizes.MEDIUM);
 
         UIComponents.addComponent(panel, nameLabel);
         UIComponents.addComponent(panel, nameField);
@@ -181,21 +181,6 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
             LocalTime lightEndTime = LocalTime.parse(lightEndComboBox.getText());
             double airFlow = Double.parseDouble(airFlowField.getText());
 
-            // Create a PresetGrowing object with the retrieved values
-            // GrowingPreset preset = new GrowingPreset("Custom");
-            // preset.addCondition(Condition.LOWER_TEMPERATURE, lowerTemp);
-            // preset.addCondition(Condition.UPPER_TEMPERATURE, upperTemp);
-            // preset.addCondition(Condition.LOWER_HUMIDITY, lowerHumidity);
-            // preset.addCondition(Condition.UPPER_HUMIDITY, upperHumidity);
-            // preset.addCondition(Condition.LIGHT_INTENSITY, lightIntensity);
-            // preset.addCondition(Condition.LIGHT_START_TIME, lightStartTime);
-            // preset.addCondition(Condition.LIGHT_END_TIME, lightEndTime);
-            // preset.addCondition(Condition.AIR_FLOW, airFlow);
-
-            // Call the savePreset method from the PresetService
-            // presetService.saveGrowingPreset(preset);
-
-            // Inform the user that the preset was saved successfully
             if (!editMode) {
                 GrowthPeriod growthPeriod = new GrowthPeriod.GrowthPeriodBuilder(name,"test", duration).
                         withAirflowCondition(new AirflowCondition(airFlow)).

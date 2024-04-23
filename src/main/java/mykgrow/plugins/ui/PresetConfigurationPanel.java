@@ -4,12 +4,12 @@ import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.repositories.GrowingPresetRepository;
 import org.bson.types.ObjectId;
+import mykgrow.plugins.ui.UIComponents.FontSizes;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer, GrowthPeriodListener{
 
@@ -43,13 +43,13 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
         JPanel detailPanel = new JPanel(new GridLayout(0,2));
 
         JLabel nameLabel = new JLabel("Name:");
-        this.nameField = UIComponents.createTextField(10, 12);
+        this.nameField = UIComponents.createTextField(10, FontSizes.SMALL);
 
         detailPanel.add(nameLabel);
         detailPanel.add(this.nameField);
 
-        JButton addGrowthPeriodButton = UIComponents.createButton("Add Growth Period", 12);
-        JButton saveButton = UIComponents.createButton("Save", 12);
+        JButton addGrowthPeriodButton = UIComponents.createButton("Add Growth Period", FontSizes.SMALL);
+        JButton saveButton = UIComponents.createButton("Save", FontSizes.SMALL);
 
         addGrowthPeriodButton.addActionListener(e -> {
             addGrowthPeriod();
