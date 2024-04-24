@@ -18,7 +18,6 @@ import java.util.List;
 
 public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEventEmitter{
     private JTextField nameField;
-
     private JTextField durationField;
     private JTextField lowerTempField;
     private JTextField targetTempField;
@@ -30,7 +29,7 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
     private JTextField lightEndComboBox;
 
     private boolean editMode = false;
-    private List<GrowthPeriodListener> listeners = new ArrayList<>();
+    private List<GrowthPeriodEventListener> listeners = new ArrayList<>();
 
     private GrowthPeriod growthPeriod = null;
 
@@ -87,9 +86,21 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
             lightEndComboBox.setText("00:00");
         }
     }
-
-    public void addListener(GrowthPeriodListener listener){
+    @Override
+    public void addListener(GrowthPeriodEventListener listener){
         this.listeners.add(listener);
+    }
+
+    @Override
+    public void removeListener(GrowthPeriodEventListener listener) {
+        this.listeners.remove(listener);
+    }
+
+    @Override
+    public void notifyListeners(GrowthPeriodEvent event, Object o) {
+        for (GrowthPeriodEventListener listener : listeners){
+            listener.update(event, o);
+        }
     }
 
     private void setupUI() {
@@ -187,7 +198,7 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
                         withLightCondition(new LightCondition(lightIntensity, lightStartTime, lightEndTime)).
                         withHumidityCondition(new HumidityCondition(lowerHumidity, upperHumidity)).
                         withTemperatureCondition(new TemperatureCondition(lowerTemp, upperTemp)).build();
-                notifyListenersAboutNewPeriod(growthPeriod);
+                notifyListeners(GrowthPeriodEvent.INSERT, growthPeriod);
                 JOptionPane.showMessageDialog(this, "Period saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
             }else {
                 this.growthPeriod.setName(name);
@@ -196,23 +207,11 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
                 this.growthPeriod.setLightCondition(new LightCondition(lightIntensity, lightStartTime, lightEndTime));
                 this.growthPeriod.setHumidityCondition(new HumidityCondition(lowerHumidity, upperHumidity));
                 this.growthPeriod.setTemperatureCondition(new TemperatureCondition(lowerTemp, upperTemp));
-                notifyListernersAboutPeriodUpdate();
+                notifyListeners(GrowthPeriodEvent.UPDATE, null);
             }
             dispose();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Invalid input values", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private void notifyListenersAboutNewPeriod(GrowthPeriod growthPeriod) {
-        for (GrowthPeriodListener listener : listeners) {
-            listener.growthPeriodAdded(growthPeriod);
-        }
-    }
-
-    private void notifyListernersAboutPeriodUpdate() {
-        for (GrowthPeriodListener listener : listeners) {
-            listener.growthPeriodUpdated();
         }
     }
 }

@@ -11,7 +11,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer, GrowthPeriodListener{
+public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer, GrowthPeriodEventListener {
 
     private BorderedScrollablePanel borderPanel;
     private BorderedScrollablePanel periodPanel;
@@ -97,20 +97,31 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
         return this.borderPanel;
     }
 
-    @Override
-    public void growthPeriodAdded(GrowthPeriod growthPeriod) {
+    private void growthPeriodAdded(GrowthPeriod growthPeriod) {
         this.growthPeriods.add(growthPeriod);
         updatePeriods();
     }
 
-    @Override
-    public void growthPeriodUpdated() {
+    private void growthPeriodUpdated() {
+        updatePeriods();
+    }
+
+    private void growthPeriodDeleted(GrowthPeriod growthPeriod) {
+        this.growthPeriods.remove(growthPeriod);
         updatePeriods();
     }
 
     @Override
-    public void growthPeriodDeleted(GrowthPeriod growthPeriod) {
-        this.growthPeriods.remove(growthPeriod);
-        updatePeriods();
+    public void update(GrowthPeriodEvent event, Object o) {
+        switch (event){
+            case UPDATE:
+                growthPeriodUpdated();
+                break;
+            case INSERT:
+                growthPeriodAdded((GrowthPeriod) o);
+                break;
+            default:
+                growthPeriodDeleted((GrowthPeriod) o);
+        }
     }
 }

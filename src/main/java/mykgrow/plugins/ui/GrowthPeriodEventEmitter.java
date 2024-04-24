@@ -1,5 +1,9 @@
 package mykgrow.plugins.ui;
 
 public interface GrowthPeriodEventEmitter {
-    void addListener(GrowthPeriodListener listener);
+    void addListener(GrowthPeriodEventListener listener);
+
+    void removeListener(GrowthPeriodEventListener listener);
+
+    void notifyListeners(GrowthPeriodEvent event, Object o);
 }

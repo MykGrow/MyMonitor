@@ -14,7 +14,7 @@ public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitte
     private JPanel headerPanel;
     private boolean editMode = false;
 
-    private List<GrowthPeriodListener> listeners = new ArrayList<>();
+    private List<GrowthPeriodEventListener> listeners = new ArrayList<>();
 
     public GrowthPeriodPanel(GrowthPeriod growthPeriod) {
         this.growthPeriod = growthPeriod;
@@ -96,7 +96,7 @@ public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitte
         }
     }
     private void deleteGrowthPeriod() {
-        notifyListenersAboutDelete();
+        notifyListeners(GrowthPeriodEvent.DELETE, this.growthPeriod);
     }
     private String formatTime(LocalTime time) {
         return String.format("%02d:%02d", time.getHour(), time.getMinute());
@@ -176,12 +176,19 @@ public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitte
     }
 
     @Override
-    public void addListener(GrowthPeriodListener listener) {
+    public void addListener(GrowthPeriodEventListener listener) {
         this.listeners.add(listener);
     }
-    private void notifyListenersAboutDelete(){
-        for(GrowthPeriodListener listener : this.listeners){
-            listener.growthPeriodDeleted(this.growthPeriod);
+
+    @Override
+    public void removeListener(GrowthPeriodEventListener listener) {
+        this.listeners.remove(listener);
+    }
+
+    @Override
+    public void notifyListeners(GrowthPeriodEvent event, Object o) {
+        for(GrowthPeriodEventListener listener : this.listeners){
+            listener.update(event, o);
         }
     }
 }
