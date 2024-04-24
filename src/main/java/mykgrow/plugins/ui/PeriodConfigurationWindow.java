@@ -13,7 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 
 public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEventEmitter{
@@ -29,7 +29,7 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
     private JTextField lightEndComboBox;
 
     private boolean editMode = false;
-    private List<GrowthPeriodEventListener> listeners = new ArrayList<>();
+    private Map<GrowthPeriodEvent, List<GrowthPeriodEventListener>> listeners;
 
     private GrowthPeriod growthPeriod = null;
 
@@ -37,6 +37,10 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
         setupUI();
         initializeComponents();
         setLocationRelativeTo(null);
+        listeners = new HashMap<>();
+        Arrays.stream(GrowthPeriodEvent.values()).forEach(event -> {
+            listeners.put(event, new ArrayList<>());
+        });
     }
 
     PeriodConfigurationWindow(GrowthPeriod growthPeriod){
@@ -48,7 +52,7 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
         try {
             lowerTempField.setText(String.valueOf(growthPeriod.getTemperatureCondition().getLowerThreshold()));
         } catch (ConditionNotSetException e) {
-            lowerTempField.setText("0");
+;            lowerTempField.setText("0");
         }
         try {
             targetTempField.setText(String.valueOf(growthPeriod.getTemperatureCondition().getUpperThreshold()));
@@ -87,20 +91,20 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
         }
     }
     @Override
-    public void addListener(GrowthPeriodEventListener listener){
-        this.listeners.add(listener);
+    public void addListener(GrowthPeriodEvent event, GrowthPeriodEventListener listener){
+        this.listeners.get(event).add(listener);
     }
 
     @Override
-    public void removeListener(GrowthPeriodEventListener listener) {
-        this.listeners.remove(listener);
+    public void removeListener(GrowthPeriodEvent event, GrowthPeriodEventListener listener) {
+        this.listeners.get(event).remove(listener);
     }
 
     @Override
     public void notifyListeners(GrowthPeriodEvent event, Object o) {
-        for (GrowthPeriodEventListener listener : listeners){
-            listener.update(event, o);
-        }
+        listeners.get(event).forEach(listener->{
+            listener.update(event,o);
+        });
     }
 
     private void setupUI() {

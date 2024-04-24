@@ -78,7 +78,7 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
     }
     private void addGrowthPeriod(){
         PeriodConfigurationWindow popup = new PeriodConfigurationWindow();
-        popup.addListener(this);
+        popup.addListener(GrowthPeriodEvent.INSERT, this);
         popup.setVisible(true);
     }
 
@@ -86,7 +86,7 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
         this.periodPanel.getContentPanel().removeAll();
         for (GrowthPeriod period : this.growthPeriods) {
             GrowthPeriodPanel growthPeriodPanel = new GrowthPeriodPanel(period, true, this);
-            growthPeriodPanel.addListener(this);
+            growthPeriodPanel.addListener(GrowthPeriodEvent.DELETE, this);
             this.periodPanel.getContentPanel().add(growthPeriodPanel);
         }
         this.periodPanel.getContentPanel().revalidate();
