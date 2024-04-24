@@ -42,19 +42,19 @@ public class CurrentConditionsPanel extends JPanel {
 
         // Create the temperature labels
         temperatureTextLabel = createDashboardLabel("Temperature:");
-        temperatureValueLabel = new JLabel("N/A");
+        temperatureValueLabel = createDashboardLabel("N/A");
 
         // Create the humidity labels
         humidityTextLabel = createDashboardLabel("Humidity:");
         humidityValueLabel = createDashboardLabel("N/A");
 
         // Create Light Intensity labels
-        lightIntensityTextLabel = new JLabel("Light Intensity:");
-        lightIntensityValueLabel = new JLabel("N/A");
+        lightIntensityTextLabel = createDashboardLabel("Light Intensity:");
+        lightIntensityValueLabel = createDashboardLabel("N/A");
 
         // Create Air Flow labels
-        airFlowTextLabel = new JLabel("Air Flow:");
-        airFlowValueLabel = new JLabel("N/A");
+        airFlowTextLabel = createDashboardLabel("Air Flow:");
+        airFlowValueLabel = createDashboardLabel("N/A");
 
 
         JPanel mainPanel = new JPanel(new GridLayout(4, 2, 10, 10));
@@ -73,8 +73,8 @@ public class CurrentConditionsPanel extends JPanel {
 
     private JLabel createDashboardLabel(String text) {
         JLabel label = new JLabel(text);
-        temperatureTextLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        temperatureTextLabel.setFont(new Font("Arial", Font.BOLD, FontSizes.SMALL.getSize()));
+        label.setHorizontalAlignment(SwingConstants.LEFT);
+        label.setFont(new Font("Arial", Font.BOLD, FontSizes.SMALL.getSize()));
         return label;
     }
     private void initSubscriptions(){
