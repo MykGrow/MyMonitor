@@ -1,6 +1,6 @@
 package mykgrow.domain.entities;
 
-import mykgrow.Exceptions.ConditionNotSetException;
+import mykgrow.exceptions.ConditionNotSetException;
 import mykgrow.domain.valueObjects.AirflowCondition;
 import mykgrow.domain.valueObjects.HumidityCondition;
 import mykgrow.domain.valueObjects.LightCondition;

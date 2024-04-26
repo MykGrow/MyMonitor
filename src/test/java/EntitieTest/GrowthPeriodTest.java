@@ -1,6 +1,6 @@
 package EntitieTest;
 
-import mykgrow.Exceptions.ConditionNotSetException;
+import mykgrow.exceptions.ConditionNotSetException;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.valueObjects.AirflowCondition;
 import mykgrow.domain.valueObjects.HumidityCondition;

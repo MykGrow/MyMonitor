@@ -1,6 +1,6 @@
 package mykgrow.plugins.ui.preset;
 
-import mykgrow.Exceptions.ConditionNotSetException;
+import mykgrow.exceptions.ConditionNotSetException;
 import mykgrow.domain.entities.GrowthPeriod;
 
 import javax.swing.*;
