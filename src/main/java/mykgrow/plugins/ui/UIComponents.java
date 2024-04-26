@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class UIComponents {
 
-    enum FontSizes {
+    public enum FontSizes {
         SMALL(12),
         MEDIUM(14),
         LARGE(16),

@@ -74,7 +74,7 @@ public class CurrentConditionsPanel extends JPanel {
     private JLabel createDashboardLabel(String text) {
         JLabel label = new JLabel(text);
         label.setHorizontalAlignment(SwingConstants.LEFT);
-        label.setFont(new Font("Arial", Font.BOLD, FontSizes.SMALL.getSize()));
+        label.setFont(new Font("Arial", Font.BOLD, FontSizes.LARGE.getSize()));
         return label;
     }
     private void initSubscriptions(){

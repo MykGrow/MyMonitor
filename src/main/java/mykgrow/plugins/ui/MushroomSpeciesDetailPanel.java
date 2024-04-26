@@ -58,7 +58,7 @@ public class MushroomSpeciesDetailPanel implements BorderedScrollablePanelConsum
         // Create components
         BufferedImage speciesPicture = null;
         try {
-            speciesPicture = ImageIO.read(new File("C:\\Users\\I551977\\Desktop\\MyGrow\\MyMonitor\\src\\main\\java\\mykgrow\\resources\\images\\ostreatus.jpg"));
+            speciesPicture = ImageIO.read(new File("src/main/java/mykgrow/resources/images/ostreatus.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
