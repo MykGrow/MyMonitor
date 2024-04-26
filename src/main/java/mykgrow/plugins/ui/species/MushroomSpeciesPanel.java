@@ -1,8 +1,10 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.species;
 
 import mykgrow.application.RandomDataGenerator;
-import mykgrow.application.interfaces.SaveMushromPresetAsPresetInterface;
 import mykgrow.domain.entities.MushroomSpecies;
+import mykgrow.plugins.ui.App;
+import mykgrow.plugins.ui.wrapper_panels.ScrollablePanel;
+import mykgrow.plugins.ui.ui_utils.UiUtils;
 
 import javax.swing.*;
 

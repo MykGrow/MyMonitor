@@ -1,9 +1,13 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.species;
 
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.entities.MushroomSpecies;
 import mykgrow.domain.repositories.GrowingPresetRepository;
+import mykgrow.plugins.ui.App;
+import mykgrow.plugins.ui.wrapper_panels.BorderedScrollablePanel;
+import mykgrow.plugins.ui.wrapper_panels.BorderedScrollablePanelConsumer;
+import mykgrow.plugins.ui.preset.GrowthPeriodPanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,7 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class MushroomSpeciesDetailPanel implements BorderedScrollablePanelConsumer{
+public class MushroomSpeciesDetailPanel implements BorderedScrollablePanelConsumer {
 
     private BorderedScrollablePanel borderPanel;
     private App app;

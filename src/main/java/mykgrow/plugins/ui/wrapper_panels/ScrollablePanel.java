@@ -1,4 +1,4 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.wrapper_panels;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +7,7 @@ public class ScrollablePanel{
 
     private final JPanel panel = new JPanel();
     private final JScrollPane scrollPane;
-    ScrollablePanel(){
+    public ScrollablePanel(){
         GridLayout layout = new GridLayout(0, 1);
         layout.setVgap(5);
         this.panel.setLayout(layout);

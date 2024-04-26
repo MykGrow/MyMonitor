@@ -1,6 +1,6 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.preset;
 
-import mykgrow.domain.entities.GrowthPeriod;
+import mykgrow.plugins.ui.preset.GrowthPeriodEvent;
 
 public interface GrowthPeriodEventListener {
     void update(GrowthPeriodEvent event, Object o);

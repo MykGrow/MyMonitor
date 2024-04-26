@@ -3,9 +3,9 @@
 //import mykgrow.application.PeriodConfigurationService;
 //import mykgrow.domain.repositories.GrowingPresetRepository;
 //import mykgrow.domain.repositories.GrowingPresetRepositoryInterface;
-//import mykgrow.plugins.ui.PeriodConfigurationWindow;
-//import mykgrow.plugins.ui.UIComponents;
-//import mykgrow.plugins.ui.UIComponents.fontSizes;
+//import mykgrow.plugins.ui.preset.PeriodConfigurationWindow;
+//import mykgrow.plugins.ui.ui_utils.UIComponents;
+//import mykgrow.plugins.ui.ui_utils.UIComponents.fontSizes;
 //
 //import javax.swing.*;
 //import java.awt.*;

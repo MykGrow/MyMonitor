@@ -1,7 +1,4 @@
-package mykgrow.plugins.ui;
-
-import mykgrow.domain.entities.DesiredConditions;
-import mykgrow.plugins.ui.UIComponents.FontSizes;
+package mykgrow.plugins.ui.dashboard;
 
 import javax.swing.*;
 import java.awt.*;

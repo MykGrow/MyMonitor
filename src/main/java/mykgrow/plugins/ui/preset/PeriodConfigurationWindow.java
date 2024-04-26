@@ -1,4 +1,4 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.preset;
 
 import mykgrow.Exceptions.ConditionNotSetException;
 import mykgrow.domain.entities.GrowthPeriod;
@@ -6,7 +6,8 @@ import mykgrow.domain.valueObjects.AirflowCondition;
 import mykgrow.domain.valueObjects.HumidityCondition;
 import mykgrow.domain.valueObjects.LightCondition;
 import mykgrow.domain.valueObjects.TemperatureCondition;
-import mykgrow.plugins.ui.UIComponents.FontSizes;
+import mykgrow.plugins.ui.ui_utils.UIComponents;
+import mykgrow.plugins.ui.ui_utils.UIComponents.FontSizes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +17,7 @@ import java.time.LocalTime;
 import java.util.*;
 import java.util.List;
 
-public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEventEmitter{
+public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEventEmitter {
     private JTextField nameField;
     private JTextField durationField;
     private JTextField lowerTempField;

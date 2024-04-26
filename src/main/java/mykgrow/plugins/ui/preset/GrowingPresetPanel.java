@@ -1,7 +1,10 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.preset;
 
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.repositories.GrowingPresetRepository;
+import mykgrow.plugins.ui.*;
+import mykgrow.plugins.ui.ui_utils.UiUtils;
+import mykgrow.plugins.ui.wrapper_panels.ScrollablePanel;
 
 import javax.swing.*;
 import java.awt.*;

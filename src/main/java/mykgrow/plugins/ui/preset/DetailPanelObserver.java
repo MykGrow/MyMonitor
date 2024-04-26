@@ -1,4 +1,4 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.preset;
 
 public interface DetailPanelObserver {
     void showMushroomSpeciesPanel();

@@ -1,12 +1,15 @@
 package mykgrow.plugins.ui;
 
 import com.formdev.flatlaf.*;
-import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import mykgrow.application.SaveMushromPresetAsPresetService;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.repositories.GrowingPresetRepository;
 import mykgrow.domain.valueObjects.AirflowCondition;
 import mykgrow.plugins.database.DatabaseClient;
+import mykgrow.plugins.ui.chart.ChartsPanel;
+import mykgrow.plugins.ui.dashboard.DashboardPanel;
+import mykgrow.plugins.ui.preset.GrowingPresetPanel;
+import mykgrow.plugins.ui.species.MushroomSpeciesPanel;
 
 import javax.swing.*;
 import java.awt.*;

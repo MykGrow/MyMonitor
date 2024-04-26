@@ -1,6 +1,6 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.dashboard;
 
-import mykgrow.plugins.ui.UIComponents.FontSizes;
+import mykgrow.plugins.ui.ui_utils.UIComponents.FontSizes;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;

@@ -1,7 +1,8 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.preset;
 
 import mykgrow.Exceptions.ConditionNotSetException;
 import mykgrow.domain.entities.GrowthPeriod;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,7 +10,7 @@ import java.time.LocalTime;
 import java.util.*;
 import java.util.List;
 
-public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitter{
+public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitter {
     private GrowthPeriod growthPeriod;
     private JPanel headerPanel;
     private boolean editMode = false;
@@ -79,7 +80,7 @@ public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitte
         add(scrollPane, BorderLayout.CENTER);
     }
 
-    GrowthPeriodPanel(GrowthPeriod growthPeriod, boolean editMode, PresetConfigurationPanel presetConfigurationPanel){
+    public GrowthPeriodPanel(GrowthPeriod growthPeriod, boolean editMode, PresetConfigurationPanel presetConfigurationPanel){
         this(growthPeriod);
         this.editMode = editMode;
         if (editMode) {

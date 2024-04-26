@@ -1,11 +1,10 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.wrapper_panels;
 
-import mykgrow.domain.entities.GrowthPeriod;
+import mykgrow.plugins.ui.App;
+import mykgrow.plugins.ui.ui_utils.UiUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class BorderedScrollablePanel extends JPanel {
 

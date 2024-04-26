@@ -1,18 +1,16 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.preset;
 
-import mykgrow.application.SaveMushromPresetAsPresetService;
-import mykgrow.application.interfaces.SaveMushromPresetAsPresetInterface;
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
-import mykgrow.domain.entities.MushroomSpecies;
 import mykgrow.domain.repositories.GrowingPresetRepository;
+import mykgrow.plugins.ui.*;
+import mykgrow.plugins.ui.ui_utils.UiUtils;
+import mykgrow.plugins.ui.wrapper_panels.BorderedScrollablePanel;
+import mykgrow.plugins.ui.wrapper_panels.BorderedScrollablePanelConsumer;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class GrowingPresetDetailPanel implements BorderedScrollablePanelConsumer{
+public class GrowingPresetDetailPanel implements BorderedScrollablePanelConsumer {
     private App app;
     private GrowingPreset preset;
     private BorderedScrollablePanel borderPanel;

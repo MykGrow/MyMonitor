@@ -1,4 +1,4 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.chart;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -20,13 +20,30 @@ import java.awt.*;
 import java.util.Random;
 
 public class DataChart extends JPanel {
-    private XYSeries temperatureSeries;
 
-    public DataChart(String title) {
-        initChart(title);
+    public enum Colors{
+        BABY_PINK(new Color(230, 169, 239)),
+        BABY_PURPLE(new Color(139, 66, 241)),
+        PURPLE(new Color(127, 15, 189)),
+        DARK_PURPLE(new Color(83, 43, 236));
+
+        private final Color color;
+        Colors(Color color){
+            this.color = color;
+        }
+
+        public Color getColor(){
+            return color;
+        }
+
+    }
+    private XYSeries temperatureSeries;
+    private XYPlot plot;
+    public DataChart(String title, Color color) {
+        initChart(title, color);
     }
 
-    private void initChart(String title) {
+    private void initChart(String title, Color color) {
         setLayout(new GridLayout(1, 1));
         // Create series for each data type
         temperatureSeries = new XYSeries("Temperature");
@@ -54,7 +71,7 @@ public class DataChart extends JPanel {
         );
         chart.setBackgroundPaint(new Color(60, 63, 65)); // Set background color
         // Set background color to match FlatDarkLaf
-        XYPlot plot = chart.getXYPlot();
+        this.plot = chart.getXYPlot();
         plot.setBackgroundPaint(new Color(60, 63, 65)); // Set background color
         plot.setDomainGridlinePaint(new Color(160, 160, 160)); // Set color of domain gridlines (vertical)
         plot.setRangeGridlinePaint(new Color(160, 160, 160)); // Set color of range gridlines (horizontal)
@@ -92,14 +109,14 @@ public class DataChart extends JPanel {
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setLayout(new GridLayout(1, 1));
 
-        XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot.getRenderer();
-        renderer.setSeriesPaint(0, new Color(230, 169, 239)); // Set color for the first series line
-        renderer.setSeriesPaint(1, new Color(139, 66, 241));   // Set color for the second series line
-        renderer.setSeriesPaint(2, new Color(127, 15, 189));   // Set color for the third series line
-        renderer.setSeriesPaint(3, new Color(83, 43, 236));   // Set color for the fourth series line
-
+        setLineAndShapeRenderer(color);
 
         setBorder(new CompoundBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY), new EmptyBorder(10, 10, 10, 10)));
         add(chartPanel);
+    }
+
+    public void setLineAndShapeRenderer(Color color){
+        XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot.getRenderer();
+        renderer.setSeriesPaint(0, color); // Set color for the first series line
     }
 }

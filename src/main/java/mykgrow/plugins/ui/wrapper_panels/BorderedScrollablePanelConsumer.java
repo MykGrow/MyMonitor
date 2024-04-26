@@ -1,4 +1,4 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.wrapper_panels;
 
 import javax.swing.*;
 

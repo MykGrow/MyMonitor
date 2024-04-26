@@ -1,10 +1,15 @@
-package mykgrow.plugins.ui;
+package mykgrow.plugins.ui.preset;
 
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.repositories.GrowingPresetRepository;
+import mykgrow.plugins.ui.*;
+import mykgrow.plugins.ui.ui_utils.UIComponents;
+import mykgrow.plugins.ui.ui_utils.UiUtils;
+import mykgrow.plugins.ui.wrapper_panels.BorderedScrollablePanel;
+import mykgrow.plugins.ui.wrapper_panels.BorderedScrollablePanelConsumer;
 import org.bson.types.ObjectId;
-import mykgrow.plugins.ui.UIComponents.FontSizes;
+import mykgrow.plugins.ui.ui_utils.UIComponents.FontSizes;
 
 import javax.swing.*;
 import java.awt.*;
