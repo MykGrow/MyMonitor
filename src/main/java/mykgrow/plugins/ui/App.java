@@ -65,7 +65,7 @@ public class App extends JFrame {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel, cardName);
+                showPanel(cardName);
             }
         });
         // Set preferred size to increase button width
@@ -93,6 +93,10 @@ public class App extends JFrame {
         navPanel.add(Box.createHorizontalGlue());
 
         return navPanel;
+    }
+
+    public void showPanel(String panelName) {
+        cardLayout.show(cardPanel, panelName);
     }
 
     public static void main(String[] args) {

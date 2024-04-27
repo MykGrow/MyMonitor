@@ -26,4 +26,14 @@ public class UiUtils {
         }
     }
 
+    public static void refreshApp(Component currentComponent) {
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(currentComponent);
+        if (frame != null) {
+            frame.revalidate();
+            frame.repaint();
+        } else {
+            System.err.println("Parent JFrame is null");
+        }
+    }
+
 }

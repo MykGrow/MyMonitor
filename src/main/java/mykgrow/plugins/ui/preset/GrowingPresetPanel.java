@@ -73,9 +73,7 @@ public class GrowingPresetPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 GrowingPresetRepository.INSTANCE.deletePreset(preset);
-                GrowingPresetPanel.this.remove(panel);
-                GrowingPresetPanel.this.revalidate();
-                GrowingPresetPanel.this.repaint();
+                UiUtils.navigateHome(GrowingPresetPanel.this, app);
             }
         });
 
