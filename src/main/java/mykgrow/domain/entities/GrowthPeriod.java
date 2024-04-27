@@ -23,6 +23,8 @@ public class GrowthPeriod {
     @BsonProperty("TemperatureCondition")
     private TemperatureCondition temperatureCondition;
 
+    public GrowthPeriod() {
+    }
     public GrowthPeriod(GrowthPeriodBuilder builder) {
         name = builder.name;
         description = builder.description;
@@ -32,7 +34,6 @@ public class GrowthPeriod {
         lightCondition = builder.lightCondition;
         temperatureCondition = builder.temperatureCondition;
     }
-
     public String getName() {
         return name;
     }

@@ -19,6 +19,19 @@ public class CurrentConditionsTest {
     }
 
     @Test
+    @DisplayName("Test setCurrentTemperature Method")
+    public void testSetCurrentTemperature() {
+        // Arrange: Set a new temperature value
+        double newTemperature = 29.0;
+
+        // Act: Call the setCurrentTemperature method with the new value
+        currentConditions.setCurrentTemperature(newTemperature);
+
+        // Assert: Check if the temperature condition has been updated
+        assertEquals(newTemperature, currentConditions.getCurrentTemperature().getValue());
+    }
+
+    @Test
     @DisplayName("Test getCurrentTemperature Method")
     public void testGetCurrentTemperature() {
         // Act: Call the getCurrentTemperature method
@@ -28,18 +41,7 @@ public class CurrentConditionsTest {
         assertEquals(25.0, temperature.getValue());
     }
 
-    @Test
-    @DisplayName("Test setCurrentTemperature Method")
-    public void testSetCurrentTemperature() {
-        // Arrange: Set a new temperature value
-        double newTemperature = 30.0;
 
-        // Act: Call the setCurrentTemperature method with the new value
-        currentConditions.setCurrentTemperature(newTemperature);
-
-        // Assert: Check if the temperature condition has been updated
-        assertEquals(newTemperature, currentConditions.getCurrentTemperature().getValue());
-    }
 
     // Similar tests for getCurrentHumidity, setCurrentHumidity, getCurrentLightIntensity, setCurrentLightIntensity,
     // getCurrentAirflow, and setCurrentAirflow methods

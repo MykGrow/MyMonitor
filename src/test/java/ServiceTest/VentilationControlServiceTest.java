@@ -1,13 +1,13 @@
 package ServiceTest;
 
-import mykgrow.trash.VentilationControlService;
-import mykgrow.trash.ActuatorStatus;
-import mykgrow.trash.ActuatorType;
-import mykgrow.trash.MeasurementUnit;
-import mykgrow.trash.SensorType;
-import mykgrow.trash.FanActuator;
-import mykgrow.trash.GrowBox;
-import mykgrow.trash.TemperatureSensor;
+import mykgrow.archived.VentilationControlService;
+import mykgrow.archived.ActuatorStatus;
+import mykgrow.archived.ActuatorType;
+import mykgrow.archived.MeasurementUnit;
+import mykgrow.archived.SensorType;
+import mykgrow.archived.FanActuator;
+import mykgrow.archived.GrowBox;
+import mykgrow.archived.TemperatureSensor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

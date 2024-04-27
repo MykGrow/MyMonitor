@@ -1,4 +1,4 @@
-package mykgrow.trash;
+package mykgrow.archived;
 
 public class HumiditySensor extends Sensor {
     public HumiditySensor(String name, MeasurementUnit unit) {

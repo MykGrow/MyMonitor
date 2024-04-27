@@ -1,4 +1,4 @@
-package mykgrow.trash;
+package mykgrow.archived;
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;
 import mykgrow.domain.repositories.GrowingPresetRepository;

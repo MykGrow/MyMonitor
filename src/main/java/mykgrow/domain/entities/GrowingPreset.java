@@ -19,17 +19,26 @@ public class GrowingPreset {
         this.growthPeriods = growthPeriods;
     }
 
+    public GrowingPreset() {
+    }
+
     public String getName() {
         return this.name;
     }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
     public ObjectId getId() {
         return this.id;
     }
     public List<GrowthPeriod> getGrowthPeriods() {
         return this.growthPeriods;
+    }
+    public void setGrowthPeriods(List<GrowthPeriod> growthPeriods) {
+        this.growthPeriods = growthPeriods;
     }
 }

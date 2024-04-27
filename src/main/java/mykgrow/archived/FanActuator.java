@@ -1,4 +1,4 @@
-package mykgrow.trash;
+package mykgrow.archived;
 
 public class FanActuator extends Actuator {
     public FanActuator(String name, ActuatorStatus state) {

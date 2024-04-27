@@ -1,4 +1,4 @@
-package mykgrow.trash;
+package mykgrow.archived;
 
 import mykgrow.plugins.ui.App;
 

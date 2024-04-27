@@ -1,4 +1,4 @@
-package mykgrow.trash;
+package mykgrow.archived;
 
 public class Light extends Actuator {
     public Light(String name, ActuatorStatus state) {

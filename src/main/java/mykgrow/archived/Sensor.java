@@ -1,4 +1,4 @@
-package mykgrow.trash;
+package mykgrow.archived;
 
 import java.util.UUID;
 public abstract class Sensor {

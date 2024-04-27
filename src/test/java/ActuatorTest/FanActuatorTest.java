@@ -1,7 +1,7 @@
 package ActuatorTest;
 
-import mykgrow.trash.FanActuator;
-import mykgrow.trash.ActuatorStatus;
+import mykgrow.archived.FanActuator;
+import mykgrow.archived.ActuatorStatus;
 
 import org.junit.jupiter.api.Test;
 

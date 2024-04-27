@@ -7,20 +7,20 @@ import java.util.*;
 public enum GrowingPresetRepository implements GrowingPresetRepositoryInterface{
     INSTANCE;
     private Map<ObjectId, GrowingPreset> growingPresets;
-    private SaveGrowingPresetInterface saveGrowingPresetService;
+    private HandleGrowingPresetInterface handleGrowingPresetService;
 
     private GrowingPresetRepository() {
         growingPresets = new HashMap<>();
     }
-    public void initialize(SaveGrowingPresetInterface saveGrowingPresetService) {
-        this.saveGrowingPresetService = saveGrowingPresetService;
+    public void initialize(HandleGrowingPresetInterface saveGrowingPresetService) {
+        this.handleGrowingPresetService = saveGrowingPresetService;
 
     }
 
     @Override
     public void savePreset(GrowingPreset preset){
         if (preset != null) {
-            saveGrowingPresetService.saveGrowingPreset(preset);
+            handleGrowingPresetService.saveGrowingPreset(preset);
             growingPresets.put(preset.getId(), preset);
         } else {
             throw new IllegalArgumentException("Preset cannot be null");
@@ -49,7 +49,7 @@ public enum GrowingPresetRepository implements GrowingPresetRepositoryInterface{
         return growingPresets;
     }
     public List<GrowingPreset> getGrowingPresetsAsList() {
-        return new ArrayList<>(growingPresets.values());
+        return handleGrowingPresetService.loadAllGrowingPresets();
     }
 
 }

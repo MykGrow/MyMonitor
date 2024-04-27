@@ -1,7 +1,7 @@
 package ActuatorTest;
 
-import mykgrow.trash.HumidityActuator;
-import mykgrow.trash.ActuatorStatus;
+import mykgrow.archived.HumidityActuator;
+import mykgrow.archived.ActuatorStatus;
 
 import org.junit.jupiter.api.Test;
 

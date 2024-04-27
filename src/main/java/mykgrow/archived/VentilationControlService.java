@@ -1,10 +1,4 @@
-package mykgrow.trash;
-
-import mykgrow.trash.FanActuator;
-import mykgrow.trash.GrowBox;
-import mykgrow.trash.TemperatureSensor;
-import mykgrow.trash.ActuatorType;
-import mykgrow.trash.SensorType;
+package mykgrow.archived;
 
 public class VentilationControlService {
     private final GrowBox growBox;

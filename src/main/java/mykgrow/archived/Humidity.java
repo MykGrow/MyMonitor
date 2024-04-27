@@ -1,10 +1,10 @@
-package mykgrow.trash;
-import mykgrow.trash.MeasurementUnit;
-public class Temperature {
+package mykgrow.archived;
+
+public class Humidity {
     private final double value;
     private final MeasurementUnit unit;
 
-    public Temperature(double value, MeasurementUnit unit) {
+    public Humidity(double value, MeasurementUnit unit) {
         this.value = value;
         this.unit = unit;
     }

@@ -1,4 +1,4 @@
-package mykgrow.trash;
+package mykgrow.archived;
 
 public enum ActuatorStatus {
     ON,

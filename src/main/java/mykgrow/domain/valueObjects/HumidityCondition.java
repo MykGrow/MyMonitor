@@ -8,6 +8,10 @@ public class HumidityCondition {
     @BsonProperty("UpperThreshold")
     private final double upperThreshold;
 
+    public HumidityCondition() {
+        this.lowerThreshold = 0;
+        this.upperThreshold = 0;
+    }
     public HumidityCondition(double lowerThreshold, double upperThreshold) {
         this.lowerThreshold = lowerThreshold;
         this.upperThreshold = upperThreshold;

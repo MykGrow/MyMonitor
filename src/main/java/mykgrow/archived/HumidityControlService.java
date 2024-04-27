@@ -1,10 +1,5 @@
-package mykgrow.trash;
+package mykgrow.archived;
 
-import mykgrow.trash.GrowBox;
-import mykgrow.trash.HumidityActuator;
-import mykgrow.trash.HumiditySensor;
-import mykgrow.trash.ActuatorType;
-import mykgrow.trash.SensorType;
 public class HumidityControlService {
     private final GrowBox growBox;
     private final HumiditySensor humiditySensor;

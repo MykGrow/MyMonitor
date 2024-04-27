@@ -3,6 +3,7 @@ package mykgrow.domain.valueObjects;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 
 import java.time.LocalTime;
+import java.util.Date;
 
 public class LightCondition {
     @BsonProperty("LightLevel")
