@@ -1,6 +1,6 @@
 package mykgrow.application;
 
-import mykgrow.adapters.interfaces.MessageSubscriber;
+import mykgrow.plugins.mqtt.interfaces.MessageSubscriber;
 import mykgrow.application.interfaces.HumiditySensorReadingInterface;
 import org.eclipse.paho.client.mqttv3.MqttException;
 

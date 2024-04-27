@@ -1,6 +1,6 @@
 package mykgrow.application;
 
-import mykgrow.adapters.interfaces.MessagePublisher;
+import mykgrow.plugins.mqtt.interfaces.MessagePublisher;
 import mykgrow.application.interfaces.FanControlServiceInterface;
 import org.eclipse.paho.client.mqttv3.MqttException;
 

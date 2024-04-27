@@ -7,7 +7,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-import mykgrow.adapters.MQTTAdapter;
+import mykgrow.plugins.mqtt.MQTTAdapter;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class CurrentConditionsPanel extends JPanel {

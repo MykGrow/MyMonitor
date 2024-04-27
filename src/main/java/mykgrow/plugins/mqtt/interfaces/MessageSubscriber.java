@@ -1,4 +1,4 @@
-package mykgrow.adapters.interfaces;
+package mykgrow.plugins.mqtt.interfaces;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import java.util.function.Consumer;

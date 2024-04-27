@@ -1,4 +1,4 @@
-package EntitieTest;
+package EntitiesTest;
 
 import mykgrow.domain.entities.Condition;
 import mykgrow.domain.entities.CurrentConditions;

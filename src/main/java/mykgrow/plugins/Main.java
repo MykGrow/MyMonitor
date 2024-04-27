@@ -1,9 +1,6 @@
 package mykgrow.plugins;
 
-import mykgrow.adapters.MQTTAdapter;
-import mykgrow.application.RandomDataGenerator;
-import mykgrow.domain.entities.GrowingPreset;
-import mykgrow.plugins.database.DatabaseClient;
+import mykgrow.plugins.mqtt.MQTTAdapter;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class Main {

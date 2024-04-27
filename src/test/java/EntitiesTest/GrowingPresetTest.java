@@ -1,4 +1,4 @@
-package EntitieTest;
+package EntitiesTest;
 
 import mykgrow.domain.entities.GrowingPreset;
 import mykgrow.domain.entities.GrowthPeriod;

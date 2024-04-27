@@ -24,13 +24,13 @@ public class App extends JFrame {
     private JPanel navPanel;
 
     public App() {
-        super("CardLayout Example");
+        super("My Monitor");
         initUI();
     }
 
     public void initUI() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1199, 650);
+        setSize(1200, 650);
 
         cardPanel = new JPanel(new CardLayout());
         this.cardLayout = (CardLayout) cardPanel.getLayout();
@@ -47,8 +47,10 @@ public class App extends JFrame {
         cardPanel.add(mushroomSpeciesPanel, "Mushroom Species");
       
         navPanel = createNavBar();
+
         add(navPanel, BorderLayout.NORTH);
         add(cardPanel, BorderLayout.CENTER);
+
     }
   
   public void fillRepository(){
@@ -67,7 +69,7 @@ public class App extends JFrame {
             }
         });
         // Set preferred size to increase button width
-        button.setPreferredSize(new Dimension(150, 40));
+        button.setPreferredSize(new Dimension(400, 60));
         return button;
     }
 
@@ -84,10 +86,7 @@ public class App extends JFrame {
 
         // Configure buttons
         for (JButton button : new JButton[]{dashboardButton, chartsButton, growingPresetButton, mushroomSpeciesButton}) {
-            //button.setForeground(Color.WHITE);
-            //button.setBackground(Color.DARK_GRAY);
-            button.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Adjust left and right padding
-            // Add glue components to make buttons span the entire width
+            button.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Adjust left and right padding
             navPanel.add(Box.createHorizontalGlue());
             navPanel.add(button);
         }

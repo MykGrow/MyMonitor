@@ -1,4 +1,4 @@
-package EntitieTest;
+package EntitiesTest;
 
 import mykgrow.domain.entities.RecommendedConditions;
 import mykgrow.domain.valueObjects.AirflowCondition;

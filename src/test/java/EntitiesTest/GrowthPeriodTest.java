@@ -1,4 +1,4 @@
-package EntitieTest;
+package EntitiesTest;
 
 import mykgrow.exceptions.ConditionNotSetException;
 import mykgrow.domain.entities.GrowthPeriod;
