@@ -44,7 +44,6 @@ public class GrowingPresetDetailPanel implements BorderedScrollablePanelConsumer
     private void deletePreset() {
         GrowingPresetRepository.INSTANCE.deletePreset(preset);
         JOptionPane.showMessageDialog(this.borderPanel, "Preset deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-        UiUtils.navigateHome(this.borderPanel, this.app);
     }
 
     private void fillContentPanel() {

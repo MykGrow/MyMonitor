@@ -36,6 +36,7 @@ public enum GrowingPresetRepository implements GrowingPresetRepositoryInterface{
     @Override
     public void deletePreset(GrowingPreset preset) {
         growingPresets.remove(preset.getId());
+        this.handleGrowingPresetService.deleteGrowingPreset(preset);
         System.out.println("Preset deleted");
     }
 

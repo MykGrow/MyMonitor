@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface HandleGrowingPresetInterface {
     void saveGrowingPreset(GrowingPreset preset);
-
     List<GrowingPreset> loadAllGrowingPresets();
+    void deleteGrowingPreset(GrowingPreset preset);
 }

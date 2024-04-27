@@ -102,6 +102,18 @@ public class DatabaseClient implements HandleGrowingPresetInterface {
         }
     }
 
+    @Override
+    public void deleteGrowingPreset(GrowingPreset preset) {
+        try {
+            MongoDatabase db = mongoClient.getDatabase(databaseName);
+            MongoCollection<GrowingPreset> presets = db.getCollection(collectionName, GrowingPreset.class);
+            presets.deleteOne(new Document("_id", preset.getId()));
+            System.out.println("Preset deleted successfully.");
+        } catch (MongoException e) {
+            System.err.println("MongoDB connection error: " + e.getMessage());
+        }
+    }
+
     public void close() {
         mongoClient.close();
     }

@@ -67,11 +67,22 @@ public class GrowingPresetPanel extends JPanel {
         panel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
         JLabel nameLabel = new JLabel("Name: " + preset.getName());
+        JButton editButton = new JButton("Delete");
+
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GrowingPresetRepository.INSTANCE.deletePreset(preset);
+                GrowingPresetPanel.this.remove(panel);
+                GrowingPresetPanel.this.revalidate();
+                GrowingPresetPanel.this.repaint();
+            }
+        });
 
         JPanel contentPanel = new JPanel(new BorderLayout());
-        //contentPanel.setBackground(Color.WHITE);
         contentPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        contentPanel.add(nameLabel, BorderLayout.NORTH);
+        contentPanel.add(nameLabel, BorderLayout.WEST);
+        contentPanel.add(editButton, BorderLayout.EAST);
         panel.add(contentPanel, BorderLayout.CENTER);
 
         panel.addMouseListener(new MouseAdapter() {

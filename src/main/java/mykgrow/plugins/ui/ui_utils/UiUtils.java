@@ -25,4 +25,5 @@ public class UiUtils {
             System.err.println("Parent JFrame is null");
         }
     }
+
 }
