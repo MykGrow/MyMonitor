@@ -1,5 +1,6 @@
 package mykgrow.plugins.ui.chart;
 
+import mykgrow.plugins.ui.PanelHost;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -19,7 +20,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.Random;
 
-public class DataChart extends JPanel {
+public class DataChart implements PanelHost {
 
     public enum Colors{
         BABY_PINK(new Color(230, 169, 239)),
@@ -39,12 +40,16 @@ public class DataChart extends JPanel {
     }
     private XYSeries temperatureSeries;
     private XYPlot plot;
+
+    JPanel panel;
+
     public DataChart(String title, Color color) {
+        this.panel = new JPanel();
         initChart(title, color);
     }
 
     private void initChart(String title, Color color) {
-        setLayout(new GridLayout(1, 1));
+        this.panel.setLayout(new GridLayout(1, 1));
         // Create series for each data type
         temperatureSeries = new XYSeries("Temperature");
 
@@ -111,12 +116,17 @@ public class DataChart extends JPanel {
 
         setLineAndShapeRenderer(color);
 
-        setBorder(new CompoundBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY), new EmptyBorder(10, 10, 10, 10)));
-        add(chartPanel);
+        this.panel.setBorder(new CompoundBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY), new EmptyBorder(10, 10, 10, 10)));
+        this.panel.add(chartPanel);
     }
 
     public void setLineAndShapeRenderer(Color color){
         XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot.getRenderer();
         renderer.setSeriesPaint(0, color); // Set color for the first series line
+    }
+
+    @Override
+    public JPanel getPanel() {
+       return this.panel;
     }
 }

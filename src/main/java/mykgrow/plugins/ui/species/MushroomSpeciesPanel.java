@@ -3,6 +3,7 @@ package mykgrow.plugins.ui.species;
 import mykgrow.application.RandomDataGenerator;
 import mykgrow.domain.entities.MushroomSpecies;
 import mykgrow.plugins.ui.App;
+import mykgrow.plugins.ui.PanelHost;
 import mykgrow.plugins.ui.wrapper_panels.ScrollablePanel;
 import mykgrow.plugins.ui.ui_utils.UiUtils;
 
@@ -13,11 +14,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-public class MushroomSpeciesPanel extends JPanel {
+public class MushroomSpeciesPanel implements PanelHost {
     App app;
+    private JPanel panel;
     public MushroomSpeciesPanel(App app) {
+        this.panel = new JPanel();
         this.app = app;
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.panel.setLayout(new BoxLayout(this.panel, BoxLayout.Y_AXIS));
         //setBackground(Color.WHITE); // Set background color of the panel
         ScrollablePanel scrollablePanel = new ScrollablePanel();
 
@@ -30,7 +33,7 @@ public class MushroomSpeciesPanel extends JPanel {
             //scrollablePanel.add(Box.createRigidArea(new Dimension(0, 1))); // Add space between mushroom species panels
         }
 
-        add(scrollablePanel.getPanel());
+        this.panel.add(scrollablePanel.getPanel());
     }
 
     private JPanel createMushroomSpeciesPanel(MushroomSpecies species) {
@@ -65,10 +68,15 @@ public class MushroomSpeciesPanel extends JPanel {
     }
 
     private void showSpeciesInformation(MushroomSpecies species) {
-        UiUtils.fullWindowView(this, new MushroomSpeciesDetailPanel(species, app).getBorderedPanel().getPanel());
+        UiUtils.fullWindowView(this.panel, new MushroomSpeciesDetailPanel(species, app).getBorderedPanel().getPanel());
     }
 
     public static void main(String[] args) {
+    }
+
+    @Override
+    public JPanel getPanel() {
+        return this.panel;
     }
 }
 

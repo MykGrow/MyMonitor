@@ -1,23 +1,32 @@
 package mykgrow.plugins.ui.dashboard;
 
+import mykgrow.plugins.ui.PanelHost;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class DashboardPanel extends JPanel {
+public class DashboardPanel implements PanelHost {
     private JLabel[] desiredConditionLabels;
 
+    private JPanel panel;
+
     public DashboardPanel() {
+        this.panel = new JPanel();
         initUI();
     }
 
     private void initUI(){
-        setLayout(new GridLayout(0, 2));
+        this.panel.setLayout(new GridLayout(0, 2));
 
-        JPanel desiredConditionsPanel = new DesiredConditionsPanel();
-        JPanel currentConditionsPanel = new CurrentConditionsPanel();
+        JPanel desiredConditionsPanel = new DesiredConditionsPanel().getPanel();
+        JPanel currentConditionsPanel = new CurrentConditionsPanel().getPanel();
 
-        add(desiredConditionsPanel);
-        add(currentConditionsPanel);
+        this.panel.add(desiredConditionsPanel);
+        this.panel.add(currentConditionsPanel);
 
+    }
+    @Override
+    public JPanel getPanel() {
+        return this.panel;
     }
 }

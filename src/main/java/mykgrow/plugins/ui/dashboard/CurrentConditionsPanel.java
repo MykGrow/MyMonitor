@@ -1,5 +1,6 @@
 package mykgrow.plugins.ui.dashboard;
 
+import mykgrow.plugins.ui.PanelHost;
 import mykgrow.plugins.ui.ui_utils.UIComponents.FontSizes;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ import java.awt.*;
 import mykgrow.plugins.mqtt.MQTTAdapter;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
-public class CurrentConditionsPanel extends JPanel {
+public class CurrentConditionsPanel implements PanelHost {
 
     private static final String BROKER_URL = "tcp://broker.emqx.io:1883";
     private static final String CLIENT_ID = "MyClientId";
@@ -25,7 +26,10 @@ public class CurrentConditionsPanel extends JPanel {
     private JLabel airFlowTextLabel;
     private JLabel airFlowValueLabel;
 
+    private JPanel panel;
+
     public CurrentConditionsPanel() {
+        this.panel = new JPanel();
         initUI();
         initSubscriptions();
     }
@@ -34,11 +38,11 @@ public class CurrentConditionsPanel extends JPanel {
         // Set the look and feel to FlatLaf dark mode
         try {
             UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatDarkLaf());
-            SwingUtilities.updateComponentTreeUI(this);
+            SwingUtilities.updateComponentTreeUI(this.panel);
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        setLayout(new GridLayout(1, 1));
+        this.panel.setLayout(new GridLayout(1, 1));
 
         // Create the temperature labels
         temperatureTextLabel = createDashboardLabel("Temperature:");
@@ -68,7 +72,7 @@ public class CurrentConditionsPanel extends JPanel {
         mainPanel.add(airFlowTextLabel);
         mainPanel.add(airFlowValueLabel);
 
-        add(mainPanel);
+        this.panel.add(mainPanel);
     }
 
     private JLabel createDashboardLabel(String text) {
@@ -140,4 +144,8 @@ public class CurrentConditionsPanel extends JPanel {
         }
     }
 
+    @Override
+    public JPanel getPanel() {
+        return this.panel;
+    }
 }

@@ -15,11 +15,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-public class GrowingPresetPanel extends JPanel {
+public class GrowingPresetPanel implements PanelHost {
     private List<GrowingPreset> growingPresets;
 
     private App app;
+
+    private JPanel panel;
     public GrowingPresetPanel(App app) {
+        this.panel = new JPanel();
         this.app = app;
         initializeComponents();
         setupUI();
@@ -27,14 +30,14 @@ public class GrowingPresetPanel extends JPanel {
     }
 
     private void setupUI() {
-        setLayout(new BorderLayout());
+        this.panel.setLayout(new BorderLayout());
         //setBackground(Color.WHITE);
 
         JButton addButton = new JButton("Add Preset");
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         buttonPanel.add(addButton);
-        add(buttonPanel, BorderLayout.SOUTH);
+        this.panel.add(buttonPanel, BorderLayout.SOUTH);
 
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -45,7 +48,7 @@ public class GrowingPresetPanel extends JPanel {
     }
 
     private void addPreset(){
-        UiUtils.fullWindowView(this, new PresetConfigurationPanel(app).getBorderedPanel().getPanel());
+        UiUtils.fullWindowView(this.panel, new PresetConfigurationPanel(app).getBorderedPanel().getPanel());
     }
 
     private void initializeComponents() {
@@ -58,7 +61,7 @@ public class GrowingPresetPanel extends JPanel {
             JPanel presetPanel = createPresetPanel(preset);
             contentPanel.add(presetPanel);
         }
-        add(contentPanel.getPanel(), BorderLayout.CENTER);
+        this.panel.add(contentPanel.getPanel(), BorderLayout.CENTER);
     }
 
     private JPanel createPresetPanel(GrowingPreset preset) {
@@ -73,7 +76,7 @@ public class GrowingPresetPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 GrowingPresetRepository.INSTANCE.deletePreset(preset);
-                UiUtils.navigateHome(GrowingPresetPanel.this, app);
+                UiUtils.navigateHome(GrowingPresetPanel.this.panel, app);
             }
         });
 
@@ -94,7 +97,10 @@ public class GrowingPresetPanel extends JPanel {
         return panel;
     }
     private void showPresetInformation(GrowingPreset preset){
-        UiUtils.fullWindowView(this, new GrowingPresetDetailPanel(preset, app).getBorderedPanel().getPanel());
+        UiUtils.fullWindowView(this.panel, new GrowingPresetDetailPanel(preset, app).getBorderedPanel().getPanel());
     }
-
+    @Override
+    public JPanel getPanel() {
+        return this.panel;
+    }
 }

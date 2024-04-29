@@ -43,10 +43,10 @@ public class App{
         GrowingPresetPanel presetPanel = new GrowingPresetPanel(this);
         MushroomSpeciesPanel mushroomSpeciesPanel = new MushroomSpeciesPanel(this);
 
-        cardPanel.add(dashboard, "Dashboard");
-        cardPanel.add(charts, "Charts");
-        cardPanel.add(presetPanel, "Growing Presets");
-        cardPanel.add(mushroomSpeciesPanel, "Mushroom Species");
+        cardPanel.add(dashboard.getPanel(), "Dashboard");
+        cardPanel.add(charts.getPanel(), "Charts");
+        cardPanel.add(presetPanel.getPanel(), "Growing Presets");
+        cardPanel.add(mushroomSpeciesPanel.getPanel(), "Mushroom Species");
       
         navPanel = createNavBar();
 

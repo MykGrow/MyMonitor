@@ -84,7 +84,7 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
     private void addGrowthPeriod(){
         PeriodConfigurationWindow popup = new PeriodConfigurationWindow();
         popup.addListener(GrowthPeriodEvent.INSERT, this);
-        popup.setVisible(true);
+        popup.getFrame().setVisible(true);
     }
 
     private void updatePeriods(){
@@ -92,7 +92,7 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
         for (GrowthPeriod period : this.growthPeriods) {
             GrowthPeriodPanel growthPeriodPanel = new GrowthPeriodPanel(period, true, this);
             growthPeriodPanel.addListener(GrowthPeriodEvent.DELETE, this);
-            this.periodPanel.getContentPanel().add(growthPeriodPanel);
+            this.periodPanel.getContentPanel().add(growthPeriodPanel.getPanel());
         }
         this.periodPanel.getContentPanel().revalidate();
         this.periodPanel.getContentPanel().repaint();

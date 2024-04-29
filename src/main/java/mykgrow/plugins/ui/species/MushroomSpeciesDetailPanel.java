@@ -93,7 +93,7 @@ public class MushroomSpeciesDetailPanel implements BorderedScrollablePanelConsum
     private BorderedScrollablePanel createRecommendedPresetPanel(){
         BorderedScrollablePanel presetPanel = new BorderedScrollablePanel(this.app, "Recommended Preset", BorderedScrollablePanel.Layout.GRID, false);
         for (GrowthPeriod growthPeriod : species.getRecommendedConditions().getGrowthPeriods()){
-            presetPanel.getContentPanel().add(new GrowthPeriodPanel(growthPeriod));
+            presetPanel.getContentPanel().add(new GrowthPeriodPanel(growthPeriod).getPanel());
         }
         return presetPanel;
     }

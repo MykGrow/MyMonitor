@@ -2,6 +2,7 @@ package mykgrow.plugins.ui.preset;
 
 import mykgrow.exceptions.ConditionNotSetException;
 import mykgrow.domain.entities.GrowthPeriod;
+import mykgrow.plugins.ui.PanelHost;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,14 +11,17 @@ import java.time.LocalTime;
 import java.util.*;
 import java.util.List;
 
-public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitter {
+public class GrowthPeriodPanel implements GrowthPeriodEventEmitter, PanelHost {
     private GrowthPeriod growthPeriod;
     private JPanel headerPanel;
     private boolean editMode = false;
 
+    private JPanel panel;
+
     private Map<GrowthPeriodEvent, List<GrowthPeriodEventListener>> listeners;
 
     public GrowthPeriodPanel(GrowthPeriod growthPeriod) {
+        this.panel = new JPanel();
         this.growthPeriod = growthPeriod;
         this.headerPanel = new JPanel(new BorderLayout());
         this.listeners = new HashMap<>();
@@ -25,14 +29,14 @@ public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitte
             this.listeners.put(event, new ArrayList<>());
         });
         //this.headerPanel.setBackground(Color.WHITE);
-        setLayout(new BorderLayout());
+        this.panel.setLayout(new BorderLayout());
         //setBackground(Color.WHITE);
-        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        this.panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JLabel nameLabel = new JLabel(growthPeriod.getName());
         nameLabel.setFont(new Font("Arial", Font.BOLD, 16));
         headerPanel.add(nameLabel, BorderLayout.WEST);
-        add(headerPanel, BorderLayout.NORTH);
+        this.panel.add(headerPanel, BorderLayout.NORTH);
 
         JPanel conditionsPanel = new JPanel();
         conditionsPanel.setLayout(new GridLayout(0, 1));
@@ -77,7 +81,7 @@ public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitte
                     "Upper Threshold", 0));
         }
         JScrollPane scrollPane = new JScrollPane(conditionsPanel);
-        add(scrollPane, BorderLayout.CENTER);
+        this.panel.add(scrollPane, BorderLayout.CENTER);
     }
 
     public GrowthPeriodPanel(GrowthPeriod growthPeriod, boolean editMode, PresetConfigurationPanel presetConfigurationPanel){
@@ -90,7 +94,7 @@ public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitte
             editButton.addActionListener(e -> {
                 PeriodConfigurationWindow popup = new PeriodConfigurationWindow(growthPeriod);
                 popup.addListener(GrowthPeriodEvent.UPDATE, presetConfigurationPanel);
-                popup.setVisible(true);
+                popup.getFrame().setVisible(true);
             });
             deleteButton.addActionListener(e -> {
                 deleteGrowthPeriod();
@@ -195,6 +199,11 @@ public class GrowthPeriodPanel extends JPanel implements GrowthPeriodEventEmitte
         listeners.get(event).forEach(listener->{
             listener.update(event,o);
         });
+    }
+
+    @Override
+    public JPanel getPanel() {
+        return this.panel;
     }
 }
 

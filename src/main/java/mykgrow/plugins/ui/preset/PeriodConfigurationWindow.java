@@ -17,7 +17,7 @@ import java.time.LocalTime;
 import java.util.*;
 import java.util.List;
 
-public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEventEmitter {
+public class PeriodConfigurationWindow implements GrowthPeriodEventEmitter {
     private JTextField nameField;
     private JTextField durationField;
     private JTextField lowerTempField;
@@ -34,10 +34,13 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
 
     private GrowthPeriod growthPeriod = null;
 
+    private JFrame frame;
+
     public PeriodConfigurationWindow() {
+        frame = new JFrame();
         setupUI();
         initializeComponents();
-        setLocationRelativeTo(null);
+        frame.setLocationRelativeTo(null);
         listeners = new HashMap<>();
         Arrays.stream(GrowthPeriodEvent.values()).forEach(event -> {
             listeners.put(event, new ArrayList<>());
@@ -109,9 +112,9 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
     }
 
     private void setupUI() {
-        setTitle("Period Configuration");
-        setSize(400, 300);
-        setDefaultCloseOperation((JFrame.DISPOSE_ON_CLOSE));
+        frame.setTitle("Period Configuration");
+        frame.setSize(400, 300);
+        frame.setDefaultCloseOperation((JFrame.DISPOSE_ON_CLOSE));
     }
 
     private void initializeComponents() {
@@ -174,7 +177,7 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
         UIComponents.addComponent(panel, airFlowField);
         UIComponents.addComponent(panel, saveButton);
 
-        getContentPane().add(panel, BorderLayout.CENTER);
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
 
         saveButton.addActionListener(new ActionListener() {
             @Override
@@ -204,7 +207,7 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
                         withHumidityCondition(new HumidityCondition(lowerHumidity, upperHumidity)).
                         withTemperatureCondition(new TemperatureCondition(lowerTemp, upperTemp)).build();
                 notifyListeners(GrowthPeriodEvent.INSERT, growthPeriod);
-                JOptionPane.showMessageDialog(this, "Period saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Period saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
             }else {
                 this.growthPeriod.setName(name);
                 this.growthPeriod.setDurationInDays(duration);
@@ -214,9 +217,12 @@ public class PeriodConfigurationWindow extends JFrame implements GrowthPeriodEve
                 this.growthPeriod.setTemperatureCondition(new TemperatureCondition(lowerTemp, upperTemp));
                 notifyListeners(GrowthPeriodEvent.UPDATE, null);
             }
-            dispose();
+            frame.dispose();
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Invalid input values", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Invalid input values", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    public JFrame getFrame() {
+        return frame;
     }
 }

@@ -48,7 +48,7 @@ public class GrowingPresetDetailPanel implements BorderedScrollablePanelConsumer
 
     private void fillContentPanel() {
         for (GrowthPeriod growthPeriod : preset.getGrowthPeriods()) {
-            this.borderPanel.getContentPanel().add(new GrowthPeriodPanel(growthPeriod));
+            this.borderPanel.getContentPanel().add(new GrowthPeriodPanel(growthPeriod).getPanel());
         }
     }
 
