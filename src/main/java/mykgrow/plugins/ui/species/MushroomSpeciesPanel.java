@@ -65,7 +65,7 @@ public class MushroomSpeciesPanel extends JPanel {
     }
 
     private void showSpeciesInformation(MushroomSpecies species) {
-        UiUtils.fullWindowView(this, new MushroomSpeciesDetailPanel(species, app).getPanel());
+        UiUtils.fullWindowView(this, new MushroomSpeciesDetailPanel(species, app).getBorderedPanel().getPanel());
     }
 
     public static void main(String[] args) {

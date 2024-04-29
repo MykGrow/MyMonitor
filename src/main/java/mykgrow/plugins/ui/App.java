@@ -18,19 +18,21 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class App extends JFrame {
+public class App{
     private JPanel cardPanel;
     private CardLayout cardLayout;
     private JPanel navPanel;
 
+    private JFrame frame;
+
     public App() {
-        super("My Monitor");
+        this.frame = new JFrame("MyMonitor");
         initUI();
     }
 
     public void initUI() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200, 650);
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.setSize(1200, 650);
 
         cardPanel = new JPanel(new CardLayout());
         this.cardLayout = (CardLayout) cardPanel.getLayout();
@@ -48,8 +50,8 @@ public class App extends JFrame {
       
         navPanel = createNavBar();
 
-        add(navPanel, BorderLayout.NORTH);
-        add(cardPanel, BorderLayout.CENTER);
+        this.frame.add(navPanel, BorderLayout.NORTH);
+        this.frame.add(cardPanel, BorderLayout.CENTER);
 
     }
   
@@ -99,6 +101,10 @@ public class App extends JFrame {
         cardLayout.show(cardPanel, panelName);
     }
 
+    public JFrame getFrame() {
+        return frame;
+    }
+
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
@@ -113,7 +119,7 @@ public class App extends JFrame {
                 DatabaseClient mappingPOJO = new DatabaseClient("MykGrow", "Presets", "mongodb+srv://mykgrow:mykgrow@cluster0.ljmudqt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
                 GrowingPresetRepository.INSTANCE.initialize(mappingPOJO);
                 App app = new App();
-                app.setVisible(true);
+                app.getFrame().setVisible(true);
             }
         });
     }

@@ -15,7 +15,7 @@ public class UiUtils {
     }
 
     public static void navigateHome(Component currentComponent, App app) {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(currentComponent);
+        JFrame frame = app.getFrame();
         if (frame != null) {
             frame.getContentPane().removeAll();
             app.initUI();

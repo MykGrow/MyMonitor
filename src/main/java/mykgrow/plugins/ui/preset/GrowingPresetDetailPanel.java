@@ -38,12 +38,12 @@ public class GrowingPresetDetailPanel implements BorderedScrollablePanelConsumer
 
     private void editPreset() {
         PresetConfigurationPanel presetConfigurationPanel = new PresetConfigurationPanel(app);
-        UiUtils.fullWindowView(this.borderPanel,new PresetConfigurationPanel(app, preset).getPanel());
+        UiUtils.fullWindowView(this.borderPanel.getPanel(),new PresetConfigurationPanel(app, preset).getBorderedPanel().getPanel());
     }
 
     private void deletePreset() {
         GrowingPresetRepository.INSTANCE.deletePreset(preset);
-        JOptionPane.showMessageDialog(this.borderPanel, "Preset deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this.borderPanel.getPanel(), "Preset deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void fillContentPanel() {
@@ -52,7 +52,7 @@ public class GrowingPresetDetailPanel implements BorderedScrollablePanelConsumer
         }
     }
 
-    public BorderedScrollablePanel getPanel() {
+    public BorderedScrollablePanel getBorderedPanel() {
         return this.borderPanel;
     }
 

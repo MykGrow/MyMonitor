@@ -6,7 +6,7 @@ import mykgrow.plugins.ui.ui_utils.UiUtils;
 import javax.swing.*;
 import java.awt.*;
 
-public class BorderedScrollablePanel extends JPanel {
+public class BorderedScrollablePanel{
 
     public enum Layout {
 
@@ -30,6 +30,7 @@ public class BorderedScrollablePanel extends JPanel {
     private JPanel headerPanel;
     private JPanel contentPanel;
     private JPanel buttonPanel;
+    private JPanel panel;
 
     public BorderedScrollablePanel(App app, String title) {
         this(app, title, Layout.GRID, true);
@@ -41,25 +42,26 @@ public class BorderedScrollablePanel extends JPanel {
     public BorderedScrollablePanel(App app, String title, Layout layout, boolean homeButton) {
         this.app = app;
         this.title = title;
+        this.panel = new JPanel();
         initializeComponents();
         createUI(layout, homeButton);
     }
 
     private void initializeComponents() {
-        setLayout(new BorderLayout());
+        this.panel.setLayout(new BorderLayout());
         //setBackground(Color.WHITE);
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        this.panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
     }
     private void createUI(Layout layout, boolean homeButton){
         JPanel headerPanel = createHeaderPanel(homeButton);
-        add(headerPanel, BorderLayout.NORTH);
+        this.panel.add(headerPanel, BorderLayout.NORTH);
 
         this.contentPanel = createContentPanel(layout);
         JScrollPane scrollPane = new JScrollPane(this.contentPanel);
-        add(scrollPane, BorderLayout.CENTER);
+        this.panel.add(scrollPane, BorderLayout.CENTER);
 
         this.buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        add(this.buttonPanel, BorderLayout.SOUTH);
+        this.panel.add(this.buttonPanel, BorderLayout.SOUTH);
     }
 
     private JPanel createHeaderPanel(boolean homeButton){
@@ -77,6 +79,10 @@ public class BorderedScrollablePanel extends JPanel {
         return this.headerPanel;
     }
 
+    public JPanel getPanel(){
+        return this.panel;
+    }
+
     private JButton createBackButton() {
         JButton backButton = new JButton("Home");
         backButton.addActionListener(e -> navigateToHome());
@@ -84,7 +90,7 @@ public class BorderedScrollablePanel extends JPanel {
     }
 
     private void navigateToHome() {
-        UiUtils.navigateHome(this,this.app);
+        UiUtils.navigateHome(this.panel,this.app);
     }
 
     private JPanel createContentPanel(Layout layout){
@@ -95,28 +101,10 @@ public class BorderedScrollablePanel extends JPanel {
         }
         return new JPanel(layout.getLayout());
     }
-
-    public JPanel getHeaderPanel() {
-        return headerPanel;
-    }
-
-    public void setHeaderPanel(JPanel headerPanel) {
-        this.headerPanel = headerPanel;
-    }
-
     public JPanel getContentPanel() {
         return contentPanel;
     }
-
-    public void setContentPanel(JPanel contentPanel) {
-        this.contentPanel = contentPanel;
-    }
-
     public JPanel getButtonPanel() {
         return buttonPanel;
-    }
-
-    public void setButtonPanel(JPanel buttonPanel) {
-        this.buttonPanel = buttonPanel;
     }
 }

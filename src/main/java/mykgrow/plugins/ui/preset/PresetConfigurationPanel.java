@@ -64,7 +64,7 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
         });
 
         this.borderPanel.getContentPanel().add(detailPanel);
-        this.borderPanel.getContentPanel().add(this.periodPanel);
+        this.borderPanel.getContentPanel().add(this.periodPanel.getPanel());
         this.borderPanel.getButtonPanel().add(addGrowthPeriodButton);
         this.borderPanel.getButtonPanel().add(saveButton);
     }
@@ -74,12 +74,12 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
         this.growthPeriods = new ArrayList<>(this.growthPeriods);
         if(!editMode) {
             GrowingPresetRepository.INSTANCE.savePreset(preset);
-            JOptionPane.showMessageDialog(this.borderPanel, "Preset saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this.borderPanel.getPanel(), "Preset saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
         }else{
             GrowingPresetRepository.INSTANCE.updatePreset(this.id, preset);
-            JOptionPane.showMessageDialog(this.borderPanel, "Preset updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this.borderPanel.getPanel(), "Preset updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
-        UiUtils.navigateHome(this.borderPanel, this.app);
+        UiUtils.navigateHome(this.borderPanel.getPanel(), this.app);
     }
     private void addGrowthPeriod(){
         PeriodConfigurationWindow popup = new PeriodConfigurationWindow();
@@ -98,7 +98,7 @@ public class PresetConfigurationPanel implements BorderedScrollablePanelConsumer
         this.periodPanel.getContentPanel().repaint();
     }
     @Override
-    public BorderedScrollablePanel getPanel() {
+    public BorderedScrollablePanel getBorderedPanel() {
         return this.borderPanel;
     }
 

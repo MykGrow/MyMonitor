@@ -31,10 +31,4 @@ public class AirflowCondition {
         return intervalInMinutes;
     }
 
-    public void setAirExchangesPerHour(double airExchangesPerHour) {
-        this.airExchangesPerHour = airExchangesPerHour;
-        this.intervalInMinutes = calculateIntervalInMinutes();
-    }
-
-
 }

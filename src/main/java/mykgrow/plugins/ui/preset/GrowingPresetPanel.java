@@ -45,7 +45,7 @@ public class GrowingPresetPanel extends JPanel {
     }
 
     private void addPreset(){
-        UiUtils.fullWindowView(this, new PresetConfigurationPanel(app).getPanel());
+        UiUtils.fullWindowView(this, new PresetConfigurationPanel(app).getBorderedPanel().getPanel());
     }
 
     private void initializeComponents() {
@@ -94,7 +94,7 @@ public class GrowingPresetPanel extends JPanel {
         return panel;
     }
     private void showPresetInformation(GrowingPreset preset){
-        UiUtils.fullWindowView(this, new GrowingPresetDetailPanel(preset, app).getPanel());
+        UiUtils.fullWindowView(this, new GrowingPresetDetailPanel(preset, app).getBorderedPanel().getPanel());
     }
 
 }

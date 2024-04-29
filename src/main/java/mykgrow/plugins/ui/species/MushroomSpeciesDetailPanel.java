@@ -45,17 +45,17 @@ public class MushroomSpeciesDetailPanel implements BorderedScrollablePanelConsum
         GrowingPreset preset = this.species.getRecommendedConditions();
         preset.setName(name);
         try{if(name.isEmpty()){
-            JOptionPane.showMessageDialog(this.borderPanel, "Preset name cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this.borderPanel.getPanel(), "Preset name cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }}catch (NullPointerException e){return;}
         GrowingPresetRepository.INSTANCE.savePreset(preset);
-        JOptionPane.showMessageDialog(this.borderPanel, "Preset saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this.borderPanel.getPanel(), "Preset saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void fillContentPanel(){
         JPanel speciesPanel = new JPanel(new GridBagLayout());
         this.borderPanel.getContentPanel().add(createSpeciesPanel());
-        this.borderPanel.getContentPanel().add(createRecommendedPresetPanel());
+        this.borderPanel.getContentPanel().add(createRecommendedPresetPanel().getPanel());
     }
     private JPanel createSpeciesPanel(){
         JPanel panel = new JPanel(new GridBagLayout());
@@ -99,7 +99,7 @@ public class MushroomSpeciesDetailPanel implements BorderedScrollablePanelConsum
     }
 
     @Override
-    public BorderedScrollablePanel getPanel() {
+    public BorderedScrollablePanel getBorderedPanel() {
         return this.borderPanel;
     }
 }
